@@ -3,50 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   find_paths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/14 21:22:08 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:52:52 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static t_room	*getbestlink(t_link *link)
-{
-	t_room	*best;
-
-	best = link->room;
-	while (link)
-	{
-		if (link->room->dist < best->dist)
-			best = link->room;
-		link = link->next;
-	}
-	return (best);
-}
-
-static void		setnewpath(t_farm farm, t_path *path)
-{
-	t_way	*way;
-	size_t	len;
-
-	len = 0;
-	way = waynew(farm.end);
-	while (way->room != farm.start)
-	{
-		wayadd(&way, waynew(getbestlink(way->room->link)));
-		len++;
-	}
-	path->way = way;
-	path->len = len;
-}
 
 static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
 {
 	t_way	*tmp;
 	size_t	i;
 
+	(void)farm;
 	i = -1;
 	if (!init)
 		return ;

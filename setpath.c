@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setpath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/17 16:38:17 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:53:32 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		setpath(t_farm farm, t_path *path, t_path tmp, t_room *room)
 	else if (tmp.way->room == farm.end && (!path->way || tmp.len < path->len))
 	{
 		*path = pathnew(tmp.way, tmp.len);
+		// TODO reverse path
 		return ;
 	}
 	link = tmp.way->room->link;

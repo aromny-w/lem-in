@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/04 18:15:10 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:47:13 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		readinput(t_farm *farm, char *aline)
 	char	*line[21];
 	size_t	i;
 
+	(void)aline;
 	i = -1;
 	line[0] = "2";
 	line[1] = "##start";;
