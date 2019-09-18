@@ -42,7 +42,7 @@ static void		setnewpath(t_farm farm, t_path *path)
 	path->len = len;
 }
 
-static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
+static void		reversepaths(t_farm *farm, t_path *init, size_t k)
 {
 	t_way	*tmp;
 	size_t	i;
@@ -53,7 +53,7 @@ static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
 	while (++i < k)
 	{
 		tmp = init[i].way;
-		while (tmp->next)
+		while (tmp && tmp->next)
 		{
 			while (tmp->room->link->room != tmp->next->room)
 				tmp->room->link = tmp->room->link->next;
@@ -68,7 +68,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	size_t	i;
 
 	i = 0;
-	reverse_paths(&farm, init, k - 1);
+	reversepaths(&farm, init, k - 1);
 //	set_distance(&farm.start, 0);
 	if (!farm.end->links)
 		return (NULL);

@@ -61,7 +61,7 @@ static size_t	getminvalue(size_t a, size_t b)
 void	solvefarm(t_farm *farm)
 {
 	t_path	*path[1 + getminvalue(farm->ants, farm->end->links)];
-	size_t	k;
+	int		k;
 
 	k = 0;
 	path[k++] = NULL;
@@ -69,6 +69,7 @@ void	solvefarm(t_farm *farm)
 	while (k < farm->ants + 1)
 	{
 		path[k] = getpaths(*farm, path[k - 1], k);
+		printstatus(&path[k], k);
 		if (!path[k++])
 			break ;
 	}
