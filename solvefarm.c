@@ -69,7 +69,7 @@ void	solvefarm(t_farm *farm)
 	while (k < farm->ants + 1)
 	{
 		path[k] = getpaths(*farm, path[k - 1], k);
-		printstatus(&path[k], k);
+		printstatus(path[k], k);
 		if (!path[k++])
 			break ;
 	}
