@@ -25,6 +25,6 @@ t_path	*getpaths(t_farm farm, t_path *init, size_t k)
 		path[i].way = NULL;
 		path[i].len = 0;
 	}
-	find_paths(farm, path, init, k);
+	findpaths(farm, path, init, k);
 	return (path);
 }

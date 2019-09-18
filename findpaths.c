@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_paths.c                                       :+:      :+:    :+:   */
+/*   findpaths.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -53,7 +53,7 @@ static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
 	while (++i < k)
 	{
 		tmp = init[i].way;
-		while (tmp)
+		while (tmp->next)
 		{
 			while (tmp->room->link->room != tmp->next->room)
 				tmp->room->link = tmp->room->link->next;
@@ -63,7 +63,7 @@ static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
 	}
 }
 
-t_path			*find_paths(t_farm farm, t_path *path, t_path *init, size_t k)
+t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 {
 	size_t	i;
 
@@ -73,6 +73,8 @@ t_path			*find_paths(t_farm farm, t_path *path, t_path *init, size_t k)
 	if (!farm.end->links)
 		return (NULL);
 //	setnewpath(farm, path[k - 1]);
-	setpath(farm, &path[k - 1], pathnew(waynew(NULL), 0), farm.start);
+	setpath(farm, &path[k - 1], pathnew(NULL, 0), farm.start);
+	if (path[k - 1].way)
+		wayrev(&path[k - 1].way);
 	return (path);
 }

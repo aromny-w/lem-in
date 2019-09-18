@@ -12,11 +12,20 @@
 
 #include "lem_in.h"
 
-
 void	wayrev(t_way **way)
 {
 	t_way *prev;
 	t_way *curr;
 	t_way *next;
-	
+
+	prev = NULL;
+	curr = *way;
+	while (curr)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	*way = prev;
 }
