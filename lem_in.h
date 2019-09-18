@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 15:46:35 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/02 20:25:27 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# include "libft.h"
 # include <stdio.h>
 # include <math.h>
-
-# include "libft.h"
 
 typedef struct s_room	t_room;
 
@@ -73,10 +72,12 @@ void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
+t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
+void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
-void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
+void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
-t_path			*find_paths(t_farm farm, t_path *path, t_path *init, size_t k);
+
 
 #endif

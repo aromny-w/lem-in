@@ -8,11 +8,11 @@ CC=gcc
 
 INC=$(I_LIBFT)
 
-CFLAGS=-Wall -Wextra -Werror -g $(INC)
+CFLAGS=-g $(INC)
 
 SRCS =		./lem_in.c\
 			./pathnew.c\
-			./find_paths.c\
+			./findpaths.c\
 			./getpaths.c\
 			./read.c\
 			./roomnew.c\
