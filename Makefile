@@ -4,9 +4,12 @@ D_LIBFT=./libft
 I_LIBFT=-I $(D_LIBFT)/
 L_LIBFT=-L $(D_LIBFT) -lft
 
+D_INC=./includes
+I_INC=-I $(D_INC) -I ./
+
 CC=gcc
 
-INC=$(I_LIBFT)
+INC=$(I_LIBFT) $(I_INC)
 
 CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
@@ -24,7 +27,10 @@ SRCS =		./lem_in.c\
 			./wayadd.c\
 			./waynew.c\
 			./wayrev.c\
-			./destroyfarm.c
+			./destroyfarm.c\
+			./printstatus.c\
+			./bfs/bfs.c\
+			./bfs/bfs_queque.c
 
 HEADERS =	./lem_in.h
 
