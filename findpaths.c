@@ -12,7 +12,41 @@
 
 #include "lem_in.h"
 
+<<<<<<< HEAD
 static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
+=======
+static t_room	*getbestlink(t_link *link)
+{
+	t_room	*best;
+
+	best = link->room;
+	while (link)
+	{
+		if (link->room->dist < best->dist)
+			best = link->room;
+		link = link->next;
+	}
+	return (best);
+}
+
+static void		setnewpath(t_farm farm, t_path *path)
+{
+	t_way	*way;
+	size_t	len;
+
+	len = 0;
+	way = waynew(farm.end);
+	while (way->room != farm.start)
+	{
+		wayadd(&way, waynew(getbestlink(way->room->link)));
+		len++;
+	}
+	path->way = way;
+	path->len = len;
+}
+
+static void		reversepaths(t_farm *farm, t_path *init, size_t k)
+>>>>>>> f283e2d4150931cc8d250f13d57cd596250ec218
 {
 	t_way	*tmp;
 	size_t	i;
@@ -24,7 +58,7 @@ static void		reverse_paths(t_farm *farm, t_path *init, size_t k)
 	while (++i < k)
 	{
 		tmp = init[i].way;
-		while (tmp->next)
+		while (tmp && tmp->next)
 		{
 			while (tmp->room->link->room != tmp->next->room)
 				tmp->room->link = tmp->room->link->next;
@@ -39,7 +73,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	size_t	i;
 
 	i = 0;
-	reverse_paths(&farm, init, k - 1);
+	reversepaths(&farm, init, k - 1);
 //	set_distance(&farm.start, 0);
 	if (!farm.end->links)
 		return (NULL);
