@@ -14,13 +14,13 @@
 
 static void		validate(t_farm farm)
 {
-//	if (farm.ants < 0 || !farm.start->links || !farm.end->links)
-//		terminate(-1);
+	if (farm.ants < 0 || !farm.start->links || !farm.end->links)
+		terminate(-1);
 }
 
 static void		initstruct(t_farm *farm)
 {
-	farm->ants = 0;
+	farm->ants = -1;
 	farm->room = NULL;
 	farm->start = NULL;
 	farm->end = NULL;

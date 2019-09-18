@@ -34,7 +34,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	int				weight;
+	double			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -51,8 +51,8 @@ struct			s_room
 	int				in;
 	int				out;
 	double			dist;
-	size_t			links; //count
-	t_link			*link; //links
+	size_t			links;
+	t_link			*link;
 	struct s_room	*next;
 };
 
@@ -79,6 +79,5 @@ void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
-
 
 #endif
