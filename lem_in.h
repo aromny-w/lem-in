@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/02 20:25:27 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 15:46:35 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "libft.h"
 # include <stdio.h>
 # include <math.h>
+
+# include "libft.h"
 
 typedef struct s_room	t_room;
 
@@ -76,5 +77,6 @@ t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
 t_path			pathnew(t_way *way, size_t len);
+t_path			*find_paths(t_farm farm, t_path *path, t_path *init, size_t k);
 
 #endif
