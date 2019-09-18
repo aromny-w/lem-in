@@ -78,7 +78,7 @@ t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
-void			printstatus(t_path **path, int k);
+void			printstatus(t_path *path, int k);
 
 
 #endif
