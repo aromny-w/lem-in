@@ -17,13 +17,13 @@ void	printstatus(t_path **path, int k)
 	size_t	i;
 
 	i = 0;
-	printf("%d solution\n", k);
+	printf("k = %d\n", k);
 	while (path[i] && path[i]->way)
 	{
 		if (path[i]->way->next)
-			printf("%s->", path[i]->way->room->name);
+			printf("%s%s->", path[i]->way->room->name, path[i]->way->room->in ? "in" : path[i]->way->room->out ? "out" : "");
 		else
-			printf("%s", path[i]->way->room->name);
+			printf("%s\n", path[i]->way->room->name);
 		path[i]->way = path[i]->way->next;
 	}
 }

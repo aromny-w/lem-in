@@ -53,7 +53,7 @@ static void		reversepaths(t_farm *farm, t_path *init, size_t k)
 	while (++i < k)
 	{
 		tmp = init[i].way;
-		while (tmp->next)
+		while (tmp && tmp->next)
 		{
 			while (tmp->room->link->room != tmp->next->room)
 				tmp->room->link = tmp->room->link->next;
