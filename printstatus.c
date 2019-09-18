@@ -12,23 +12,24 @@
 
 #include "lem_in.h"
 
+void	printpaths(t_path path)
+{
+	while (path.way)
+	{
+		if (path.way->next)
+			printf("%s%s->", path.way->room->name, path.way->room->in ? "(in)" : path.way->room->out ? "(out)" : "");
+		else
+			printf("%s\n", path.way->room->name);
+		path.way = path.way->next;
+	}
+}
+
 void	printstatus(t_path *path, int k)
 {
-	t_path	*tmp;
 	size_t	i;
 
 	i = -1;
 	printf("k = %d\n", k);
 	while (++i < k)
-	{
-		tmp = &path[i];
-		while (tmp && tmp->way)
-		{
-			if (tmp->way->next)
-				printf("%s%s->", tmp->way->room->name, tmp->way->room->in ? "(in)" : tmp->way->room->out ? "(out)" : "");
-			else
-				printf("%s\n", tmp->way->room->name);
-			tmp->way = tmp->way->next;
-		}
-	}
+		printpaths(path[i]);
 }

@@ -70,7 +70,6 @@ void	solvefarm(t_farm *farm)
 	{
 		path[k] = getpaths(*farm, path[k - 1], k);
 		printstatus(path[k], k);
-		printstatus(path[k], k);
 		if (!path[k++])
 			break ;
 	}
