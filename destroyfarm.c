@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   terminate.c                                        :+:      :+:    :+:   */
+/*   destroyfarm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/04 19:30:22 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 17:23:02 by bharrold         ###   ########.fr       */
+/*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
+/*   Updated: 2019/09/18 17:24:21 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	terminate(int status)
+void    destroyfarm(t_farm *farm)
 {
-	if (status == -1)
-		ft_putstr_fd("ERROR\n", 2);
-	if (status != -1)
-		exit(EXIT_SUCCESS);
-	else
-		exit(EXIT_FAILURE);
+    (void)farm;
 }

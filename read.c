@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/04 18:15:10 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:12:26 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void		readinput(t_farm *farm, char *aline)
 	line[0] = "2";
 	line[1] = "##start";;
 	line[2] = "A 1 0";
-	line[3] = "##end";
-	line[4] = "H 5 0";
+	line[3] = "H 5 0";
+	line[4] = "##end";
 	line[5] = "B 4 2";
 	line[6] = "C 9 0";
 	line[7] = "D 13 0";
@@ -94,6 +94,7 @@ void		readinput(t_farm *farm, char *aline)
 	line[18] = "F-G";
 	line[19] = "D-H";
 	line[20] = "G-H";
+	(void)aline;
 	while (++i < 21)
 	{
 		if (isnumber(line[i]) && !(farm->ants = 0))

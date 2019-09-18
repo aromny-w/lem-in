@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solvefarm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/10 20:38:24 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/18 17:02:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static size_t	getminvalue(size_t a, size_t b)
 void	solvefarm(t_farm *farm)
 {
 	t_path	*path[1 + getminvalue(farm->ants, farm->end->links)];
-	size_t	k;
+	int		k;
 
 	k = 0;
 	path[k++] = NULL;

@@ -8,7 +8,7 @@ CC=gcc
 
 INC=$(I_LIBFT)
 
-CFLAGS=-g $(INC)
+CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
 			./pathnew.c\
@@ -24,6 +24,7 @@ SRCS =		./lem_in.c\
 			./wayadd.c\
 			./waynew.c\
 			./wayrev.c\
+			./destroyfarm.c
 
 HEADERS =	./lem_in.h
 
