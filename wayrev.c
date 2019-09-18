@@ -12,7 +12,11 @@
 
 #include "lem_in.h"
 
-void	wayrev(t_way *way)
+
+void	wayrev(t_way **way)
 {
-	;
+	t_way *prev;
+	t_way *curr;
+	t_way *next;
+	
 }
