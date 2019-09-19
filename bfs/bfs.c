@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:26:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/18 18:42:07 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:17:24 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 t_path		*bfs (t_farm *farm)
 {
-	(void)farm;
+
 	return (NULL);
 }

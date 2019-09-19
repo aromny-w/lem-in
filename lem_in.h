@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 18:41:27 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:19:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ struct			s_room
 	int				in; // bool
 	int				out; // bool
 	double			dist;
+	int				visited;
 	size_t			links;
 	t_link			*link; // list
 	struct s_room	*next;
