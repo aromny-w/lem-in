@@ -82,9 +82,9 @@ void		readinput(t_farm *farm, char *line)
 			farm->ants = ft_getnbr(line);
 		else if (line[0] == '#' && line[1] == '#')
 			readcmd(farm, line, NULL);
-		else if (isroom(line) && (rooms = 1 && !links))
+		else if (isroom(line) && (rooms = 1 && ants && !links))
 			setroom(line, &farm->room);
-		else if (islink(line) && (links = 1))
+		else if (islink(line) && (links = 1) && ants && rooms)
 			setlink(line, farm);
 		else if (line[0] == 'L' || line[0] == '#')
 			continue ;
