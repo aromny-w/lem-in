@@ -1,4 +1,4 @@
-EXECUTABLE=lem-in
+EXECUTABLE=lem_in
 
 D_LIBFT=./libft
 I_LIBFT=-I $(D_LIBFT)/

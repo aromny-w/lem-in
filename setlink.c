@@ -24,11 +24,11 @@ static t_link	*getlink(t_room *room)
 	return (link);
 }
 
-static void	linker(t_room *room_1, t_room *room_2)
+static void		linker(t_room *room_1, t_room *room_2)
 {
 	t_link	*tmp_1;
 	t_link	*tmp_2;
-	
+
 	if (!room_1 || !room_2)
 		terminate(-1);
 	tmp_1 = getlink(room_2);
@@ -75,7 +75,7 @@ static t_room	*getroom1(char *line, t_farm farm)
 	return (farm.room);
 }
 
-void		setlink(char *line, t_farm *farm)
+void			setlink(char *line, t_farm *farm)
 {
 	t_room	*room1;
 	t_room	*room2;

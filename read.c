@@ -46,24 +46,29 @@ static int	isroom(char *line)
 	return (0);
 }
 
-static int	isinteger(char *line)
+static int	isantnbr(char *line)
 {
-	if (*line == '-' || *line == '+')
+	long	nbr;
+
+	nbr = 0;
+	if (!ft_isdigit(*line) && *line != '+')
+		return (0);
+	if (*line == '+')
 		line++;
-	while (ft_isdigit(*line))
-		line++;
-	if (!*line)
+	while (ft_isdigit(*line) && nbr <= INT_MAX)
+		nbr = 10 * nbr + (*line++ - '0');
+	if (!*line && nbr <= INT_MAX)
 		return (1);
 	return (0);
 }
 
-static void	readcmd(t_farm *farm, char *cmd, char *line, int *rooms)
+static void	readcmd(t_farm *farm, char *cmd, char *line)
 {
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
 		get_next_line(0, &line);
-	if (!ft_strcmp("##start", cmd) && isroom(line) && (*rooms = 1))
+	if (!ft_strcmp("##start", cmd) && isroom(line))
 		farm->start = roomnew(line);
-	if (!ft_strcmp("##end", cmd) && isroom(line) && (*rooms = 1))
+	if (!ft_strcmp("##end", cmd) && isroom(line))
 		farm->end = roomnew(line);
 }
 
@@ -78,10 +83,10 @@ void		readinput(t_farm *farm, char *line)
 	links = 0;
 	while (get_next_line(0, &line) == 1)
 	{
-		if (isinteger(line) && line[0] != '-' && (ants = 1 && !rooms && !links))
+		if (isantnbr(line) && line[0] != '-' && (ants = 1 && !rooms && !links))
 			farm->ants = ft_getnbr(line);
 		else if (line[0] == '#' && line[1] == '#')
-			readcmd(farm, line, NULL, &rooms);
+			readcmd(farm, line, NULL);
 		else if (isroom(line) && (rooms = 1 && ants && !links))
 			setroom(line, &farm->room);
 		else if (islink(line) && (links = 1) && ants && rooms)
@@ -92,47 +97,3 @@ void		readinput(t_farm *farm, char *line)
 			break ;
 	}
 }
-
-/*void		readinput(t_farm *farm, char *aline)
-{
-	char	*line[21];
-	size_t	i;
-
-	i = -1;
-	line[0] = "2";
-	line[1] = "##start";;
-	line[2] = "A 1 0";
-	line[3] = "##end";
-	line[4] = "H 5 0";
-	line[5] = "B 4 2";
-	line[6] = "C 9 0";
-	line[7] = "D 13 0";
-	line[8] = "E 13 0";
-	line[9] = "F 2 5";
-	line[10] = "G 2 4";
-	line[11] = "A-B";
-	line[12] = "A-E";
-	line[13] = "B-C";
-	line[14] = "C-D";
-	line[15] = "D-E";
-	line[16] = "D-F";
-	line[17] = "E-F";
-	line[18] = "F-G";
-	line[19] = "D-H";
-	line[20] = "G-H";
-	while (++i < 21)
-	{
-		if (isnumber(line[i]) && !(farm->ants = 0))
-			farm->ants = ft_getnbr(line[i]);
-		else if (line[i][0] == '#' && line[i][1] == '#' && i++)
-			readcmd(farm, line[i - 1], line[i]);
-		else if (line[i][0] == 'L' || line[i][0] == '#')
-			continue ;
-		else if (isroom(line[i]))
-			setroom(line[i], &farm->room);
-		else if (islink(line[i]))
-			setlink(line[i], farm);
-		else
-			break ;
-	}
-}*/

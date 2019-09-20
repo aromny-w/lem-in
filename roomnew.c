@@ -32,7 +32,7 @@ static char	*getroomname(char *line)
 	return (ft_strsub(line, 0, len));
 }
 
-t_room	*roomnew(char *line)
+t_room		*roomnew(char *line)
 {
 	t_room	*room;
 
