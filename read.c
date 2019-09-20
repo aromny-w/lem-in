@@ -31,19 +31,26 @@ static int	islink(char *line)
 
 static int	isroom(char *line)
 {
+	int	name;
+	int	x;
+	int	y;
+
+	name = 0;
+	x = 0;
+	y = 0;
 	if (*line == 'L' || *line == '#')
 		return (0);
-	while (ft_isalnum(*line) || *line == '_')
+	while ((ft_isalnum(*line) || *line == '_') && (name = 1))
 		line++;
 	if (*line == ' ')
 		line++;
-	while (ft_isdigit(*line))
+	while (ft_isdigit(*line) && (x = 1))
 		line++;
 	if (*line == ' ')
 		line++;
-	while (ft_isdigit(*line))
+	while (ft_isdigit(*line) && (y = 2))
 		line++;
-	if (!*line)
+	if (!*line && (name && x && y))
 		return (1);
 	return (0);
 }
@@ -93,7 +100,7 @@ void		readinput(t_farm *farm, char *line)
 			setroom(line, &farm->room);
 		else if (islink(line) && (links = 1) && ants && rooms)
 			setlink(line, farm);
-		else if (line[0] == 'L' || line[0] == '#')
+		else if (line[0] == '#')
 			continue ;
 		else
 			break ;
