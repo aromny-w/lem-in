@@ -18,7 +18,7 @@ static void		reversepaths(t_farm *farm, t_path *init, size_t k)
 	size_t	i;
 
 	(void)farm;
-	i = -1;
+	i = 0;
 	if (!init)
 		return ;
 	while (++i < k)
@@ -39,11 +39,9 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	size_t	i;
 
 	i = 0;
-	reversepaths(&farm, init, k - 1);
-//	set_distance(&farm.start, 0);
+	reversepaths(&farm, init, k);
 	if (!farm.end->links)
 		return (NULL);
-//	setnewpath(farm, path[k - 1]);
 	setpath(farm, &path[k - 1], pathnew(NULL, 0), farm.start);
 	if (path[k - 1].way)
 		wayrev(&path[k - 1].way);

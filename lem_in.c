@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/20 17:49:47 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:04:20 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,6 @@ void			lem_in(char **input)
 	initstruct(&farm);
 	(void)input;
 	readinput(&farm, NULL);
-	ft_printf("%d\n", farm.ants);
-	t_room *ptr = farm.room;
-	ft_printf("%s %d %d\n", farm.start->name, farm.start->in, farm.start->out);
-	ft_printf("%s %d %d\n", farm.end->name, farm.end->in, farm.end->out);
-	while (ptr)
-	{
-		ft_printf("%s %d %d\n", ptr->name, ptr->in, ptr->out);
-		ptr = ptr->next;
-	}
 	validate(farm);
 	bfs(&farm);
 	//solvefarm(&farm);

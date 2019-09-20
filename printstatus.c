@@ -6,24 +6,29 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 18:11:04 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:05:58 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	printstatus(t_path **path, int k)
+void	printpaths(t_path path)
 {
-	size_t	i;
-
-	i = 0;
-	printf("k = %d\n", k);
-	while (path[i] && path[i]->way)
+	while (path.way)
 	{
-		if (path[i]->way->next)
-			printf("%s%s->", path[i]->way->room->name, path[i]->way->room->in ? "(in)" : path[i]->way->room->out ? "(out)" : "");
+		if (path.way->next)
+			printf("%s%s->", path.way->room->name, path.way->room->in ? "(in)" : path.way->room->out ? "(out)" : "");
 		else
-			printf("%s\n", path[i]->way->room->name);
-		path[i]->way = path[i]->way->next;
+			printf("%s\n", path.way->room->name);
+		path.way = path.way->next;
 	}
+}
+
+void	printstatus(t_path *path, int k)
+{
+	int		i;
+
+	i = -1;
+	while (++i < k)
+		printpaths(path[i]);
 }
