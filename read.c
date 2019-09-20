@@ -20,6 +20,8 @@ static int	islink(char *line)
 		line++;
 	if (*line == '-')
 		line++;
+	if (*line == 'L' || *line == '#')
+		return (0);
 	while (ft_isalnum(*line) || *line == '_')
 		line++;
 	if (!*line)
@@ -96,4 +98,6 @@ void		readinput(t_farm *farm, char *line)
 		else
 			break ;
 	}
+	if (!ants || !rooms || !links)
+		terminate(-1);
 }
