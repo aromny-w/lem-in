@@ -17,7 +17,14 @@ void	printpaths(t_path path)
 	while (path.way)
 	{
 		if (path.way->next)
-			printf("%s%s->", path.way->room->name, path.way->room->in ? "(in)" : path.way->room->out ? "(out)" : "");
+		{
+			if (path.way->room->in)
+				printf("%s%s->", path.way->room->name, "(in)");
+			else if (path.way->room->out)
+				printf("%s%s->", path.way->room->name, "(out)");
+			else
+				printf("%s->", path.way->room->name);
+		}
 		else
 			printf("%s\n", path.way->room->name);
 		path.way = path.way->next;

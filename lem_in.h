@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/20 18:05:36 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:15:15 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	int				weight;
+	double			weight;
 	struct s_link	*next;
 }				t_link;
 

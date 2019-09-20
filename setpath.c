@@ -41,7 +41,8 @@ void		setpath(t_farm farm, t_path *path, t_path tmp, t_room *room)
 	link = tmp.way->room->link;
 	while (link)
 	{
-		setpath(farm, path, tmp, link->room);
+		if (link->weight != INFINITY)
+			setpath(farm, path, tmp, link->room);
 		link = link->next;
 	}
 }
