@@ -30,6 +30,6 @@ t_path		*bfs (t_farm *farm)
 	ft_printf("%s\n", farm->start->name);
 	enqueue(&queue, farm->start);
 	enqueue(&queue, farm->start->link->room);
-	print_queue(queue);
+	//print_queue(queue);
 	return (NULL);
 }

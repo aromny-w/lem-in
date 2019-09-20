@@ -14,7 +14,9 @@
 
 static void		validate(t_farm farm)
 {
-	if (farm.ants < 0 || !farm.start->links || !farm.end->links)
+	if (farm.ants < 0)
+		terminate(-1);
+	if (!farm.start || !farm.end || !farm.start->links || !farm.end->links)
 		terminate(-1);
 }
 
