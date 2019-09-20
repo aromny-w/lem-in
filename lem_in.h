@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/02 20:25:27 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:15:15 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	int				weight;
+	double			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -48,18 +48,19 @@ struct			s_room
 {
 	char			*name;
 	t_point			coords;
-	int				in;
-	int				out;
+	int				in; // bool
+	int				out; // bool
 	double			dist;
-	size_t			links; //count
-	t_link			*link; //links
+	int				visited;
+	size_t			links;
+	t_link			*link; // list
 	struct s_room	*next;
 };
 
 typedef struct	s_farm
 {
 	int				ants;
-	t_room			*room;
+	t_room			*room; // rooms
 	t_room			*start;
 	t_room			*end;
 }				t_farm;
@@ -79,6 +80,7 @@ void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
-
+void			destroyfarm(t_farm *farm);
+t_path			*bfs (t_farm *farm);
 
 #endif

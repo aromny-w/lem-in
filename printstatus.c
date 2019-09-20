@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printstatus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 16:45:16 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/20 18:05:58 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ void	printpaths(t_path path)
 	while (path.way)
 	{
 		if (path.way->next)
-			printf("%s%s->", path.way->room->name, path.way->room->in ? "(in)" : path.way->room->out ? "(out)" : "");
+		{
+			if (path.way->room->in)
+				printf("%s%s->", path.way->room->name, "(in)");
+			else if (path.way->room->out)
+				printf("%s%s->", path.way->room->name, "(out)");
+			else
+				printf("%s->", path.way->room->name);
+		}
 		else
 			printf("%s\n", path.way->room->name);
 		path.way = path.way->next;
@@ -26,10 +33,9 @@ void	printpaths(t_path path)
 
 void	printstatus(t_path *path, int k)
 {
-	size_t	i;
+	int		i;
 
 	i = -1;
-	printf("k = %d\n", k);
 	while (++i < k)
 		printpaths(path[i]);
 }

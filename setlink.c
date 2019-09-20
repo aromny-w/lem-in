@@ -30,7 +30,7 @@ static void	linker(t_room *room_1, t_room *room_2)
 	t_link	*tmp_2;
 	
 	if (!room_1 || !room_2)
-		return ;
+		terminate(-1);
 	tmp_1 = getlink(room_2);
 	tmp_2 = getlink(room_1);
 	tmp_1->next = room_1->link;
@@ -41,7 +41,7 @@ static void	linker(t_room *room_1, t_room *room_2)
 	room_2->links++;
 }
 
-static t_room	*getroom_2(char *line, t_farm farm)
+static t_room	*getroom2(char *line, t_farm farm)
 {
 	char	*name;
 
@@ -57,7 +57,7 @@ static t_room	*getroom_2(char *line, t_farm farm)
 	return (farm.room);
 }
 
-static t_room	*getroom_1(char *line, t_farm farm)
+static t_room	*getroom1(char *line, t_farm farm)
 {
 	char	*name;
 	size_t	len;
@@ -77,10 +77,10 @@ static t_room	*getroom_1(char *line, t_farm farm)
 
 void		setlink(char *line, t_farm *farm)
 {
-	t_room	*room_1;
-	t_room	*room_2;
+	t_room	*room1;
+	t_room	*room2;
 
-	room_1 = getroom_1(line, *farm);
-	room_2 = getroom_2(line, *farm);
-	linker(room_1, room_2);
+	room1 = getroom1(line, *farm);
+	room2 = getroom2(line, *farm);
+	linker(room1, room2);
 }
