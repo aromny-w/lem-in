@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/19 17:19:43 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:49:10 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path **path, int k);
 void			destroyfarm(t_farm *farm);
+t_path			*bfs (t_farm *farm);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:59:16 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/19 15:03:55 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:56:06 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ typedef struct				s_rooms_queue
 	struct s_rooms_queue	*prev;
 }							t_rooms_queue;
 
-void						*enqueue(t_rooms_queue *queue, t_room *room);
+void						enqueue(t_rooms_queue **queue, t_room *room);
 t_room						*dequeue(t_rooms_queue *queue);
 t_room						*peek(t_rooms_queue *queue);
 int							count(t_rooms_queue *queue);
 void						destroy_queue(t_rooms_queue *queue);
+void						print_queue(t_rooms_queue *queue);
 
 #endif

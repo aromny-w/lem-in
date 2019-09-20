@@ -6,25 +6,35 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 18:33:26 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/19 15:00:18 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:56:56 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "t_rooms_queue.h"
 
-void	*enqueue(t_rooms_queue *queue, t_room *room)
+void	enqueue(t_rooms_queue **queue, t_room *room)
 {
-	t_rooms_queue	*prev;
+	t_rooms_queue	*next;
 	t_rooms_queue	*node;
-
-	prev = queue;
 	node = (t_rooms_queue*)malloc(sizeof(t_rooms_queue));
+	
+	next = NULL;
+	
 	node->room = room;
 	node->visited = 0;
-	node->prev = prev;
-	node->next = NULL;
-	return (node);
+	node->prev= NULL;
+	if (queue == NULL)
+	{
+		*queue = node;
+		node->next = NULL;
+	}
+	else
+	{
+		*queue = node;
+		(*queue)->next = NULL;
+	}
+	return ;
 }
 
 t_room	*dequeue(t_rooms_queue *queue)

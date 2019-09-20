@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 17:33:42 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/20 17:49:47 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void			lem_in(char **input)
 		ptr = ptr->next;
 	}
 	validate(farm);
-	solvefarm(&farm);
+	bfs(&farm);
+	//solvefarm(&farm);
 	destroyfarm(&farm);
 }
 
