@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void    destroyfarm(t_farm *farm)
+void	destroyfarm(t_farm *farm)
 {
-    (void)farm;
+	(void)farm;
 }
