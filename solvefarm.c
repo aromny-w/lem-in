@@ -58,7 +58,7 @@ static size_t	getminvalue(size_t a, size_t b)
 	return (b);
 }
 
-void	solvefarm(t_farm *farm)
+void			solvefarm(t_farm *farm)
 {
 	t_path	*path[1 + getminvalue(farm->ants, farm->end->links)];
 	int		k;

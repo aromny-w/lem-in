@@ -12,21 +12,6 @@
 
 #include "lem_in.h"
 
-/*void	setroom(char *line, t_room **room)
-{
-	t_room	*tmp;
-
-	if (!*room)
-		*room = roomnew(line);
-	else
-	{
-		tmp = *room;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = roomnew(line);
-	}
-}*/
-
 void	setroom(char *line, t_room **room)
 {
 	t_room	*tmp;
