@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 06:23:23 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 10:08:37 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 10:51:53 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_ways	*get_next_ways(t_ways *ways)
 	if (ptr && ptr->way)
 	{
 		while (ptr->next)
-			ptr = ways->next;
+			ptr = ptr->next;
 		ptr->next = init_ways();
 		ptr = ptr->next;
 	}

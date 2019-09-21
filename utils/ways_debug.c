@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 09:50:50 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 10:11:53 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 10:13:39 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	print_ways(t_ways *ways)
 		ptr = ptr->next;
 	}
 }
-
