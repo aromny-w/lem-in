@@ -28,13 +28,12 @@ static void		initstruct(t_farm *farm)
 	farm->end = NULL;
 }
 
-void			lem_in(char **input)
+void			lem_in(int fd)
 {
 	t_farm	farm;
 
 	initstruct(&farm);
-	(void)input;
-	readinput(&farm, NULL);
+	readinput(&farm, fd > 0 ? fd : 0, NULL);
 	validate(farm);
 	bfs(&farm);
 	//solvefarm(&farm);
@@ -43,8 +42,7 @@ void			lem_in(char **input)
 
 int				main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	lem_in(++argv);
+	if (argc)
+		lem_in(open(argv[1], O_RDONLY));
 	terminate(1);
 }

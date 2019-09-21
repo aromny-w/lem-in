@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
 
@@ -65,8 +66,8 @@ typedef struct	s_farm
 	t_room			*end;
 }				t_farm;
 
-void			lem_in(char **input);
-void			readinput(t_farm *farm, char *line);
+void			lem_in(int fd);
+void			readinput(t_farm *farm, int fd, char *line);
 void			terminate(int status);
 t_room			*roomnew(char *line);
 void			setroom(char *line, t_room **room);
