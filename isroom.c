@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-static int	iscoord2(char **line)
+static int		iscoord2(char **line)
 {
 	long	nbr;
 
@@ -26,7 +26,7 @@ static int	iscoord2(char **line)
 	return (0);
 }
 
-static int	iscoord1(char **line)
+static int		iscoord1(char **line)
 {
 	long	nbr;
 
@@ -40,20 +40,49 @@ static int	iscoord1(char **line)
 	return (0);
 }
 
-static int	isname(char **line)
+static size_t	namelen(char *line)
 {
+	size_t	len;
+
+	len = 0;
+	while (ft_isalnum(*line) || *line == '_')
+	{
+		line++;
+		len++;
+	}
+	return (len);
+}
+
+static int		isname(char **line, t_farm farm)
+{
+	char	name[1 + namelen(*line)];
+	size_t	i;
+
+	i = 0;
 	while (ft_isalnum(**line) || **line == '_')
-		(*line)++;
-	if (*(*line)++ == ' ')
+		name[i++] = *(*line)++;
+	name[i] = '\0';
+	if (farm.start && !ft_strcmp(name, farm.start->name))
+		return (0);
+	if (farm.end && !ft_strcmp(name, farm.end->name))
+		return (0);
+	while (farm.room)
+	{
+		if (ft_strcmp(name, farm.room->name))
+			farm.room = farm.room->next;
+		else
+			break ;
+	}
+	if (*(*line)++ == ' ' && !farm.room)
 		return (1);
 	return (0);
 }
 
-int	isroom(char *line)
+int				isroom(char *line, t_farm farm)
 {
 	if (*line == 'L' || *line == '#')
 		return (0);
-	if (!isname(&line))
+	if (!isname(&line, farm))
 		return (0);
 	if (!iscoord1(&line))
 		return (0);

@@ -84,7 +84,7 @@ t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
 void			destroyfarm(t_farm *farm);
 int				isantnbr(char *line);
-int				isroom(char *line);
+int				isroom(char *line, t_farm farm);
 int				islink(char *line);
 t_path			*bfs (t_farm *farm);
 
