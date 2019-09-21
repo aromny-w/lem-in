@@ -66,13 +66,12 @@ static int		isname(char **line, t_farm farm)
 		return (0);
 	if (farm.end && !ft_strcmp(name, farm.end->name))
 		return (0);
-	while (farm.room)
-	{
-		if (ft_strcmp(name, farm.room->name))
-			farm.room = farm.room->next;
-		else
-			break ;
-	}
+	if (farm.start && !ft_strcmp(name, farm.start->name))
+		return (0);
+	if (farm.end && !ft_strcmp(name, farm.end->name))
+		return (0);
+	while (farm.room && ft_strcmp(name, farm.room->name))
+		farm.room = farm.room->next;
 	if (*(*line)++ == ' ' && !farm.room)
 		return (1);
 	return (0);

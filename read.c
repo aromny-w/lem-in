@@ -42,7 +42,7 @@ void		readinput(t_farm *farm, char *line)
 			rooms = 1;
 		else if (isroom(line, *farm) && (rooms = 1 && ants && !links))
 			setroom(line, &farm->room);
-		else if (islink(line) && (links = 1) && ants && rooms)
+		else if (islink(line, *farm) && (links = 1) && ants && rooms)
 			setlink(line, farm);
 		else if (line[0] == '#')
 			continue ;
