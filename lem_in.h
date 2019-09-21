@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 04:17:51 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 09:54:34 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ struct			s_room
 {
 	char			*name;
 	t_point			coords;
-	double			dist;
+	int				excluded;
+	int				dist;
 	int				visited;
 	int				in; // bool
 	int				out; // bool
@@ -99,11 +100,23 @@ t_way			*init_way(t_room *room);
 void			destroy_way(t_way *way);
 t_ways			*init_ways(void);
 void			destroy_ways(t_ways *ways);
+void			print_way(t_way *way);
+void			print_ways(t_ways *ways);
 int				get_rooms_count(t_farm *farm);
+t_room			*find_room_by_num(t_farm *farm, int num);
+int				find_num_by_room(t_room *room);
+void			debug_print_rooms(t_farm *farm);
+void			reset_dist(t_farm *farm);
 int				**create_matrix(int size);
 void			destroy_matrix(int **matrix, int size);
 void			print_matrix(int **matrix, int size);
 void			fill_matrix(int ***matrix, t_farm *farm);
+void			reset_matrix(int ***matrix, int size);
+int				*queue(int size);
+t_room			*dequeue(int *q, t_farm *farm);
+void			enqueue(int *q, int num);
+int				add_way(t_ways *ways, t_farm *farm);
+
 t_ways			*bfs (t_farm *farm);
 
 #endif

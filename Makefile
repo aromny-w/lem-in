@@ -31,8 +31,12 @@ SRCS =		./lem_in.c\
 			./printstatus.c\
 			./bfs/bfs.c\
 			./utils/ways.c\
+			./utils/ways_methods.c\
+			./utils/ways_debug.c\
 			./utils/rooms.c\
-			./utils/matrix.c
+			./utils/matrix.c\
+			./utils/matrix_methods.c\
+			./utils/queue.c
 
 HEADERS =	./lem_in.h
 

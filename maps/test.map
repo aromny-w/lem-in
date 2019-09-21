@@ -1,12 +1,17 @@
-3
-C 3 0
-D 8 0
-G 9 0
+1
 ##start
-A 1 0
+A 1 1
 ##end
-B 1 0
+K 2 2
+B 3 3
+C 4 4
+D 5 5
+E 6 6
+F 7 7
 A-B
 A-C
-C-D
-D-A
+C-F
+B-D
+D-E
+E-K
+F-K
