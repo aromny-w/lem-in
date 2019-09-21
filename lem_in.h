@@ -60,6 +60,7 @@ struct			s_room
 
 typedef struct	s_farm
 {
+	int				fd;
 	int				ants;
 	t_room			*room; // rooms
 	t_room			*start;

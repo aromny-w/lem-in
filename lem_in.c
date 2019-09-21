@@ -20,8 +20,9 @@ static void		validate(t_farm farm)
 		terminate(-1);
 }
 
-static void		initstruct(t_farm *farm)
+static void		initstruct(t_farm *farm, int fd)
 {
+	farm->fd = fd > 0 ? fd : 0;
 	farm->ants = -1;
 	farm->room = NULL;
 	farm->start = NULL;
@@ -32,8 +33,8 @@ void			lem_in(int fd)
 {
 	t_farm	farm;
 
-	initstruct(&farm);
-	readinput(&farm, fd > 0 ? fd : 0, NULL);
+	initstruct(&farm, fd);
+	readinput(&farm, farm.fd, NULL);
 	validate(farm);
 	bfs(&farm);
 	//solvefarm(&farm);

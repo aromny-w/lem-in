@@ -74,7 +74,7 @@ static int	isantnbr(char *line)
 static int	readcmd(t_farm *farm, char *cmd, char **line)
 {
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
-		get_next_line(0, line);
+		get_next_line(farm->fd, line);
 	if (!ft_strcmp("##start", cmd) && isroom(*line))
 		farm->start = roomnew(*line);
 	else if (!ft_strcmp("##end", cmd) && isroom(*line))
