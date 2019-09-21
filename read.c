@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/20 18:03:45 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 05:09:16 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		readinput(t_farm *farm, char *line)
 		else if (line[0] == '#' && line[1] == '#')
 			readcmd(farm, line, NULL, &rooms);
 		else if (isroom(line) && (rooms = 1 && ants && !links))
-			setroom(line, &farm->room);
+			setroom(line, &(farm->room));
 		else if (islink(line) && (links = 1) && ants && rooms)
 			setlink(line, farm);
 		else if (line[0] == 'L' || line[0] == '#')

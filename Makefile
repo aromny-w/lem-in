@@ -30,8 +30,13 @@ SRCS =		./lem_in.c\
 			./destroyfarm.c\
 			./printstatus.c\
 			./bfs/bfs.c\
-			./bfs/bfs_queque.c\
-			./bfs/bfs_debug.c
+			./utils/ways.c\
+			./utils/ways_methods.c\
+			./utils/ways_debug.c\
+			./utils/rooms.c\
+			./utils/matrix.c\
+			./utils/matrix_methods.c\
+			./utils/queue.c
 
 HEADERS =	./lem_in.h
 
