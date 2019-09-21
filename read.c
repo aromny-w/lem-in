@@ -84,7 +84,7 @@ static int	readcmd(t_farm *farm, char *cmd, char **line)
 	return (1);
 }
 
-void		readinput(t_farm *farm, int fd, char *line)
+void		readinput(t_farm *farm, char *line)
 {
 	int	ants;
 	int rooms;
@@ -93,7 +93,7 @@ void		readinput(t_farm *farm, int fd, char *line)
 	ants = 0;
 	rooms = 0;
 	links = 0;
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(farm->fd, &line) == 1)
 	{
 		if (isantnbr(line) && line[0] != '-' && (ants = 1 && !rooms && !links))
 			farm->ants = ft_getnbr(line);
@@ -108,7 +108,7 @@ void		readinput(t_farm *farm, int fd, char *line)
 		else
 			break ;
 	}
-	close(fd);
+	close(farm->fd);
 	if (!ants || !rooms || !links)
 		terminate(-1);
 }
