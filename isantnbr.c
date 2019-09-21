@@ -15,7 +15,7 @@
 int	isantnbr(char *line)
 {
 	long	nbr;
-	
+
 	nbr = 0;
 	if (!ft_isdigit(*line) && *line != '+')
 		return (0);

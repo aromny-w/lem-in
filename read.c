@@ -36,7 +36,7 @@ void		readinput(t_farm *farm, char *line)
 	links = 0;
 	while (get_next_line(farm->fd, &line) == 1)
 	{
-		if (isantnbr(line) && line[0] != '-' && (ants = 1 && !rooms && !links))
+		if (isantnbr(line) && farm->ants < 0 && (ants = 1 && !rooms && !links))
 			farm->ants = ft_getnbr(line);
 		else if (line[0] == '#' && line[1] == '#' && readcmd(farm, line, &line))
 			rooms = 1;

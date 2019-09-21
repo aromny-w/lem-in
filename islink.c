@@ -21,7 +21,7 @@ static int		isdupelink(t_farm farm, char *name1, char *name2)
 			farm.start->link = farm.start->link->next;
 		return (farm.start->link ? 1 : 0);
 	}
-	if (farm.end && !ft_strcmp(name1, farm.start->name))
+	if (farm.end && !ft_strcmp(name1, farm.end->name))
 	{
 		while (farm.end->link && ft_strcmp(name2, farm.end->link->room->name))
 			farm.end->link = farm.end->link->next;
