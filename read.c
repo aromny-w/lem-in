@@ -12,65 +12,6 @@
 
 #include "lem_in.h"
 
-static int	islink(char *line)
-{
-	if (*line == 'L' || *line == '#')
-		return (0);
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (*line == '-')
-		line++;
-	if (*line == 'L' || *line == '#')
-		return (0);
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (!*line)
-		return (1);
-	return (0);
-}
-
-static int	isroom(char *line)
-{
-	int	name;
-	int	x;
-	int	y;
-
-	name = 0;
-	x = 0;
-	y = 0;
-	if (*line == 'L' || *line == '#')
-		return (0);
-	while ((ft_isalnum(*line) || *line == '_') && (name = 1))
-		line++;
-	if (*line == ' ')
-		line++;
-	while (ft_isdigit(*line) && (x = 1))
-		line++;
-	if (*line == ' ')
-		line++;
-	while (ft_isdigit(*line) && (y = 2))
-		line++;
-	if (!*line && (name && x && y))
-		return (1);
-	return (0);
-}
-
-static int	isantnbr(char *line)
-{
-	long	nbr;
-
-	nbr = 0;
-	if (!ft_isdigit(*line) && *line != '+')
-		return (0);
-	if (*line == '+')
-		line++;
-	while (ft_isdigit(*line) && nbr <= INT_MAX)
-		nbr = 10 * nbr + (*line++ - '0');
-	if (!*line && nbr <= INT_MAX)
-		return (1);
-	return (0);
-}
-
 static int	readcmd(t_farm *farm, char *cmd, char **line)
 {
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
