@@ -23,7 +23,7 @@ SRCS =		./lem_in.c\
 			./islink.c\
 			./roomnew.c\
 			./setlink.c\
-			./setpath.c\
+			./dfs.c\
 			./setroom.c\
 			./solvefarm.c\
 			./terminate.c\

@@ -42,7 +42,7 @@ void		dfs(t_farm farm, t_path *path, t_path tmp, t_room *room)
 	while (link)
 	{
 		if (link->weight != INFINITY)
-			setpath(farm, path, tmp, link->room);
+			dfs(farm, path, tmp, link->room);
 		link = link->next;
 	}
 }
