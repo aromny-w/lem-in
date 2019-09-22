@@ -35,7 +35,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	double			weight;
+	float			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -51,7 +51,7 @@ struct			s_room
 	t_point			coords;
 	int				in; // bool
 	int				out; // bool
-	double			dist;
+	float			dist;
 	int				visited;
 	size_t			links;
 	t_link			*link; // list
