@@ -75,7 +75,7 @@ void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
-void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
+void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);

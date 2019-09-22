@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setpath.c                                          :+:      :+:    :+:   */
+/*   dfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -25,7 +25,7 @@ static int	iscycle(t_way *way)
 	return (0);
 }
 
-void		setpath(t_farm farm, t_path *path, t_path tmp, t_room *room)
+void		dfs(t_farm farm, t_path *path, t_path tmp, t_room *room)
 {
 	t_link	*link;
 
