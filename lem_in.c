@@ -35,8 +35,8 @@ void			lem_in(int fd)
 	initstruct(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
-//	bfs(&farm);
-	solvefarm(&farm);
+	bfs(&farm);
+//	solvefarm(&farm);
 	destroyfarm(&farm);
 }
 
