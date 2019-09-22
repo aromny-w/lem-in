@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-static int		isdupelink(t_farm farm, char *name1, char *name2)
+/*static int		isdupelink(t_farm farm, char *name1, char *name2)
 {
 	if (farm.start && !ft_strcmp(name1, farm.start->name))
 	{
@@ -103,10 +103,27 @@ int				islink(char *line, t_farm farm)
 	while (ft_isalnum(*line) || *line == '_')
 		name2[j++] = *line++;
 	name2[j] = '\0';
-	if (!isexist(farm, name1) || !isexist(farm, name2))
+	if (!isexist((farm), name1) || !isexist(farm, name2))
 		return (0);
-	if (isdupelink(farm, name1, name2))
+	if (isdupelink(farm, name1, name2)) //links are moving somehow, fix later
 		return (0);
+	if (!*line)
+		return (1);
+	return (0);
+}*/
+
+
+int	islink(char *line, t_farm farm)
+{
+	(void)farm;
+	if (*line == 'L' || *line == '#')
+		return (0);
+	while (ft_isalnum(*line) || *line == '_')
+		line++;
+	if (*line == '-')
+		line++;
+	while (ft_isalnum(*line) || *line == '_')
+		line++;
 	if (!*line)
 		return (1);
 	return (0);
