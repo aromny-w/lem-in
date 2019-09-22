@@ -60,7 +60,6 @@ struct			s_room
 
 typedef struct	s_farm
 {
-	int				fd;
 	int				ants;
 	t_room			*room; // rooms
 	t_room			*start;
@@ -68,7 +67,7 @@ typedef struct	s_farm
 }				t_farm;
 
 void			lem_in(int fd);
-void			readinput(t_farm *farm, char *line);
+void			readinput(t_farm *farm, int fd, char *line);
 void			terminate(int status);
 t_room			*roomnew(char *line);
 void			setroom(char *line, t_room **room);

@@ -20,9 +20,8 @@ static void		validate(t_farm farm)
 		terminate(-1);
 }
 
-static void		initstruct(t_farm *farm, int fd)
+static void		initstruct(t_farm *farm)
 {
-	farm->fd = fd > 0 ? fd : 0;
 	farm->ants = -1;
 	farm->room = NULL;
 	farm->start = NULL;
@@ -33,8 +32,8 @@ void			lem_in(int fd)
 {
 	t_farm	farm;
 
-	initstruct(&farm, fd);
-	readinput(&farm, NULL);
+	initstruct(&farm);
+	readinput(&farm, fd, NULL);
 	validate(farm);
 	bfs(&farm);
 	//solvefarm(&farm);
@@ -43,7 +42,11 @@ void			lem_in(int fd)
 
 int				main(int argc, char **argv)
 {
-	if (argc)
+	if (argc == 1)
+		lem_in(0);
+	else if (argc == 2)
 		lem_in(open(argv[1], O_RDONLY));
+	else
+		terminate(-1);
 	terminate(1);
 }
