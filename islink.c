@@ -14,7 +14,7 @@
 
 static int		isdupelink(t_room *room, char *name1, char *name2)
 {
-	while (room)
+	if (room)
 	{
 		while (ft_strcmp(name1, room->name))
 			room = room->next;
