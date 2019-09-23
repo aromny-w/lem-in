@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 04:15:43 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 21:34:22 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,23 @@ static void		splitrooms(t_room **room)
 	tmp = *room;
 	while (tmp)
 	{
+		tmp = getsplitroom(tmp);
+		tmp = tmp->next->next;
+	}
+}
+
+void		split_rooms(t_farm *farm)
+{
+	t_room	*tmp;
+
+	tmp = farm->room;
+	while (tmp)
+	{
+		if (tmp == farm->start || tmp == farm->end)
+		{
+			tmp = tmp->next;
+			continue;
+		}
 		tmp = getsplitroom(tmp);
 		tmp = tmp->next->next;
 	}

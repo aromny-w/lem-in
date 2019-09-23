@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 20:36:33 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/23 21:14:22 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 22:25:00 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	add_room(t_farm *new_farm, t_room *room, int in, int out)
 	t_room	*ptr;
 
 	ptr = (new_farm)->room;
+	room->in = in;
+	room->out = out;
 	if (!ptr)
 	{
 		(new_farm)->room = room;
@@ -47,11 +49,7 @@ void	add_room(t_farm *new_farm, t_room *room, int in, int out)
 			break;
 		ptr = ptr->next;
 	}
-		
-	room->next = NULL;
 	ptr->next = room;
-	room->in = in;
-	room->out = out;
 }
 
 void	copy_rooms(t_farm *new_farm, t_farm *farm)

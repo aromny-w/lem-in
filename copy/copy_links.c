@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 20:37:20 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/23 21:05:57 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 22:04:16 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ void	copy_links(t_farm *new_farm, t_room *new_room, t_room *room)
 	tmp = NULL;
 	if (new_room->in == 1)
 	{
+		new_room->links = 1;
 		tmp = find_room_by_name_inout(new_farm, new_room->name, 0, 1);
 		add_link(new_room, tmp);
 		return;
 	}
 	ptr = room->link;
+	new_room->links = room->links;
 	while (ptr)
 	{
 		tmp = find_room_by_name_inout(new_farm, ptr->room->name, 1, 0);

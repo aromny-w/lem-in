@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   roomnew.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 20:35:27 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 01:40:44 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 18:06:12 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ t_room		*roomnew(char *line)
 	room->name = getroomname(line);
 	setcoords(line, &room->coords);
 	room->dist = INFINITY;
+	room->visited = 0;
+	room->excluded = 0;
+	room->num = 0;
+	room->in = 0;
+	room->out = 0;
 	room->links = 0;
 	room->link = NULL;
 	room->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:45:07 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 08:45:44 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:07:43 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void	fill_matrix(int ***matrix, t_farm *farm)
 	room_ptr = farm->room;
 	while (room_ptr)
 	{
+		if (room_ptr == farm->start || room_ptr == farm->end)
+		{
+			room_ptr = room_ptr->next;
+			continue;
+		}
 		ptr = room_ptr->link;
 		while (ptr)
 		{

@@ -9,17 +9,12 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
-			"args": [],
+			"args": ["maps/map.big"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": true,
 			"MIMode": "lldb",
-			"setupCommands": [
-                {
-                    "text": "${workspaceFolder}/maps/test.map"
-                }
-            ]
 		}
 	]
 }

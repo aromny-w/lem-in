@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:29:48 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 09:36:49 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 21:51:21 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,20 @@ t_room		*find_room_by_num(t_farm *farm, int num)
 	while (ptr)
 	{
 		if (ptr->num == num)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (NULL);
+}
+
+t_room		*find_room_by_name_inout(t_farm *farm, char *name, int in, int out)
+{
+	t_room *ptr;
+
+	ptr = farm->room;
+	while (ptr)
+	{
+		if (!ft_strcmp(ptr->name, name) && ptr->in == in && ptr->out == out)
 			return (ptr);
 		ptr = ptr->next;
 	}

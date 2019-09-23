@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 21:31:21 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 21:51:39 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	float			weight;
+	float			weight;	
 	struct s_link	*next;
 }				t_link;
 
@@ -57,12 +57,12 @@ struct			s_room
 {
 	char			*name;
 	t_point			coords;
-	int				excluded;
-	int				dist;
+	float			dist;
 	int				visited;
+	int				excluded;
+	int				num;
 	int				in; // bool
 	int				out; // bool
-	int				num;
 	size_t			links;
 	t_link			*link; // list
 	struct s_room	*next;
@@ -71,7 +71,8 @@ struct			s_room
 typedef struct	s_farm
 {
 	int				ants;
-	t_room			*room; // rooms
+	t_room			*room; // rooms]
+	t_room			*split_room;
 	t_room			*start;
 	t_room			*end;
 }				t_farm;
@@ -83,6 +84,7 @@ t_room			*roomnew(char *line);
 void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm *farm);
+void			split_rooms(t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
 void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
@@ -93,11 +95,13 @@ t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
 void			destroyfarm(t_farm *farm);
 int				isantnbr(char *line);
-int				islink(char *line, t_farm farm);
-int				isroom(char *line, t_farm farm);
+int				isroom(char *line, t_room *room);
+int				islink(char *line, t_room *room);
 
 
 t_farm			*make_split_farm(t_farm *farm);
+void			make_links(t_farm *new_farm, t_farm *farm);
+void			copy_rooms(t_farm *new_farm, t_farm *farm);
 
 /*
 *********** ALGO ***************
@@ -111,6 +115,8 @@ void			print_way(t_way *way);
 void			print_ways(t_ways *ways);
 int				get_rooms_count(t_farm *farm);
 t_room			*find_room_by_num(t_farm *farm, int num);
+t_room			*find_room_by_name_inout(t_farm *farm, char *name,
+					int in, int out);
 int				find_num_by_room(t_room *room);
 void			debug_print_rooms(t_farm *farm);
 void			reset_dist(t_farm *farm);
