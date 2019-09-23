@@ -42,7 +42,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	reversepaths(&farm, init, k - 1);
 	if (!farm.end->links)
 		return (NULL);
-	setpath(farm, &path[k - 1], pathnew(NULL, 0), farm.start);
+	dfs(farm, &path[k - 1], pathnew(NULL, 0), farm.start);
 	if (path[k - 1].way)
 		wayrev(&path[k - 1].way);
 	return (path);

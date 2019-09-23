@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 15:01:00 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:56:39 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
 
@@ -42,7 +43,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	double			weight;
+	float			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -75,8 +76,8 @@ typedef struct	s_farm
 	t_room			*end;
 }				t_farm;
 
-void			lem_in(char **input);
-void			readinput(t_farm *farm, char *line);
+void			lem_in(int fd);
+void			readinput(t_farm *farm, int fd, char *line);
 void			terminate(int status);
 t_room			*roomnew(char *line);
 void			setroom(char *line, t_room **room);
@@ -84,13 +85,16 @@ void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
-void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
+void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
 void			destroyfarm(t_farm *farm);
+int				isantnbr(char *line);
+int				islink(char *line, t_farm farm);
+int				isroom(char *line, t_farm farm);
 
 /*
 *********** ALGO ***************
@@ -116,6 +120,7 @@ int				*queue(int size);
 t_room			*dequeue(int *q, t_farm *farm);
 void			enqueue(int *q, int num);
 int				add_way(t_ways *ways, t_farm *farm);
+
 
 t_ways			*bfs (t_farm *farm);
 

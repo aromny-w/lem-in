@@ -12,67 +12,22 @@
 
 #include "lem_in.h"
 
-static int	islink(char *line)
+static int	readcmd(t_farm *farm, int fd, char *cmd, char **line)
 {
-	if (*line == 'L' || *line == '#')
+	if (cmd[0] != '#' || cmd[1] != '#')
 		return (0);
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (*line == '-')
-		line++;
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (!*line)
-		return (1);
-	return (0);
-}
-
-static int	isroom(char *line)
-{
-	if (*line == 'L' || *line == '#')
-		return (0);
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (*line == ' ')
-		line++;
-	while (ft_isdigit(*line))
-		line++;
-	if (*line == ' ')
-		line++;
-	while (ft_isdigit(*line))
-		line++;
-	if (!*line)
-		return (1);
-	return (0);
-}
-
-static int	isantnbr(char *line)
-{
-	long	nbr;
-
-	nbr = 0;
-	if (!ft_isdigit(*line) && *line != '+')
-		return (0);
-	if (*line == '+')
-		line++;
-	while (ft_isdigit(*line) && nbr <= INT_MAX)
-		nbr = 10 * nbr + (*line++ - '0');
-	if (!*line && nbr <= INT_MAX)
-		return (1);
-	return (0);
-}
-
-static void	readcmd(t_farm *farm, char *cmd, char *line, int *rooms)
-{
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
-		get_next_line(0, &line);
-	if (!ft_strcmp("##start", cmd) && isroom(line) && (*rooms = 1))
-		farm->start = roomnew(line);
-	if (!ft_strcmp("##end", cmd) && isroom(line))
-		farm->end = roomnew(line);
+		get_next_line(fd, line);
+	if (!ft_strcmp("##start", cmd) && isroom(*line, *farm))
+		farm->start = roomnew(*line);
+	else if (!ft_strcmp("##end", cmd) && isroom(*line, *farm))
+		farm->end = roomnew(*line);
+	else
+		return (0);
+	return (1);
 }
 
-void		readinput(t_farm *farm, char *line)
+void		readinput(t_farm *farm, int fd, char *line)
 {
 	int	ants;
 	int rooms;
@@ -81,19 +36,22 @@ void		readinput(t_farm *farm, char *line)
 	ants = 0;
 	rooms = 0;
 	links = 0;
-	while (get_next_line(0, &line) == 1)
+	while (get_next_line(fd, &line) == 1)
 	{
-		if (isantnbr(line) && line[0] != '-' && (ants = 1 && !rooms && !links))
+		if (isantnbr(line) && farm->ants < 0 && (ants = 1 && !rooms && !links))
 			farm->ants = ft_getnbr(line);
-		else if (line[0] == '#' && line[1] == '#')
-			readcmd(farm, line, NULL, &rooms);
-		else if (isroom(line) && (rooms = 1 && ants && !links))
-			setroom(line, &(farm->room));
-		else if (islink(line) && (links = 1) && ants && rooms)
+		else if (readcmd(farm, fd, line, &line))
+			rooms = 1;
+		else if (isroom(line, *farm) && (rooms = 1 && ants && !links))
+			setroom(line, &farm->room);
+		else if (islink(line, *farm) && (links = 1) && ants && rooms)
 			setlink(line, farm);
-		else if (line[0] == 'L' || line[0] == '#')
+		else if (line[0] == '#')
 			continue ;
 		else
 			break ;
 	}
+	close(fd);
+	if (!ants || !rooms || !links)
+		terminate(-1);
 }

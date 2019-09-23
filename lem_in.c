@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 15:03:55 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:54:19 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static void		validate(t_farm farm)
 {
-	ft_printf("%d %p %p\n", farm.ants, farm.start->links, farm.end->links);
-	if (farm.ants < 0 || !farm.start->links || !farm.end->links)
+	if (farm.ants < 0)
+		terminate(-1);
+	if (!farm.start || !farm.end || !farm.start->links || !farm.end->links)
 		terminate(-1);
 }
 
@@ -27,14 +28,13 @@ static void		initstruct(t_farm *farm)
 	farm->end = NULL;
 }
 
-void			lem_in(char **input)
+void			lem_in(int fd)
 {
 	t_farm	farm;
 	t_ways	*ways;
 
 	initstruct(&farm);
-	(void)input;
-	readinput(&farm, NULL);
+	readinput(&farm, fd, NULL);
 	validate(farm);
 	ways = bfs(&farm);
 	print_ways(ways);
@@ -43,8 +43,11 @@ void			lem_in(char **input)
 
 int				main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	lem_in(++argv);
+	if (argc == 1)
+		lem_in(0);
+	else if (argc == 2)
+		lem_in(open(argv[1], O_RDONLY));
+	else
+		terminate(-1);
 	terminate(1);
 }

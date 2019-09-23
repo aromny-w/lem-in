@@ -30,6 +30,7 @@ t_room	*get_linked_room(t_room *room, int **matrix)
 			return (ptr->room);
 		ptr = ptr->next;
 	}
+
 	return (NULL);
 }
 
