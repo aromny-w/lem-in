@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 18:20:28 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:45:51 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ void		readinput(t_farm *farm, int fd, char *line)
 	{
 		if (isantnbr(line) && farm->ants < 0 && (ants = 1 && !rooms && !links))
 			farm->ants = ft_getnbr(line);
-		else if (readcmd(farm, fd, line, &line))
-			rooms = 1;
 		else if (isroom(line, farm->room) && (rooms = 1 && ants && !links))
 			setroom(line, &farm->room);
 		else if (islink(line, farm->room) && (links = 1) && ants && rooms)
 			setlink(line, farm);
-		else if (line[0] == '#')
+		else if (line[0] == '#' && line[1] != '#')
 			continue ;
+		else if (readcmd(farm, fd, line, &line))
+			rooms = 1;
 		else
 			break ;
 	}
