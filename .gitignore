@@ -1,1 +1,4 @@
-*.o
+**/*.o
+libft/*.o
+lem-in
+lem_in

@@ -1,0 +1,73 @@
+==26082== Memcheck, a memory error detector
+==26082== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==26082== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==26082== Command: ./lem-in
+==26082== Parent PID: 25496
+==26082== 
+==26082== 
+==26082== HEAP SUMMARY:
+==26082==     in use at exit: 19,479 bytes in 251 blocks
+==26082==   total heap usage: 358 allocs, 107 frees, 31,572 bytes allocated
+==26082== 
+==26082== 8 bytes in 1 blocks are definitely lost in loss record 3 of 54
+==26082==    at 0x1000A1596: malloc (in /Users/aromny-w/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==26082==    by 0x100006826: ft_strsub (in ./lem-in)
+==26082==    by 0x100002849: get_line (in ./lem-in)
+==26082==    by 0x1000026DA: get_next_line (in ./lem-in)
+==26082==    by 0x1000010E7: readcmd (read.c:70)
+==26082==    by 0x100000E5C: readinput (read.c:91)
+==26082==    by 0x100000904: lem_in (lem_in.c:37)
+==26082==    by 0x100000A32: main (lem_in.c:48)
+==26082== 
+==26082== 28 bytes in 12 blocks are definitely lost in loss record 13 of 54
+==26082==    at 0x1000A1596: malloc (in /Users/aromny-w/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==26082==    by 0x10000621C: ft_strdup (in ./lem-in)
+==26082==    by 0x1000017D8: getroom2 (setlink.c:50)
+==26082==    by 0x100001621: setlink (setlink.c:84)
+==26082==    by 0x100000F0D: readinput (read.c:95)
+==26082==    by 0x100000904: lem_in (lem_in.c:37)
+==26082==    by 0x100000A32: main (lem_in.c:48)
+==26082== 
+==26082== 32 bytes in 12 blocks are definitely lost in loss record 20 of 54
+==26082==    at 0x1000A1596: malloc (in /Users/aromny-w/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==26082==    by 0x100006826: ft_strsub (in ./lem-in)
+==26082==    by 0x100001690: getroom1 (setlink.c:68)
+==26082==    by 0x1000015EE: setlink (setlink.c:83)
+==26082==    by 0x100000F0D: readinput (read.c:95)
+==26082==    by 0x100000904: lem_in (lem_in.c:37)
+==26082==    by 0x100000A32: main (lem_in.c:48)
+==26082== 
+==26082== 72 bytes in 3 blocks are possibly lost in loss record 34 of 54
+==26082==    at 0x1000A1C02: calloc (in /Users/aromny-w/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==26082==    by 0x1005BB846: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==26082==    by 0x1005CEFE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==26082==    by 0x10001003B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==26082==    by 0x100010255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==26082==    by 0x10020900A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==26082==    by 0x1005BB074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==26082==    by 0x10019C68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==26082==    by 0x10019C63A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==26082==    by 0x1000B09D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==26082==    by 0x100020A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==26082==    by 0x100020C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==26082== 
+==26082== 183 bytes in 25 blocks are definitely lost in loss record 39 of 54
+==26082==    at 0x1000A1596: malloc (in /Users/aromny-w/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==26082==    by 0x100006826: ft_strsub (in ./lem-in)
+==26082==    by 0x100002849: get_line (in ./lem-in)
+==26082==    by 0x1000026DA: get_next_line (in ./lem-in)
+==26082==    by 0x100000DAF: readinput (read.c:86)
+==26082==    by 0x100000904: lem_in (lem_in.c:37)
+==26082==    by 0x100000A32: main (lem_in.c:48)
+==26082== 
+==26082== LEAK SUMMARY:
+==26082==    definitely lost: 251 bytes in 50 blocks
+==26082==    indirectly lost: 0 bytes in 0 blocks
+==26082==      possibly lost: 72 bytes in 3 blocks
+==26082==    still reachable: 1,335 bytes in 48 blocks
+==26082==         suppressed: 17,821 bytes in 150 blocks
+==26082== Reachable blocks (those to which a pointer was found) are not shown.
+==26082== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==26082== 
+==26082== For counts of detected and suppressed errors, rerun with: -v
+==26082== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 12 from 12)
