@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 06:23:23 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 10:51:53 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 15:12:51 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	add_new_way(t_ways *ways, int dist_num[2], t_farm *farm)
 	t_way	*way_begin;	
 
 	new_ways = get_next_ways(ways);
-	ways->dist = dist_num[0];
+	ft_printf("%d DIST\n", dist_num[0]);
+	new_ways->dist = dist_num[0];
 	tmp = find_room_by_num(farm, dist_num[1]);
 	tmp->excluded = 1;
 	new_way = init_way(tmp);
@@ -94,7 +95,7 @@ int		add_way(t_ways *ways, t_farm *farm)
 		}
 		ptr = ptr->next;
 	}
-	ft_printf("shortest %d\n", dist_num[1]);
+	ft_printf("shortest %d %d\n", dist_num[1], dist_num[0]);
 	if (dist_num[0] == -1)
 		return (0);
 	add_new_way(ways, dist_num, farm);
