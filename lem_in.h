@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 16:56:39 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:36:49 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ int				isantnbr(char *line);
 int				islink(char *line, t_farm farm);
 int				isroom(char *line, t_farm farm);
 
+
+t_farm			*make_split_farm(t_farm *farm);
+
 /*
 *********** ALGO ***************
 */
@@ -120,7 +123,6 @@ int				*queue(int size);
 t_room			*dequeue(int *q, t_farm *farm);
 void			enqueue(int *q, int num);
 int				add_way(t_ways *ways, t_farm *farm);
-
 
 t_ways			*bfs (t_farm *farm);
 

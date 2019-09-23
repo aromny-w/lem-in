@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 16:54:19 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 19:38:02 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ static void		initstruct(t_farm *farm)
 void			lem_in(int fd)
 {
 	t_farm	farm;
-	t_ways	*ways;
+	t_farm	*split_farm;
+	// t_ways	*ways;
 
 	initstruct(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
-	ways = bfs(&farm);
-	print_ways(ways);
+	split_farm = make_split_farm(&farm);
+	// ways = bfs(&farm);
+	// print_ways(ways);
 	destroyfarm(&farm);
 }
 

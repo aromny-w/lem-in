@@ -33,6 +33,7 @@ SRCS =		./lem_in.c\
 			./destroyfarm.c\
 			./printstatus.c\
 			./bfs/bfs.c\
+			./bfs/make_split_farm.c\
 			./utils/ways.c\
 			./utils/ways_methods.c\
 			./utils/ways_debug.c\
