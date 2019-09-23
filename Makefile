@@ -18,9 +18,12 @@ SRCS =		./lem_in.c\
 			./findpaths.c\
 			./getpaths.c\
 			./read.c\
+			./isantnbr.c\
+			./isroom.c\
+			./islink.c\
 			./roomnew.c\
 			./setlink.c\
-			./setpath.c\
+			./dfs.c\
 			./setroom.c\
 			./solvefarm.c\
 			./terminate.c\

@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
 
@@ -42,7 +43,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	double			weight;
+	float			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -75,8 +76,8 @@ typedef struct	s_farm
 	t_room			*end;
 }				t_farm;
 
-void			lem_in(char **input);
-void			readinput(t_farm *farm, char *line);
+void			lem_in(int fd);
+void			readinput(t_farm *farm, int fd, char *line);
 void			terminate(int status);
 t_room			*roomnew(char *line);
 void			setroom(char *line, t_room **room);
@@ -84,7 +85,7 @@ void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
-void			setpath(t_farm farm, t_path *path, t_path tmp, t_room *room);
+void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
