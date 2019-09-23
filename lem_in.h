@@ -36,6 +36,7 @@ typedef struct	s_link
 {
 	t_room			*room;
 	float			weight;
+	int				
 	struct s_link	*next;
 }				t_link;
 
@@ -61,7 +62,8 @@ struct			s_room
 typedef struct	s_farm
 {
 	int				ants;
-	t_room			*room; // rooms
+	t_room			*room; // rooms]
+	t_room			*split_room;
 	t_room			*start;
 	t_room			*end;
 }				t_farm;
