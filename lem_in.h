@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 09:54:34 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:56:39 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void			wayrev(t_way **way);
 t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
 void			destroyfarm(t_farm *farm);
+int				isantnbr(char *line);
+int				islink(char *line, t_farm farm);
+int				isroom(char *line, t_farm farm);
 
 /*
 *********** ALGO ***************
@@ -117,6 +120,7 @@ int				*queue(int size);
 t_room			*dequeue(int *q, t_farm *farm);
 void			enqueue(int *q, int num);
 int				add_way(t_ways *ways, t_farm *farm);
+
 
 t_ways			*bfs (t_farm *farm);
 

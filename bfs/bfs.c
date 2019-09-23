@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:26:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 10:26:04 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/21 15:04:28 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,12 @@ t_ways	*bfs (t_farm *farm)
 	{
 		fill_matrix(&matrix, farm);
 		q = queue(matrix_size);
-		//print_matrix(matrix, matrix_size);
 		add_dist(matrix, matrix_size, q, farm);
 		if(!(add_way(ways, farm)))
 			break;
-		//debug_print_rooms(farm);
 		reset_matrix(&matrix, matrix_size);
 		reset_dist(farm);
 	}
-	print_ways(ways);
 	destroy_matrix(matrix, matrix_size);
 	return (ways);
 }
