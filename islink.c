@@ -3,53 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   islink.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:48:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 21:48:17 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/23 18:19:24 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*static int		isdupelink(t_farm farm, char *name1, char *name2)
+static int		isdupelink(t_room *room, char *name1, char *name2)
 {
-	if (farm.start && !ft_strcmp(name1, farm.start->name))
+	while (room)
 	{
-		while (farm.start->link &&
-		ft_strcmp(name2, farm.start->link->room->name))
-			farm.start->link = farm.start->link->next;
-		return (farm.start->link ? 1 : 0);
-	}
-	if (farm.end && !ft_strcmp(name1, farm.end->name))
-	{
-		while (farm.end->link && ft_strcmp(name2, farm.end->link->room->name))
-			farm.end->link = farm.end->link->next;
-		return (farm.end->link ? 1 : 0);
-	}
-	if (farm.room)
-	{
-		while (ft_strcmp(name1, farm.room->name))
-			farm.room = farm.room->next;
-		while (farm.room->link)
+		while (ft_strcmp(name1, room->name))
+			room = room->next;
+		while (room->link)
 		{
-			if (!ft_strcmp(name2, farm.room->link->room->name))
+			if (!ft_strcmp(name2, room->link->room->name))
 				return (1);
-			farm.room->link = farm.room->link->next;
+			room->link = room->link->next;
 		}
 	}
 	return (0);
 }
 
-static int		isexist(t_farm farm, char *name)
+static int		isexist(t_room *room, char *name)
 {
-	if (farm.start && !ft_strcmp(name, farm.start->name))
-		return (1);
-	if (farm.end && !ft_strcmp(name, farm.end->name))
-		return (1);
-	while (farm.room && ft_strcmp(name, farm.room->name))
-		farm.room = farm.room->next;
-	if (farm.room)
+	while (room && ft_strcmp(name, room->name))
+		room = room->next;
+	if (room)
 		return (1);
 	return (0);
 }
@@ -84,7 +67,7 @@ static size_t	namelen1(char *line)
 	return (len);
 }
 
-int				islink(char *line, t_farm farm)
+int				islink(char *line, t_room *room)
 {
 	char	name1[1 + namelen1(line)];
 	char	name2[1 + namelen2(line)];
@@ -103,27 +86,10 @@ int				islink(char *line, t_farm farm)
 	while (ft_isalnum(*line) || *line == '_')
 		name2[j++] = *line++;
 	name2[j] = '\0';
-	if (!isexist((farm), name1) || !isexist(farm, name2))
+	if (!isexist((room), name1) || !isexist(room, name2))
 		return (0);
-	if (isdupelink(farm, name1, name2)) //links are moving somehow, fix later
+	if (isdupelink(room, name1, name2))
 		return (0);
-	if (!*line)
-		return (1);
-	return (0);
-}*/
-
-
-int	islink(char *line, t_farm farm)
-{
-	(void)farm;
-	if (*line == 'L' || *line == '#')
-		return (0);
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
-	if (*line == '-')
-		line++;
-	while (ft_isalnum(*line) || *line == '_')
-		line++;
 	if (!*line)
 		return (1);
 	return (0);

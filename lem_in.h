@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 17:22:02 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/23 18:14:10 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ struct			s_room
 {
 	char			*name;
 	t_point			coords;
-	int				excluded;
-	int				dist;
+	float			dist;
 	int				visited;
+	int				excluded;
+	int				num;
 	int				in; // bool
 	int				out; // bool
-	int				num;
 	size_t			links;
 	t_link			*link; // list
 	struct s_room	*next;
@@ -94,8 +94,8 @@ t_path			pathnew(t_way *way, size_t len);
 void			printstatus(t_path *path, int k);
 void			destroyfarm(t_farm *farm);
 int				isantnbr(char *line);
-int				islink(char *line, t_farm farm);
-int				isroom(char *line, t_farm farm);
+int				isroom(char *line, t_room *room);
+int				islink(char *line, t_room *room);
 
 /*
 *********** ALGO ***************

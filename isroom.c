@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isroom.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:47:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 21:47:10 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/23 18:12:58 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static size_t	namelen(char *line)
 	return (len);
 }
 
-static int		isname(char **line, t_farm farm)
+static int		isname(char **line, t_room *room)
 {
 	char	name[1 + namelen(*line)];
 	size_t	i;
@@ -62,26 +62,18 @@ static int		isname(char **line, t_farm farm)
 	while (ft_isalnum(**line) || **line == '_')
 		name[i++] = *(*line)++;
 	name[i] = '\0';
-	if (farm.start && !ft_strcmp(name, farm.start->name))
-		return (0);
-	if (farm.end && !ft_strcmp(name, farm.end->name))
-		return (0);
-	if (farm.start && !ft_strcmp(name, farm.start->name))
-		return (0);
-	if (farm.end && !ft_strcmp(name, farm.end->name))
-		return (0);
-	while (farm.room && ft_strcmp(name, farm.room->name))
-		farm.room = farm.room->next;
-	if (*(*line)++ == ' ' && !farm.room)
+	while (room && ft_strcmp(name, room->name))
+		room = room->next;
+	if (*(*line)++ == ' ' && !room)
 		return (1);
 	return (0);
 }
 
-int				isroom(char *line, t_farm farm)
+int				isroom(char *line, t_room *room)
 {
 	if (*line == 'L' || *line == '#')
 		return (0);
-	if (!isname(&line, farm))
+	if (!isname(&line, room))
 		return (0);
 	if (!iscoord1(&line))
 		return (0);
