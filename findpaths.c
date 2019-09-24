@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   findpaths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/14 21:22:08 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/24 22:04:12 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		reversepaths(t_farm *farm, t_path *init, size_t k)
+static void		reversepaths(t_path *init, size_t k)
 {
 	t_way	*tmp;
 	size_t	i;
 
 	i = -1;
-	(void)farm;
 	if (!init)
 		return ;
 	while (++i < k)
@@ -39,7 +38,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	size_t	i;
 
 	i = 0;
-	reversepaths(&farm, init, k - 1);
+	reversepaths(init, k - 1);
 	if (!farm.end->links)
 		return (NULL);
 	dfs(farm, &path[k - 1], pathnew(NULL, 0), farm.start);

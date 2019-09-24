@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solvefarm.c                                        :+:      :+:    :+:   */
+/*   linkadd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/24 23:18:56 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/09/24 22:51:05 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/09/24 22:52:23 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static size_t	getminvalue(size_t a, size_t b)
+void	linkadd(t_link **link, t_link *new)
 {
-	if (a <= b)
-		return (a);
-	return (b);
-}
-
-void			solvefarm(t_farm farm)
-{
-	t_path	*path[1 + getminvalue(farm.ants, farm.end->links)];
-	int		k;
-
-	k = 0;
-	path[k++] = NULL;
-	splitrooms(&farm.room, farm.start, farm.end);
-	while (k < farm.ants + 1)
-	{
-		path[k] = getpaths(farm, path[k - 1], k);
-		printstatus(path[k], k);
-		if (!path[k++])
-			break ;
-	}
+	new->next = *link;
+	*link = new;
 }

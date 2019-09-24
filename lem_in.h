@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/24 19:11:32 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/24 23:48:21 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,17 @@ typedef struct	s_farm
 void			lem_in(int fd);
 void			readinput(t_farm *farm, int fd, char *line);
 void			solvefarm(t_farm farm);
+void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			terminate(int status);
 void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
 void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
-t_room			*roomnew(char *line);
+t_room			*roomnew(char *name, t_point coords, t_link *link);
 void			roomadd(t_room **room, t_room *new);
+t_link			*linknew(t_room *room, float weight);
+void			linkadd(t_link **link, t_link *new);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
