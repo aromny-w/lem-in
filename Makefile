@@ -21,6 +21,7 @@ SRCS =		./lem_in.c\
 			./isantnbr.c\
 			./isroom.c\
 			./islink.c\
+			./roomadd.c\
 			./roomnew.c\
 			./setlink.c\
 			./dfs.c\

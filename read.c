@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/24 18:30:59 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/24 19:13:11 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,9 @@ static int	readcmd(t_farm *farm, int fd, char *cmd, char **line)
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
 		get_next_line(fd, line);
 	if (!ft_strcmp("##start", cmd) && isroom(*line, farm->room))
-	{
-		farm->start = roomnew(*line);
-		farm->start->next = farm->room;
-		farm->room = farm->start;
-	}
+		roomadd(farm->room, farm->start = roomnew(*line));
 	else if (!ft_strcmp("##end", cmd) && isroom(*line, farm->room))
-	{
-		farm->end = roomnew(*line);
-		farm->end->next = farm->room;
-		farm->room = farm->end;
-	}
+		roomadd(farm->room, farm->end = roomnew(*line));
 	else
 		return (0);
 	return (1);
