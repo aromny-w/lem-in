@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/24 23:48:21 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 15:53:07 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void			destroyfarm(t_farm *farm);
 int				isantnbr(char *line);
 int				isroom(char *line, t_room *room);
 int				islink(char *line, t_room *room);
+int				iscommand(char *line);
+int				iscomment(char *line);
 
 /*
 *********** ALGO ***************

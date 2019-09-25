@@ -21,6 +21,8 @@ SRCS =		./lem_in.c\
 			./utilis2/isantnbr.c\
 			./utilis2/isroom.c\
 			./utilis2/islink.c\
+			./utilis2/iscommand.c\
+			./utilis2/iscomment.c\
 			./utilis2/roomadd.c\
 			./utilis2/roomnew.c\
 			./utilis2/linknew.c\
