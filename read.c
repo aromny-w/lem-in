@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 15:36:01 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 15:38:14 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void		readinput(t_farm *farm, int fd, char *line)
 			break ;
 	}
 	close(fd);
-	if (!ants || !rooms || !links)
+	if (!s[0] || !s[1] || !s[2])
 		terminate(-1);
 }
