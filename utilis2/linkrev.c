@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wayrev.c                                           :+:      :+:    :+:   */
+/*   linkrev.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 21:25:20 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 16:15:04 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/09/25 16:15:22 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/09/25 16:16:25 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	wayrev(t_way **way)
+void	linkrev(t_link **link)
 {
-	t_way	*prev;
-	t_way	*curr;
-	t_way	*next;
+	t_link	*prev;
+	t_link	*curr;
+	t_link	*next;
 
 	prev = NULL;
-	curr = *way;
+	curr = *link;
 	while (curr)
 	{
 		next = curr->next;
@@ -27,5 +27,5 @@ void	wayrev(t_way **way)
 		prev = curr;
 		curr = next;
 	}
-	*way = prev;
+	*link = prev;
 }

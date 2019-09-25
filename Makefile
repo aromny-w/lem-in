@@ -25,8 +25,10 @@ SRCS =		./lem_in.c\
 			./utilis2/iscomment.c\
 			./utilis2/roomadd.c\
 			./utilis2/roomnew.c\
+			./utilis2/roomrev.c\
 			./utilis2/linknew.c\
 			./utilis2/linkadd.c\
+			./utilis2/linkrev.c\
 			./setlink.c\
 			./dfs.c\
 			./setroom.c\
