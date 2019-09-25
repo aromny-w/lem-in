@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   printstatus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/20 18:05:58 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:44:04 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	printpaths(t_path path)
+static void	printpaths(t_path path)
 {
 	while (path.way)
 	{
@@ -31,7 +31,7 @@ void	printpaths(t_path path)
 	}
 }
 
-void	printstatus(t_path *path, int k)
+void		printstatus(t_path *path, int k)
 {
 	int		i;
 

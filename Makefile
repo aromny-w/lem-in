@@ -14,7 +14,7 @@ INC=$(I_LIBFT) $(I_INC)
 CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
-			./pathnew.c\
+			./utilis2/pathnew.c\
 			./findpaths.c\
 			./getpaths.c\
 			./read.c\
@@ -39,6 +39,7 @@ SRCS =		./lem_in.c\
 			./utilis2/wayrev.c\
 			./destroyfarm.c\
 			./printstatus.c\
+			./printrooms.c\
 			./bfs/bfs.c\
 			./utils/ways.c\
 			./utils/ways_methods.c\

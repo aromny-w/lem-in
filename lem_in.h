@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 16:20:18 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:53:22 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int				islink(char *line, t_room *room);
 int				iscommand(char *line);
 int				iscomment(char *line);
 void			printstatus(t_path *path, int k);
+void			printrooms(t_room *room);
 
 /*
 *********** ALGO ***************
