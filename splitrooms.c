@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 23:18:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 00:34:15 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 15:36:15 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_room	*getsplitroom(t_room *room)
 	return (in);
 }
 
-void		splitrooms(t_room **room, t_room *start, t_room *end)
+void			splitrooms(t_room **room, t_room *start, t_room *end)
 {
 	t_room	*tmp;
 

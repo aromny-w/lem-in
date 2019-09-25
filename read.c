@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 00:04:45 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 15:36:01 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	readcmd(t_farm *farm, int fd, char *cmd, char **line)
 	if (!ft_strcmp("##start", cmd) || !ft_strcmp("##end", cmd))
 		get_next_line(fd, line);
 	if (!ft_strcmp("##start", cmd) && isroom(*line, farm->room))
-	{	
+	{
 		setroom(*line, &farm->start);
 		roomadd(&farm->room, farm->start);
 	}
@@ -35,25 +35,23 @@ static int	readcmd(t_farm *farm, int fd, char *cmd, char **line)
 
 void		readinput(t_farm *farm, int fd, char *line)
 {
-	int	ants;
-	int rooms;
-	int	links;
+	int	s[3];
 
-	ants = 0;
-	rooms = 0;
-	links = 0;
+	s[0] = 0;
+	s[1] = 0;
+	s[2] = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (isantnbr(line) && farm->ants < 0 && (ants = 1 && !rooms && !links))
+		if (isantnbr(line) && farm->ants < 0 && (s[0] = 1 && !s[1] && !s[2]))
 			farm->ants = ft_getnbr(line);
-		else if (isroom(line, farm->room) && (rooms = 1 && ants && !links))
+		else if (isroom(line, farm->room) && (s[1] = 1 && s[0] && !s[2]))
 			setroom(line, &farm->room);
-		else if (islink(line, farm->room) && (links = 1) && ants && rooms)
+		else if (islink(line, farm->room) && (s[2] = 1) && s[0] && s[1])
 			setlink(line, farm);
 		else if (line[0] == '#' && line[1] != '#')
 			continue ;
 		else if (readcmd(farm, fd, line, &line))
-			rooms = 1;
+			s[1] = 1;
 		else
 			break ;
 	}
