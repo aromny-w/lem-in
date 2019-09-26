@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 15:27:36 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 17:45:20 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	abortreading(int fd, char **line)
 {
 	close(fd);
-	free(line);
+	free(*line);
 	terminate(-1);
 }
 

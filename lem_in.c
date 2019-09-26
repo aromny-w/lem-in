@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 11:58:34 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 17:38:21 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			lem_in(int fd)
 //	solvefarm(farm);
 //	ways = bfs(&farm);
 //	print_ways(ways);
-//	destroyfarm(&farm);
+	destroyfarm(&farm);
 }
 
 int				main(int argc, char **argv)
