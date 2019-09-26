@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 23:18:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 11:14:51 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 11:59:07 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_room	*getendroom(t_room *room)
 	}
 	return (room);
 }
+
 
 static t_room	*getroomout(t_room *room)
 {
@@ -63,7 +64,7 @@ static t_room	*getsplitroom(t_room *room)
 	t_room	*in;
 	t_room	*out;
 
-	in = getroomin(room); //fix here asap
+	in = getroomin(room);
 	out = getroomout(room);
 	linkadd(&in->link, linknew(out, 0));
 	linkadd(&out->link, linknew(in, INFINITY));
