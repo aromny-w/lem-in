@@ -9,11 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
-<<<<<<< HEAD
-			"args": ["maps/map.big"],
-=======
 			"args": ["superposition.map"],
->>>>>>> 0f699ac66b1b5a83dac45b61afd8e090bff55aa5
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

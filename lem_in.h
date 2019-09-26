@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 20:32:04 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:53:40 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ void			enqueue(int *q, int num);
 int				add_way(t_ways *ways, t_farm *farm);
 
 t_ways			*bfs (t_farm *farm);
+t_ways			*suurballe(t_farm *farm);
 
 #endif

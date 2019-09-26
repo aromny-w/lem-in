@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 20:48:54 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/26 21:01:25 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ static void		initstruct(t_farm *farm)
 void			lem_in(int fd)
 {
 	t_farm	farm;
-	t_farm 	*split_farm;
 	t_ways	*ways;
 
-	split_farm = NULL;
 	initstruct(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
-	// solvefarm(farm);
-	ways = bfs(&farm);
+	if ((ways = suurballe(&farm))->dist == -1)
+		ft_printf("HOBA");
+	// if ((ways = bfs(&farm))->dist == -1)
+	// 	ft_printf("HOBA2");
 	print_ways(ways);
-//	destroyfarm(&farm);
+	// destroyfarm(&farm);
 }
 
 int				main(int argc, char **argv)

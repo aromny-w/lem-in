@@ -1,3 +1,5 @@
 **/*.o
 libft/*.o
 lem-in
+.vscode/
+*.dSYM
