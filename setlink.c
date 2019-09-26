@@ -3,40 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   setlink.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 18:25:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/21 05:16:27 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/24 22:54:34 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_link	*getlink(t_room *room)
-{
-	t_link	*link;
-
-	if (!(link = (t_link *)malloc(sizeof(t_link))))
-		terminate(-1);
-	link->room = room;
-	link->weight = 1;
-	link->next = NULL;
-	return (link);
-}
-
 static void		linker(t_room *room_1, t_room *room_2)
 {
-	t_link	*tmp_1;
-	t_link	*tmp_2;
-
-	if (!room_1 || !room_2)
-		terminate(-1);
-	tmp_1 = getlink(room_2);
-	tmp_2 = getlink(room_1);
-	tmp_1->next = room_1->link;
-	tmp_2->next = room_2->link;
-	room_1->link = tmp_1;
-	room_2->link = tmp_2;
+	linkadd(&room_1->link, linknew(room_2, 1));
+	linkadd(&room_2->link, linknew(room_1, 1));
 	room_1->links++;
 	room_2->links++;
 }

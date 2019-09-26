@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:48:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 22:02:36 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:32:22 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static int		isdupelink(t_room *room, char *name1, char *name2)
 {
-	t_link *ptr;
+	t_link	*tmp;
 
 	if (room)
 	{
 		while (ft_strcmp(name1, room->name))
 			room = room->next;
-		ptr = room->link;
-		while (ptr)
+		tmp = room->link;
+		while (tmp)
 		{
-			if (!ft_strcmp(name2, ptr->room->name))
+			if (!ft_strcmp(name2, tmp->room->name))
 				return (1);
-			ptr = ptr->next;
+			tmp = tmp->next;
 		}
 	}
 	return (0);

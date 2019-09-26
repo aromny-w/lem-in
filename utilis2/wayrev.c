@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wayrev.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 21:25:20 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/17 21:25:21 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/25 16:15:04 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	wayrev(t_way **way)
 {
-	t_way *prev;
-	t_way *curr;
-	t_way *next;
+	t_way	*prev;
+	t_way	*curr;
+	t_way	*next;
 
 	prev = NULL;
 	curr = *way;

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 20:28:40 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/26 20:31:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void		initstruct(t_farm *farm)
 {
 	farm->ants = -1;
 	farm->room = NULL;
-	farm->split_room = NULL;
 	farm->start = NULL;
 	farm->end = NULL;
 }
@@ -32,15 +31,17 @@ static void		initstruct(t_farm *farm)
 void			lem_in(int fd)
 {
 	t_farm	farm;
-	t_farm	*split_farm;
-	// t_ways	*ways;
+	t_farm 	*split_farm;
+//	t_ways	*ways;
 
 	split_farm = NULL;
 	initstruct(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
-	split_farm = make_split_farm(&farm);
-	destroyfarm(&farm);
+//	solvefarm(farm);
+//	ways = bfs(&farm);
+//	print_ways(ways);
+//	destroyfarm(&farm);
 }
 
 int				main(int argc, char **argv)
