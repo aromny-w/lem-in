@@ -6,11 +6,18 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 12:20:08 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:27:36 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	abortreading(int fd, char **line)
+{
+	close(fd);
+	free(line);
+	terminate(-1);
+}
 
 static void	datarev(t_farm *farm)
 {
@@ -25,10 +32,14 @@ static void	datarev(t_farm *farm)
 	}
 }
 
-static int	readcommand(t_farm *farm, int fd, char *cmd, char **line)
+static int	readcommand(t_farm *farm, int fd, char **line)
 {
+	char	cmd[ft_strlen(*line) + 1];
+
+	ft_strcpy(cmd, *line);
 	if (ft_strcmp("##start", cmd) && ft_strcmp("##end", cmd))
 		return (0);
+	free(*line);
 	get_next_line(fd, line);
 	if (!ft_strcmp("##start", cmd) && isroom(*line, farm->room))
 	{
@@ -63,13 +74,11 @@ void		readinput(t_farm *farm, int fd, char *line)
 		else if (iscomment(line))
 			continue ;
 		else if (iscommand(line))
-			readcommand(farm, fd, line, &line) ? s[1] = 1 : 0;
+			readcommand(farm, fd, &line) ? s[1] = 1 : 0;
 		else
-			break ;
+			abortreading(fd, &line);
 		free(line);
 	}
 	datarev(farm);
 	close(fd);
-	if (!s[0] || !s[1] || !s[2])
-		terminate(-1);
 }

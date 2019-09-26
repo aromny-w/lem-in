@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:58:24 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 15:36:39 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 13:49:49 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,12 @@ static char		*getroomname(char *line)
 
 void			setroom(char *line, t_room **room)
 {
-	roomadd(room, roomnew(getroomname(line), getcoords(line), NULL));
+	t_room	*new;
+	char	*name;
+	t_point	coords;
+
+	name = getroomname(line);
+	coords = getcoords(line);
+	new = roomnew(name, coords, NULL);
+	roomadd(room, new);
 }
