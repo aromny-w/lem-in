@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 16:28:14 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 12:20:08 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		readinput(t_farm *farm, int fd, char *line)
 			readcommand(farm, fd, line, &line) ? s[1] = 1 : 0;
 		else
 			break ;
+		free(line);
 	}
 	datarev(farm);
 	close(fd);

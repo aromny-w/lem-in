@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 23:18:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 11:59:07 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 12:21:08 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static t_room	*getendroom(t_room *room)
 	}
 	return (room);
 }
-
 
 static t_room	*getroomout(t_room *room)
 {
