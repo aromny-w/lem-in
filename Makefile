@@ -14,24 +14,32 @@ INC=$(I_LIBFT) $(I_INC)
 CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
-			./pathnew.c\
+			./utilis2/pathnew.c\
 			./findpaths.c\
 			./getpaths.c\
 			./read.c\
-			./isantnbr.c\
-			./isroom.c\
-			./islink.c\
-			./roomnew.c\
+			./utilis2/isantnbr.c\
+			./utilis2/isroom.c\
+			./utilis2/islink.c\
+			./utilis2/iscommand.c\
+			./utilis2/iscomment.c\
+			./utilis2/roomadd.c\
+			./utilis2/roomnew.c\
+			./utilis2/roomrev.c\
+			./utilis2/linknew.c\
+			./utilis2/linkadd.c\
+			./utilis2/linkrev.c\
 			./setlink.c\
 			./dfs.c\
 			./setroom.c\
 			./solvefarm.c\
 			./terminate.c\
-			./wayadd.c\
-			./waynew.c\
-			./wayrev.c\
+			./utilis2/wayadd.c\
+			./utilis2/waynew.c\
+			./utilis2/wayrev.c\
 			./destroyfarm.c\
 			./printstatus.c\
+			./printrooms.c\
 			./bfs/bfs.c\
 			./utils/ways.c\
 			./utils/ways_methods.c\
@@ -39,7 +47,8 @@ SRCS =		./lem_in.c\
 			./utils/rooms.c\
 			./utils/matrix.c\
 			./utils/matrix_methods.c\
-			./utils/queue.c
+			./utils/queue.c\
+			./splitrooms.c
 
 HEADERS =	./lem_in.h
 
