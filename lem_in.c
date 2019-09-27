@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/27 16:36:40 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/27 18:51:01 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,11 @@ static void		initfarm(t_farm *farm)
 void			lem_in(int fd)
 {
 	t_farm	farm;
-//	t_ways	*ways;
 
 	initfarm(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
 //	solvefarm(farm);
-//	ways = bfs(&farm);
-//	print_ways(ways);
 	destroyfarm(&farm);
 }
 
