@@ -42,6 +42,7 @@ SRCS =		./lem_in.c\
 			./printrooms.c\
 			./bfs/bfs.c\
 			./bfs/suurballe.c\
+			./bfs/suurballe_utils.c\
 			./copy/make_split_farm.c\
 			./copy/copy_links.c\
 			./copy/copy_rooms.c\

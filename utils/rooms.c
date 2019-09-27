@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:29:48 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/23 21:51:21 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:20:05 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@ int		get_rooms_count(t_farm *farm)
 	t_room *ptr;
 
 	i = 0;
-	if (farm->start)
-	{
-		farm->start->num = i;
-		farm->start->visited = 0;
-		farm->start->dist = 0;
-		farm->start->excluded = 0;
-		i++;
-		ft_printf("%s %d\n", farm->start->name, farm->start->num);
-	}
 	ptr = farm->room;
 	while (ptr)
 	{
@@ -37,15 +28,6 @@ int		get_rooms_count(t_farm *farm)
 		ptr->dist = 0;
 		ft_printf("%s %d\n", ptr->name, ptr->num);
 		ptr = ptr->next;
-	}
-	if (farm->end)
-	{
-		farm->end->num = i;
-		farm->end->visited = 0;
-		farm->end->dist = 0;
-		farm->end->excluded = 0;
-		i++;
-		ft_printf("%s %d\n", farm->end->name, farm->end->num);
 	}
 	return (i);
 }
@@ -85,22 +67,13 @@ t_room		*find_room_by_name_inout(t_farm *farm, char *name, int in, int out)
 void		debug_print_rooms(t_farm *farm)
 {
 	t_room *ptr;
-
-	ft_printf("START: %s %d %d %d %d\n",
-		farm->start->name, farm->start->num,
-		farm->start->dist, farm->start->excluded,
-		farm->start->visited);
-	ft_printf("END: %s %d %d %d %d\n",
-		farm->end->name, farm->end->num,
-		farm->end->dist, farm->end->excluded,
-		farm->end->visited);
 	ptr = farm->room;
 	while (ptr)
 	{
-		ft_printf("LINK: %s %d %d %d %d\n",
+		ft_printf("LINK: %s %d %f %d %d %s\n",
 			ptr->name, ptr->num,
 			ptr->dist, ptr->excluded,
-			ptr->visited);
+			ptr->visited, (ptr->in == 1 && ptr->out == 0) ? "in": NULL);
 		ptr = ptr->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 20:53:40 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:48:53 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_way
 {
 	t_room			*room;
 	int				ant;
+	int				suurbale;
 	struct s_way	*next;
 }				t_way;
 
@@ -43,7 +44,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	float			weight;	
+	float			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -64,7 +65,7 @@ struct			s_room
 	int				in; // bool
 	int				out; // bool
 	size_t			links;
-	t_link			*link; // list
+	t_link			*link; // lismaket
 	struct s_room	*next;
 };
 
@@ -140,5 +141,6 @@ int				add_way(t_ways *ways, t_farm *farm);
 
 t_ways			*bfs (t_farm *farm);
 t_ways			*suurballe(t_farm *farm);
+void			suurballe_reverse_links(t_farm *farm, t_ways *ways);
 
 #endif
