@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 17:38:21 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/27 16:36:40 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		validate(t_farm farm)
 		terminate(-1);
 }
 
-static void		initstruct(t_farm *farm)
+static void		initfarm(t_farm *farm)
 {
 	farm->ants = -1;
 	farm->room = NULL;
@@ -33,7 +33,7 @@ void			lem_in(int fd)
 	t_farm	farm;
 //	t_ways	*ways;
 
-	initstruct(&farm);
+	initfarm(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
 //	solvefarm(farm);

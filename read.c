@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 17:45:20 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/27 18:47:05 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	readcommand(t_farm *farm, int fd, char **line)
 		roomadd(&farm->room, farm->end);
 	}
 	else
-		return (0);
+		abortreading(fd, line);
 	return (1);
 }
 
@@ -72,7 +72,7 @@ void		readinput(t_farm *farm, int fd, char *line)
 		else if (islink(line, farm->room) && s[0] && s[1] && (s[2] = 1))
 			setlink(line, farm);
 		else if (iscomment(line))
-			continue ;
+			;
 		else if (iscommand(line))
 			readcommand(farm, fd, &line) ? s[1] = 1 : 0;
 		else
