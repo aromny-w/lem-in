@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 20:37:20 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/27 19:48:58 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:49:57 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	add_link(t_room *room, t_room *dest_room)
 	link = (t_link*)malloc(sizeof(t_link));
 	link->next = NULL;
 	link->room = dest_room;
+	link->visited = 0;
+	link->excluded = 0;
 	ptr = room->link;
 	while (ptr && ptr->next)
 		ptr= ptr->next;

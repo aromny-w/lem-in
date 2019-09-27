@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:29:48 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/27 19:20:05 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 21:06:50 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		debug_print_rooms(t_farm *farm)
 	ptr = farm->room;
 	while (ptr)
 	{
-		ft_printf("LINK: %s %d %f %d %d %s\n",
+		ft_printf("LINK: %s %d %d %d %d %s\n",
 			ptr->name, ptr->num,
 			ptr->dist, ptr->excluded,
 			ptr->visited, (ptr->in == 1 && ptr->out == 0) ? "in": NULL);
@@ -85,11 +85,8 @@ void	reset_dist(t_farm *farm)
 	ptr = farm->room; 
 	while (ptr)
 	{
-		if (!ptr->excluded)
-		{
-			ptr->dist = 0;
-			ptr->visited = 0;
-		}
+		ptr->dist = 0;
+		ptr->visited = 0;
 		ptr = ptr->next;
 	}
 }

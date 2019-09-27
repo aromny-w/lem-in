@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/27 19:48:53 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 21:06:07 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct	s_link
 {
 	t_room			*room;
 	float			weight;
+	int				visited;
+	int				excluded;
 	struct s_link	*next;
 }				t_link;
 
@@ -58,7 +60,7 @@ struct			s_room
 {
 	char			*name;
 	t_point			coords;
-	float			dist;
+	int				dist;
 	int				visited;
 	int				excluded;
 	int				num;
@@ -75,6 +77,7 @@ typedef struct	s_farm
 	t_room			*room; // rooms]
 	t_room			*start;
 	t_room			*end;
+	int				again;
 }				t_farm;
 
 void			lem_in(int fd);
@@ -142,5 +145,6 @@ int				add_way(t_ways *ways, t_farm *farm);
 t_ways			*bfs (t_farm *farm);
 t_ways			*suurballe(t_farm *farm);
 void			suurballe_reverse_links(t_farm *farm, t_ways *ways);
+void			suurballe_exclude_link(t_farm *farm, int r1, int r2);
 
 #endif

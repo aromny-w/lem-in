@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 21:01:25 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/09/27 21:56:16 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void			lem_in(int fd)
 	initstruct(&farm);
 	readinput(&farm, fd, NULL);
 	validate(farm);
-	if ((ways = suurballe(&farm))->dist == -1)
-		ft_printf("HOBA");
-	// if ((ways = bfs(&farm))->dist == -1)
-	// 	ft_printf("HOBA2");
+	// if ((ways = suurballe(&farm))->dist == -1)
+	// 	ft_printf("HOBA");
+	if ((ways = bfs(&farm))->dist == -1)
+		ft_printf("HOBA2");
 	print_ways(ways);
 	// destroyfarm(&farm);
 }
