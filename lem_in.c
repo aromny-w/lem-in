@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/30 19:50:40 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:09:02 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			lem_in(int fd)
 	readinput(&farm, fd, NULL);
 	validate(farm);
 	solvefarm(farm);
-	destroyfarm(&farm);
+//	destroyfarm(&farm);
 }
 
 int				main(int argc, char **argv)
