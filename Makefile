@@ -29,6 +29,7 @@ SRCS =		./lem_in.c\
 			./utilis2/linknew.c\
 			./utilis2/linkadd.c\
 			./utilis2/linkrev.c\
+			./utilis2/linkdel.c\
 			./setlink.c\
 			./dfs.c\
 			./setroom.c\
@@ -48,7 +49,8 @@ SRCS =		./lem_in.c\
 			./utils/matrix.c\
 			./utils/matrix_methods.c\
 			./utils/queue.c\
-			./splitrooms.c
+			./splitrooms.c\
+			./adjustlinks.c
 
 HEADERS =	./lem_in.h
 
