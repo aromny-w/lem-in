@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 17:57:27 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/30 19:57:05 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/30 20:00:45 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ void		adjustlinks(t_room **room, t_room *start, t_room *end)
 		else if (tmp->in && tmp->link)
 			adjustroomlinks(&tmp->link, end);
 		tmp = tmp->next;
-	}	
+	}
 }

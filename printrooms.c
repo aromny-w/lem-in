@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 19:38:59 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/30 19:58:37 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/30 20:00:22 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	printlinks(t_link *link)
 	i = 0;
 	while (link)
 	{
-		printf("%zu: %s %d %d = %.f\n", ++i, link->room->name, 
+		printf("%zu: %s %d %d = %.f\n", ++i, link->room->name,
 		link->room->in, link->room->out, link->weight);
 		link = link->next;
 	}
