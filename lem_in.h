@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/30 22:46:56 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/01 18:33:31 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ int				isroom(char *line, t_room *room);
 int				islink(char *line, t_room *room);
 int				iscommand(char *line);
 int				iscomment(char *line);
-void			printstatus(t_path *path, int k);
+void			printstatus(t_path *path, size_t k);
 void			printrooms(t_room *room);
+int				checkoverlap(t_path new, t_path *init, size_t k);
+void			cancelpaths(t_path *path, size_t k);
 
 /*
 *********** ALGO ***************

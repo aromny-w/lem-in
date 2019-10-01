@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 19:44:04 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:40:57 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	printpaths(t_path path)
 	}
 }
 
-void		printstatus(t_path *path, int k)
+void		printstatus(t_path *path, size_t k)
 {
-	int		i;
+	size_t	i;
 
 	i = -1;
 	while (++i < k)

@@ -50,7 +50,9 @@ SRCS =		./lem_in.c\
 			./utils/matrix_methods.c\
 			./utils/queue.c\
 			./splitrooms.c\
-			./adjustlinks.c
+			./adjustlinks.c\
+			./checkoverlap.c\
+			./cancelpaths.c
 
 HEADERS =	./lem_in.h
 
