@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 23:18:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/30 19:33:58 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/02 21:06:08 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static t_room	*getroomout(t_room *room)
 	out = roomnew(room->name, room->coords, NULL);
 	out->out = 1;
 	tmp = room->link;
-	while ((tmp = tmp->next))
+	while ((tmp))
+	{
 		linkadd(&out->link, linknew(tmp->room, 1));
+		tmp = tmp->next;
+	}
 	linkrev(&out->link);
 	return (out);
 }

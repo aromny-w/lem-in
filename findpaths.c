@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/01 20:46:54 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/02 23:02:17 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,25 @@
 static size_t	mergepaths(t_path *path, t_path *init, t_path new, size_t k)
 {
 	size_t	i;
+	size_t	j;
 
 	i = -1;
-	while (++i < k && init && init[i].way)
-	{
-		path[i].way = init[i].way;
-		path[i].len = init[i].len;
-	}
-	path[i].way = new.way;
-	path[i].len = new.len;
-	return (i);
+	j = 0;
+	if (init)
+		while (++i < k - 1)
+		{
+			if (init[i].way)
+			{
+				path[j].way = init[i].way;
+				path[j].len = init[i].len;
+				j++;
+			}
+		}
+	path[j].way = new.way;
+	path[j].len = new.len;
+	if (new.way)
+		j++;
+	return (j);
 }
 
 static void		reverselink(t_room **room1, t_room **room2)
@@ -73,10 +82,10 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	size_t	i;
 
 	new = pathnew(NULL, 0);
-	i = mergepaths(path, init, new, k - 1);
-	reversepaths(init, i);
+	i = mergepaths(path, init, new, k);
+	reversepaths(init, k - 1);
 	dfs(farm, &new, pathnew(NULL, 0), farm.start);
-	reversepaths(init, i);
+	reversepaths(init, k - 1);
 	if (new.way)
 		wayrev(&new.way);
 	else
@@ -87,8 +96,8 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 		return (findpaths(farm, path, path, k));
 	}
 	else
-		mergepaths(path, init, new, k);
-	if (i < k - 1)
+		i = mergepaths(path, init, new, k);
+	if (i < k)
 		return (findpaths(farm, path, path, k));
 	return (path);
 }

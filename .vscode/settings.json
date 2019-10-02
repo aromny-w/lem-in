@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"lem_in.h": "c",
-		"iterator": "c"
+		"iterator": "c",
+		"ios": "c",
+		"*.tcc": "c"
 	}
 }

@@ -10,6 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
 			"args": ["superposition.map"],
+			//"args": ["example1.map"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

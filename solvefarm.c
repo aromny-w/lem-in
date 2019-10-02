@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/01 20:50:55 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:14:05 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void			solvefarm(t_farm farm)
 
 	k = 0;
 	path[k] = NULL;
+	//printrooms(farm.room);
 	splitrooms(&farm.room, farm.start, farm.end);
 	while (++k)
 	{
+		//printrooms(farm.room);
 		if (!(path[k] = getpaths(farm, path[k - 1], k)))
 			break ;
 		//printrooms(farm.room);
