@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 18:31:29 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/02 22:08:44 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 19:14:44 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	isinvalid(t_way *way)
 	t_link	*link;
 
 	tmp = way;
-	while (tmp)
+	while (tmp && tmp->next)
 	{
 		link = tmp->room->link;
 		while (link->room != tmp->next->room)
