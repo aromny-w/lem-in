@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/30 20:01:04 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 21:05:28 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void		destroyfarm(t_farm *farm)
 	{
 		next = tmp->next;
 		destroylinks(&tmp->link);
-		free(tmp->name);
+		if (!tmp->in)
+			free(tmp->name);
 		free(tmp);
 		tmp = next;
 	}
