@@ -6,11 +6,23 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 18:13:25 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:50:29 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void		initdistance(t_room **room)
+{
+	t_room	*tmp;
+
+	tmp = *room;
+	while (tmp)
+	{
+		tmp->dist = INFINITY;
+		tmp = tmp->next;
+	}
+}
 
 static size_t	mergepaths(t_path *path, t_path *init, t_path new, size_t k)
 {
@@ -83,6 +95,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 
 	new = pathnew(NULL, 0);
 	i = mergepaths(path, init, new, k);
+	initdistance(&farm.room);
 	reversepaths(init, k - 1);
 	dfs(farm, &new, pathnew(NULL, 0), farm.start);
 	reversepaths(init, k - 1);

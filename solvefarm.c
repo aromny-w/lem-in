@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 21:06:00 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:50:20 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	getminvalue(size_t a, size_t b)
 	return (b);
 }
 
-void			solvefarm(t_farm farm)
+void			solvefarm(t_farm farm, size_t max)
 {
 	t_path	*path[1 + getminvalue(farm.ants, farm.end->links)];
 	size_t	k;
@@ -27,12 +27,10 @@ void			solvefarm(t_farm farm)
 	k = 0;
 	path[k] = NULL;
 	splitrooms(&farm.room, farm.start, farm.end);
-	while (++k)
+	while (++k <= max)
 	{
-		//printrooms(farm.room);
 		if (!(path[k] = getpaths(farm, path[k - 1], k)))
 			break ;
-		//printrooms(farm.room);
 		printf("%zu\n", k);
 		printstatus(path[k], k);
 	}

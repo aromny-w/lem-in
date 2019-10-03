@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/01 18:33:31 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:49:11 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ struct			s_room
 	int				num;
 	int				in; // bool
 	int				out; // bool
-	size_t			links;
+	int				links;
 	t_link			*link; // list
 	struct s_room	*next;
 };
@@ -80,7 +80,7 @@ void			lem_in(int fd);
 void			readinput(t_farm *farm, int fd, char *line);
 void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
-void			solvefarm(t_farm farm);
+void			solvefarm(t_farm farm, size_t max);
 void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			adjustlinks(t_room **room, t_room *start, t_room *end);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
