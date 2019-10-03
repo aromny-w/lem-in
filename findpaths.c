@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 22:50:29 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 23:13:14 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 		wayrev(&new.way);
 	else
 		return (NULL);
-	if (checkoverlap(new, init, k))
+	if (checkoverlap(new))
 	{
 		cancelpaths(path, k);
 		return (findpaths(farm, path, path, k));
