@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/27 21:06:07 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:51:00 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_ways
 typedef struct	s_path
 {
 	t_way			*way;
-	size_t			len;
+	int				len;
 }				t_path;
 
 typedef struct	s_link
@@ -66,8 +66,8 @@ struct			s_room
 	int				num;
 	int				in; // bool
 	int				out; // bool
-	size_t			links;
-	t_link			*link; // lismaket
+	int				links;
+	t_link			*link; // list
 	struct s_room	*next;
 };
 
@@ -84,9 +84,9 @@ void			lem_in(int fd);
 void			readinput(t_farm *farm, int fd, char *line);
 void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
-void			split_rooms(t_farm *farm);
-void			solvefarm(t_farm farm);
+void			solvefarm(t_farm farm, size_t max);
 void			splitrooms(t_room **room, t_room *start, t_room *end);
+void			adjustlinks(t_room **room, t_room *start, t_room *end);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
 void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
@@ -98,6 +98,7 @@ void			roomrev(t_room **room);
 t_link			*linknew(t_room *room, float weight);
 void			linkadd(t_link **link, t_link *new);
 void			linkrev(t_link **link);
+void			linkdel(t_link **link);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
 void			wayrev(t_way **way);
@@ -107,8 +108,10 @@ int				isroom(char *line, t_room *room);
 int				islink(char *line, t_room *room);
 int				iscommand(char *line);
 int				iscomment(char *line);
-void			printstatus(t_path *path, int k);
+void			printstatus(t_path *path, size_t k);
 void			printrooms(t_room *room);
+int				checkoverlap(t_path new);
+void			cancelpaths(t_path *path, size_t k);
 
 
 t_farm			*make_split_farm(t_farm *farm);

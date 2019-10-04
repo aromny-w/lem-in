@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printstatus.c                                      :+:      :+:    :+:   */
+/*   cancelpaths.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/01 17:40:57 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/10/01 18:31:29 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/03 19:14:44 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	printpaths(t_path path)
+static int	isinvalid(t_way *way)
 {
-	while (path.way)
+	t_way	*tmp;
+	t_link	*link;
+
+	tmp = way;
+	while (tmp && tmp->next)
 	{
-		if (path.way->next)
-		{
-			if (path.way->room->in)
-				printf("%s%s->", path.way->room->name, "(in)");
-			else if (path.way->room->out)
-				printf("%s%s->", path.way->room->name, "(out)");
-			else
-				printf("%s->", path.way->room->name);
-		}
-		else
-			printf("%s\n", path.way->room->name);
-		path.way = path.way->next;
+		link = tmp->room->link;
+		while (link->room != tmp->next->room)
+			link = link->next;
+		if (link->weight == INFINITY)
+			return (1);
+		tmp = tmp->next;
 	}
+	return (0);
 }
 
-void		printstatus(t_path *path, size_t k)
+void	cancelpaths(t_path *path, size_t k)
 {
 	size_t	i;
 
 	i = -1;
 	while (++i < k)
-		printpaths(path[i]);
+	{
+		if (isinvalid(path[i].way))
+		{
+			path[i].way = NULL;
+			path[i].len = 0;
+		}
+	}
 }

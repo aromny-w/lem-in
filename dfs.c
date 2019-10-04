@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 17:45:43 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:53:54 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	iscycle(t_way *way)
 	t_way	*tmp;
 	t_room	*room;
 
+	return (0);
 	tmp = way;
 	room = tmp->room;
 	while ((tmp = tmp->next))
@@ -25,24 +26,26 @@ static int	iscycle(t_way *way)
 	return (0);
 }
 
-void		dfs(t_farm farm, t_path *path, t_path tmp, t_room *room)
+void		dfs(t_farm farm, t_path *new, t_path tmp, t_room *room)
 {
 	t_link	*link;
 
 	wayadd(&tmp.way, waynew(room));
 	tmp.len++;
-	if (!room || iscycle(tmp.way) || (path->way && path->len < tmp.len))
+	if (!room || iscycle(tmp.way) || (new->way && new->len < tmp.len) || tmp.len > room->dist)
 		return ;
-	else if (tmp.way->room == farm.end && (!path->way || tmp.len < path->len))
+	else if (tmp.way->room == farm.end && (!new->way || tmp.len < new->len))
 	{
-		*path = pathnew(tmp.way, tmp.len);
+		room->dist = tmp.len;
+		*new = pathnew(tmp.way, tmp.len);
 		return ;
 	}
+	room->dist = tmp.len;
 	link = tmp.way->room->link;
 	while (link)
 	{
 		if (link->weight != INFINITY)
-			dfs(farm, path, tmp, link->room);
+			dfs(farm, new, tmp, link->room);
 		link = link->next;
 	}
 }

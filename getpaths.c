@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getpaths.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 19:35:51 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/18 18:11:08 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/01 20:55:32 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ t_path	*getpaths(t_farm farm, t_path *init, size_t k)
 	if (!(path = (t_path *)malloc(sizeof(t_path) * k)))
 		terminate(-1);
 	while (++i < k)
-	{
-		path[i].way = NULL;
-		path[i].len = 0;
-	}
-	findpaths(farm, path, init, k);
+			path[i] = pathnew(NULL, 0);
+	if (!findpaths(farm, path, init, k))
+		return (NULL);
 	return (path);
 }

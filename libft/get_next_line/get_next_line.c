@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:58:34 by aromny-w          #+#    #+#             */
 /*   Updated: 2019/01/04 16:57:06 by aromny-w         ###   ########.fr       */
@@ -29,13 +29,12 @@ static t_list	*get_list(const int fd, t_list **lst)
 	return (tmp);
 }
 
-static int		get_line(char **line, char **content)
+static int		get_line(char **line, char **content, size_t len)
 {
 	char			*str;
-	size_t			len;
 	size_t			i;
 
-	if (!(len = ft_strlen(*content)))
+	if (!len)
 		return (0);
 	i = 0;
 	while ((*content)[i] && (*content)[i] != '\n')
@@ -50,7 +49,7 @@ static int		get_line(char **line, char **content)
 	str = ft_strsub(*content, (unsigned int)(i + 1), len - i - 1);
 	ft_strdel(content);
 	*content = ft_strdup(str);
-	ft_strdel(&str);
+	free(str);
 	return (1);
 }
 
@@ -62,7 +61,7 @@ int				get_next_line(const int fd, char **line)
 	char			*str;
 	long			ret;
 
-	if (!line || read(fd, 0, 0) == -1 ||
+	if (fd == -1 || !line || read(fd, 0, 0) == -1 ||
 	!(buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))))
 		return (-1);
 	tmp = get_list(fd, &lst);
@@ -77,6 +76,8 @@ int				get_next_line(const int fd, char **line)
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	ft_strdel(&buf);
-	return (ret != -1 ? get_line(line, (char **)&tmp->content) : -1);
+	free(buf);
+	if (ret == -1)
+		return (-1);
+	return (get_line(line, (char **)&tmp->content, ft_strlen(tmp->content)));
 }
