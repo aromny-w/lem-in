@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findpaths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 23:13:14 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/04 16:14:45 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k)
 	initdistance(&farm.room);
 	reversepaths(init, k - 1);
 	dfs(farm, &new, pathnew(NULL, 0), farm.start);
+	algo_dijkstra(farm, &new, pathnew(NULL, 0), farm.start);
 	reversepaths(init, k - 1);
 	if (new.way)
 		wayrev(&new.way);
