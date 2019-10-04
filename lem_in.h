@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/04 15:51:00 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/04 16:10:20 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,10 @@ int				add_way(t_ways *ways, t_farm *farm);
 
 t_ways			*bfs (t_farm *farm);
 t_ways			*suurballe(t_farm *farm);
+
 void			suurballe_reverse_links(t_farm *farm, t_ways *ways);
 void			suurballe_exclude_link(t_farm *farm, int r1, int r2);
+
+void			algo_dijkstra(t_farm *farm, t_path *new, t_path tmp, t_room *room);
 
 #endif

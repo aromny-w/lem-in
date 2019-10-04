@@ -32,6 +32,7 @@ SRCS =		./lem_in.c\
 			./utilis2/linkdel.c\
 			./setlink.c\
 			./dfs.c\
+			./dijkstra.c\
 			./setroom.c\
 			./solvefarm.c\
 			./terminate.c\
