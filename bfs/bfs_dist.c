@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:26:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/07 08:38:26 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 10:03:51 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	add_dist(int **matrix, int matrix_size, int *q, t_farm *farm)
 	q1 = queue(matrix_size);
 	cur = farm->end;
 	cur->visited = 1;
-	enqueue(q, cur->num);
+	bfs_enqueue(q, cur->num);
 	i = 1;
 	while (q[2] != 0)
 	{

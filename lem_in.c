@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 08:38:44 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:13:09 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,27 @@ void			lem_in(int fd)
 	char	*out;
 
 	out = NULL;
+	ways = NULL;
 	initfarm(&farm);
 	readinput(&farm, fd, NULL, &out);
 	validate(farm);
-	if ((ways = bfs_dist(&farm))->dist == -1)
-		destroyfarmways(&farm, ways, &out);
+	search_ways(&farm);
+	if (!farm.ways[farm.real_variations])
+		terminate(-1);
+	if ((farm.ways[farm.real_variations])->dist == 0)
+		terminate(-1);
 	ft_putendl(out);
-	write(1, "\n", 1);
-	if (ways->dist == 1)
-		all_ants_one_way(&farm, ways);
+	if (farm.ways[farm.real_variations]->dist == 1)
+		all_ants_one_way(&farm, farm.ways[farm.real_variations]);
 	else
-		lets_go(&farm, ways, farm.ants, ways);
+		lets_go(&farm, farm.ways[farm.real_variations], farm.ants, farm.ways[farm.real_variations]);
 	destroyfarmways(&farm, ways, &out);
 	free(out);
 }
 
 int				main(int argc, char **argv)
 {
-	(void)argv;
+	(void) argv;
 	if (argc == 1)
 		lem_in(0);
 	else if (argc == 2)

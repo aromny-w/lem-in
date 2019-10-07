@@ -38,7 +38,14 @@ SRCS =		./lem_in.c\
 			./utilis2/linkadd.c\
 			./utilis2/linkrev.c\
 			./utilis2/linkdel.c\
+			./utilis2/wayadd.c\
+			./utilis2/waynew.c\
 			./bfs/bfs_dist.c\
+			./bfs/search_ways.c\
+			./bfs/splitrooms.c\
+			./bfs/adjustlinks.c\
+			./bfs/bfs.c\
+			./bfs/bfs_queue.c\
 			./algo/algo_ants.c
 
 HEADERS =	./lem_in.h

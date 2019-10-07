@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 08:38:36 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 14:54:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,33 @@ typedef struct	s_farm
 	t_room			*start;
 	t_room			*end;
 	int				again;
+	int				**matrix;
+	int				**e_matrix;
+	int				limit_variations;
+	t_ways			**ways;
+	int				*ways_variations_cnt;
+	int				real_variations;
+	int				rooms_cnt;
+	int				start_id;
+	int				end_id;
+	
 }				t_farm;
+
+typedef struct	s_bfs
+{
+	int			*q;
+	int			*q1;
+	int			**matrix;
+	int			matrix_size;
+	int			*v;
+	int			*d;
+	int			*p;
+	int			min_idx;
+	int			min;
+	int			i;
+	int			j;
+	int			latest_dist;
+}				t_bfs;
 
 void			lem_in(int fd);
 void			terminate(int status);
@@ -128,6 +154,10 @@ int				*queue(int size);
 t_room			*dequeue(int *q, t_farm *farm);
 void			enqueue(int *q, int num);
 
+int				*bfs_queue(int size);
+int				bfs_dequeue(int *q);
+void			bfs_enqueue(int *q, int num);
+
 /*
 *************** ROOMS_METHODS
 */
@@ -147,5 +177,9 @@ t_ways			*bfs_dist(t_farm *farm);
 void			lets_go(t_farm *farm, t_ways *ways, int ants, t_ways *begin);
 void			all_ants_one_way(t_farm *farm, t_ways *ways);
 void			reset_dist(t_farm *farm);
+t_way			*bfs(t_farm *farm, t_bfs *bfs);
+void			search_ways(t_farm *farm);
+void			splitrooms(t_room **room, t_room *start, t_room *end);
+void			adjustlinks(t_room **room, t_room *start, t_room *end);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:29:48 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/07 04:59:43 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 11:50:27 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ int			get_rooms_count(t_farm *farm)
 	ptr = farm->room;
 	while (ptr)
 	{
-		ptr->num = i;
-		i++;
 		ptr->visited = 0;
 		ptr->excluded = 0;
 		ptr->dist = 0;
+		i++;
 		ptr = ptr->next;
 	}
 	return (i);
@@ -66,15 +65,22 @@ t_room		*find_room_by_name_inout(t_farm *farm, char *name, int in, int out)
 void		debug_print_rooms(t_farm *farm)
 {
 	t_room	*ptr;
+	t_link	*lptr;
 
 	ptr = farm->room;
 	while (ptr)
 	{
-		ft_printf("LINK: %s %d %f %d %d\n",
-			ptr->name, ptr->num,
-			ptr->dist, ptr->in, ptr->out);
+		ft_printf("ROOM %s: \n", ptr->name);
+		lptr = ptr->link;
+		while (lptr)
+		{
+			ft_printf("%s (%d %d) | ", lptr->room->name, lptr->room->in, lptr->room->out);
+			lptr = lptr->next;
+		}
+		ft_printf("\n");
 		ptr = ptr->next;
 	}
+	ft_printf("))))))))))\n");
 }
 
 void		reset_dist(t_farm *farm)
