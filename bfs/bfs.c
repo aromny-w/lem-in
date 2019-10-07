@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:26:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/26 21:08:53 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 04:56:14 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_room	*get_linked_room(t_room *room, int **matrix)
 			return (ptr->room);
 		ptr = ptr->next;
 	}
-
 	return (NULL);
 }
 
@@ -49,7 +48,7 @@ void	add_dist(int **matrix, int matrix_size, int *q, t_farm *farm)
 	while (q[2] != 0)
 	{
 		cur = dequeue(q, farm);
-		while ((linked_room = get_linked_room(cur, matrix)) != NULL )
+		while ((linked_room = get_linked_room(cur, matrix)) != NULL)
 		{
 			linked_room->visited = 1;
 			linked_room->dist = i;
@@ -62,7 +61,25 @@ void	add_dist(int **matrix, int matrix_size, int *q, t_farm *farm)
 	free(q1);
 }
 
-t_ways	*bfs (t_farm *farm)
+int		check_start_end(t_farm *farm, t_ways *ways)
+{
+	t_link *ptr;
+
+	ptr = farm->start->link;
+	while (ptr)
+	{
+		if (ptr->room == farm->end)
+		{
+			ways->dist = 1;
+			ways->way = init_way(farm->end);
+			return (1);
+		}
+		ptr = ptr->next;
+	}
+	return (0);
+}
+
+t_ways	*bfs(t_farm *farm)
 {
 	t_ways	*ways;
 	int		matrix_size;
@@ -71,6 +88,8 @@ t_ways	*bfs (t_farm *farm)
 
 	ways = NULL;
 	ways = init_ways();
+	if (check_start_end(farm, ways))
+		return (ways);
 	matrix_size = get_rooms_count(farm);
 	matrix = create_matrix(matrix_size);
 	while (1)
@@ -78,8 +97,8 @@ t_ways	*bfs (t_farm *farm)
 		fill_matrix(&matrix, farm);
 		q = queue(matrix_size);
 		add_dist(matrix, matrix_size, q, farm);
-		if(!(add_way(ways, farm)))
-			break;
+		if (!(add_way(ways, farm)))
+			break ;
 		reset_matrix(&matrix, matrix_size);
 		reset_dist(farm);
 	}

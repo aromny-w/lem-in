@@ -6,16 +6,16 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:29:48 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/27 21:06:50 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 04:59:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		get_rooms_count(t_farm *farm)
+int			get_rooms_count(t_farm *farm)
 {
-	int	i;
-	t_room *ptr;
+	int		i;
+	t_room	*ptr;
 
 	i = 0;
 	ptr = farm->room;
@@ -26,7 +26,6 @@ int		get_rooms_count(t_farm *farm)
 		ptr->visited = 0;
 		ptr->excluded = 0;
 		ptr->dist = 0;
-		ft_printf("%s %d\n", ptr->name, ptr->num);
 		ptr = ptr->next;
 	}
 	return (i);
@@ -34,8 +33,8 @@ int		get_rooms_count(t_farm *farm)
 
 t_room		*find_room_by_num(t_farm *farm, int num)
 {
-	t_room *ptr;
-	
+	t_room		*ptr;
+
 	if (farm->start->num == num)
 		return (farm->start);
 	if (farm->end->num == num)
@@ -52,7 +51,7 @@ t_room		*find_room_by_num(t_farm *farm, int num)
 
 t_room		*find_room_by_name_inout(t_farm *farm, char *name, int in, int out)
 {
-	t_room *ptr;
+	t_room		*ptr;
 
 	ptr = farm->room;
 	while (ptr)
@@ -66,23 +65,23 @@ t_room		*find_room_by_name_inout(t_farm *farm, char *name, int in, int out)
 
 void		debug_print_rooms(t_farm *farm)
 {
-	t_room *ptr;
+	t_room	*ptr;
+
 	ptr = farm->room;
 	while (ptr)
 	{
-		ft_printf("LINK: %s %d %d %d %d %s\n",
+		ft_printf("LINK: %s %d %f %d %d\n",
 			ptr->name, ptr->num,
-			ptr->dist, ptr->excluded,
-			ptr->visited, (ptr->in == 1 && ptr->out == 0) ? "in": NULL);
+			ptr->dist, ptr->in, ptr->out);
 		ptr = ptr->next;
 	}
 }
 
-void	reset_dist(t_farm *farm)
+void		reset_dist(t_farm *farm)
 {
 	t_room	*ptr;
-	
-	ptr = farm->room; 
+
+	ptr = farm->room;
 	while (ptr)
 	{
 		ptr->dist = 0;

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/04 15:48:41 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 04:39:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,15 @@ void		destroyfarm(t_farm *farm)
 		free(tmp);
 		tmp = next;
 	}
+	farm = NULL;
+}
+
+void		destroyfarmways(t_farm *farm, t_ways *ways, char **out)
+{
+	destroyfarm(farm);
+	destroy_ways(ways);
+	if (out && *out)
+		free(*out);
+	out = NULL;
+	exit(-1);
 }

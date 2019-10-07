@@ -3,6 +3,7 @@
 		"lem_in.h": "c",
 		"iterator": "c",
 		"ios": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"get_next_line.h": "c"
 	}
 }

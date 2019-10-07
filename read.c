@@ -6,16 +6,18 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/04 15:49:21 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 03:57:57 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	abortreading(int fd, char **line)
+static void	abortreading(int fd, char **line, char **out, t_farm *farm)
 {
 	close(fd);
+	free(*out);
 	free(*line);
+	destroyfarm(farm);
 	terminate(-1);
 }
 
@@ -32,7 +34,7 @@ static void	datarev(t_farm *farm)
 	}
 }
 
-static int	readcommand(t_farm *farm, int fd, char **line)
+static int	readcommand(t_farm *farm, int fd, char **line, char **out)
 {
 	char	cmd[ft_strlen(*line) + 1];
 
@@ -52,11 +54,11 @@ static int	readcommand(t_farm *farm, int fd, char **line)
 		roomadd(&farm->room, farm->end);
 	}
 	else
-		abortreading(fd, line);
+		abortreading(fd, line, out, farm);
 	return (1);
 }
 
-void		readinput(t_farm *farm, int fd, char *line)
+void		readinput(t_farm *farm, int fd, char *line, char **out)
 {
 	int	s[3];
 
@@ -74,9 +76,10 @@ void		readinput(t_farm *farm, int fd, char *line)
 		else if (iscomment(line))
 			;
 		else if (iscommand(line))
-			readcommand(farm, fd, &line) ? s[1] = 1 : 0;
+			readcommand(farm, fd, &line, out) ? s[1] = 1 : 0;
 		else
-			abortreading(fd, &line);
+			abortreading(fd, &line, out, farm);
+		*out = ft_concat(*out, line);
 		free(line);
 	}
 	datarev(farm);

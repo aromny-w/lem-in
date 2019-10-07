@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:48:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/26 20:32:22 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/04 19:47:03 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int				islink(char *line, t_room *room)
 		return (0);
 	if (isdupelink(room, name1, name2))
 		return (0);
+	(void)room;
 	if (!*line)
 		return (1);
 	return (0);

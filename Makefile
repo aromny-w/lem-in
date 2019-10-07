@@ -14,10 +14,18 @@ INC=$(I_LIBFT) $(I_INC)
 CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
-			./utilis2/pathnew.c\
-			./findpaths.c\
-			./getpaths.c\
 			./read.c\
+			./setlink.c\
+			./setroom.c\
+			./terminate.c\
+			./destroyfarm.c\
+			./utils/ways.c\
+			./utils/ways_methods.c\
+			./utils/ways_debug.c\
+			./utils/rooms.c\
+			./utils/matrix.c\
+			./utils/matrix_methods.c\
+			./utils/queue.c\
 			./utilis2/isantnbr.c\
 			./utilis2/isroom.c\
 			./utilis2/islink.c\
@@ -30,36 +38,8 @@ SRCS =		./lem_in.c\
 			./utilis2/linkadd.c\
 			./utilis2/linkrev.c\
 			./utilis2/linkdel.c\
-			./setlink.c\
-			./dfs.c\
-			./dijkstra.c\
-			./setroom.c\
-			./solvefarm.c\
-			./terminate.c\
-			./utilis2/wayadd.c\
-			./utilis2/waynew.c\
-			./utilis2/wayrev.c\
-			./destroyfarm.c\
-			./printstatus.c\
-			./printrooms.c\
 			./bfs/bfs.c\
-			./bfs/suurballe.c\
-			./bfs/suurballe_reverse.c\
-			./bfs/suurballe_utils.c\
-			./copy/make_split_farm.c\
-			./copy/copy_links.c\
-			./copy/copy_rooms.c\
-			./utils/ways.c\
-			./utils/ways_methods.c\
-			./utils/ways_debug.c\
-			./utils/rooms.c\
-			./utils/matrix.c\
-			./utils/matrix_methods.c\
-			./utils/queue.c\
-			./splitrooms.c\
-			./adjustlinks.c\
-			./checkoverlap.c\
-			./cancelpaths.c
+			./algo/algo_ants.c
 
 HEADERS =	./lem_in.h
 

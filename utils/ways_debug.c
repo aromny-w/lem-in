@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 09:50:50 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/27 19:28:35 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/04 18:57:18 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	print_way(t_way *way)
 			ft_printf("(in) ");
 		if (ptr->room->out == 1)
 			ft_printf("(out) ");
+		ft_printf(" ");
 		ptr = ptr->next;
 	}
 	ft_printf("\n");

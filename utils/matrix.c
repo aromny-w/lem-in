@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:45:07 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/27 21:50:14 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 05:00:51 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void	fill_matrix(int ***matrix, t_farm *farm)
 		while (ptr)
 		{
 			if (!(ptr->room->excluded || room_ptr->excluded))
-			{
-				//(*matrix)[room_ptr->num][ptr->room->num] = 1;
 				(*matrix)[ptr->room->num][room_ptr->num] = 1;
-			}
 			ptr = ptr->next;
 		}
 		room_ptr = room_ptr->next;
@@ -71,7 +68,7 @@ void	print_matrix(int **matrix, int size)
 	while (++i < size)
 	{
 		j = -1;
-		while(++j < size)
+		while (++j < size)
 			ft_printf("%5d ", matrix[i][j]);
 		ft_printf("\n");
 	}

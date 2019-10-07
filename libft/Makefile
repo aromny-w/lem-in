@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 02:41:38 by aromny-w          #+#    #+#              #
-#    Updated: 2019/08/27 11:16:51 by aromny-w         ###   ########.fr        #
+#    Updated: 2019/10/07 03:51:24 by bharrold         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC += ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	   ft_putwchar_fd.c ft_padchar_fd.c ft_putstr_fd.c ft_putwcstr_fd.c \
 	   ft_putnstr_fd.c ft_putnwcstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
-	   ft_lstmap.c
+	   ft_lstmap.c ft_strchri.c ft_concat.c
 
 OBJ = $(SRC:.c=.o)
 
