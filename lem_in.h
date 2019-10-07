@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 04:54:01 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 08:38:36 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void			debug_print_rooms(t_farm *farm);
 *************** ALGO ***************
 */
 
-t_ways			*bfs (t_farm *farm);
+t_ways			*bfs_dist(t_farm *farm);
 void			lets_go(t_farm *farm, t_ways *ways, int ants, t_ways *begin);
 void			all_ants_one_way(t_farm *farm, t_ways *ways);
 void			reset_dist(t_farm *farm);

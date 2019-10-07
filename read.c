@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 03:57:57 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 08:44:25 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static void	abortreading(int fd, char **line, char **out, t_farm *farm)
 {
 	close(fd);
-	free(*out);
-	free(*line);
+	if (out && *out)
+		free(*out);
+	if (line && *line)
+		free(*line);
 	destroyfarm(farm);
 	terminate(-1);
 }
@@ -42,8 +44,9 @@ static int	readcommand(t_farm *farm, int fd, char **line, char **out)
 	if (ft_strcmp("##start", cmd) && ft_strcmp("##end", cmd))
 		return (0);
 	free(*line);
-	get_next_line(fd, line);
-	if (!ft_strcmp("##start", cmd) && isroom(*line, farm->room))
+	if (!get_next_line(fd, line))
+		abortreading(fd, NULL, out, farm);
+	if (!ft_strcmp("##start", cmd) && line && isroom(*line, farm->room))
 	{
 		setroom(*line, &farm->start);
 		roomadd(&farm->room, farm->start);
@@ -80,7 +83,8 @@ void		readinput(t_farm *farm, int fd, char *line, char **out)
 		else
 			abortreading(fd, &line, out, farm);
 		*out = ft_concat(*out, line);
-		free(line);
+		if (line)
+			free(line);
 	}
 	datarev(farm);
 	close(fd);

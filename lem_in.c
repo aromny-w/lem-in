@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 05:01:37 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/07 08:38:44 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			lem_in(int fd)
 	initfarm(&farm);
 	readinput(&farm, fd, NULL, &out);
 	validate(farm);
-	if ((ways = bfs(&farm))->dist == -1)
+	if ((ways = bfs_dist(&farm))->dist == -1)
 		destroyfarmways(&farm, ways, &out);
 	ft_putendl(out);
 	write(1, "\n", 1);
