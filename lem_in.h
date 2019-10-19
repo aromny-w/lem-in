@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 23:13:27 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/17 21:46:27 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ struct			s_room
 typedef struct	s_farm
 {
 	int				ants;
+	t_list			*buf;
 	t_room			*room; // rooms]
 	t_room			*start;
 	t_room			*end;
@@ -84,7 +85,7 @@ void			solvefarm(t_farm farm, size_t max);
 void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			adjustlinks(t_room **room, t_room *start, t_room *end);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
-t_path			*findpaths(t_farm farm, t_path *path, t_path *init, size_t k);
+t_path			*findpaths(t_farm farm, t_path *init, size_t k);
 void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
 void			terminate(int status);
 void			destroyfarm(t_farm *farm);
@@ -107,7 +108,7 @@ int				iscomment(char *line);
 void			printstatus(t_path *path, size_t k);
 void			printrooms(t_room *room);
 int				checkoverlap(t_path new);
-void			cancelpaths(t_path *path, size_t k);
+void			cancelpaths(t_path *path, t_path new, size_t k);
 
 /*
 *********** ALGO ***************

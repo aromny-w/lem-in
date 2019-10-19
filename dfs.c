@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 22:53:54 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/07 20:59:21 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	iscycle(t_way *way)
 	t_way	*tmp;
 	t_room	*room;
 
-	return (0);
 	tmp = way;
 	room = tmp->room;
 	while ((tmp = tmp->next))

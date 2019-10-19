@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:31:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/03 23:19:43 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:32:11 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int			checkoverlap(t_path new)
 	{
 		if (tmp->room->name != tmp->next->room->name)
 			if (tmp->room->in == 1 && tmp->next->room->out == 1)
+				check = collapselink(&tmp->next->room, &tmp->room);
+		if (tmp->room->name == tmp->next->room->name)
+			if (tmp->room->out == 1 && tmp->next->room->in == 1)
 				check = collapselink(&tmp->next->room, &tmp->room);
 		tmp = tmp->next;
 	}

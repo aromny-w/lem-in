@@ -6,11 +6,17 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/03 21:05:28 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/17 21:43:55 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	del(void *elem, size_t size)
+{
+	size = 0;
+	free(elem);
+}
 
 static void	destroylinks(t_link **link)
 {
@@ -41,4 +47,6 @@ void		destroyfarm(t_farm *farm)
 		free(tmp);
 		tmp = next;
 	}
+	ft_lstdel(&farm->buf, del);
+	ft_memset(farm, 0, sizeof(t_farm));
 }

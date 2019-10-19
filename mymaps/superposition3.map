@@ -1,0 +1,16 @@
+10
+##start
+A 0 2
+B 2 0
+C 0 4
+D 2 4
+##end
+F 4 4
+E 4 2
+A-C
+A-B
+B-E
+B-D
+C-D
+D-F
+F-E

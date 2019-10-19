@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   waynew.c                                           :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 21:47:34 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 20:58:49 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/10/10 21:33:44 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/13 15:19:30 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-t_way	*waynew(t_room *room)
+int	ft_abs(int i)
 {
-	t_way	*way;
-
-	way = NULL;
-	if (!(way = (t_way *)malloc(sizeof(t_way))))
-		terminate(-1);
-	way->room = room;
-	way->next = NULL;
-	return (way);
+	if (i < 0)
+		return (-i);
+	return (i);
 }
