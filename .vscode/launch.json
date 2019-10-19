@@ -5,11 +5,25 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "(lldb) Visu-HEx",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/visu-hex",
+			"args": ["out"],
+			//"args": ["map"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb",
+		},
+		
+		{
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
-			"args": ["maps/superposition.map"],
+			"args": ["maps/samples/true_test.txt"],
 			//"args": ["map"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

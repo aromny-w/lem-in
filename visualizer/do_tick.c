@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   do_tick.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 14:47:52 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 22:55:05 by bharrold         ###   ########.fr       */
+/*   Created: 2019/10/19 22:20:33 by bharrold          #+#    #+#             */
+/*   Updated: 2019/10/19 23:08:21 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu-hex.h"
 
-void	clear_renderer(SDL_Renderer *rend)
+void			tick_logic(t_env *env)
 {
-	set_pixel(rend, 0, 0, 0);
-	SDL_RenderClear(rend);
+	if (env->key_up)
+		env->y += env->camera_speed;
+	if (env->key_down)
+		env->y -= env->camera_speed;
+	if (env->key_left)
+		env->x -= env->camera_speed;
+	if (env->key_right)
+		env->x += env->camera_speed;
 }
 
-
-void	render(t_env *env)
+void			tick_render(t_env *env)
 {
-	clear_renderer(env->renderer);
-	render_rooms(env);
-	render_links(env);
-	SDL_RenderPresent(env->renderer);
+	render(env);
+}
+
+void			do_tick(t_env *env) 
+{
+	while (SDL_PollEvent(&env->e))
+		handle_event(env);
+	tick_logic(env);
+	tick_render(env);
+	SDL_Delay(env->delay);
 }

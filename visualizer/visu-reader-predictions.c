@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:38:52 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 15:52:39 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 19:38:54 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int				visu_islink(char *line, t_room *room)
 	size_t	i;
 	size_t	j;
 
+	if (*line == 'L')
+		return (0);
 	i = 0;
 	j = 0;
 	while (ft_isalnum(*line) || *line == '_')

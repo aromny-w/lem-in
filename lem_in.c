@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/19 17:29:49 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:50:54 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			lem_in(int fd)
 	if ((farm.ways[farm.real_variations])->dist == 0)
 		terminate(-1);
 	writeinput(farm.buf);
-	ft_printf("%d\n", farm.real_variations);
+	ft_printf("\n");
 	if (farm.ways[farm.real_variations]->dist == 1)
 		all_ants_one_way(&farm, farm.ways[farm.real_variations]);
 	else

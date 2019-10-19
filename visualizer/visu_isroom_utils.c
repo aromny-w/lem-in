@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:41:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 15:42:50 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 21:49:26 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,16 @@ int		isname(char **line, t_room *room)
 	if (*(*line)++ == ' ' && !room)
 		return (1);
 	return (0);
+}
+
+void		set_maxmincoords(t_env *env, t_point point)
+{
+	if (env->max_x_coord < point.x)
+		env->max_x_coord = point.x;
+	if (env->max_y_coord < point.y)
+		env->max_y_coord = point.y;
+	if (env->min_x_coord > point.x)
+		env->min_x_coord = point.x;
+	if (env->min_y_coord > point.y)
+		env->min_y_coord = point.y;
 }

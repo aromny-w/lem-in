@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 14:47:52 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 22:55:05 by bharrold         ###   ########.fr       */
+/*   Created: 2019/10/19 20:20:12 by bharrold          #+#    #+#             */
+/*   Updated: 2019/10/19 20:21:26 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu-hex.h"
 
-void	clear_renderer(SDL_Renderer *rend)
+void set_pixel(SDL_Renderer *rend, int r, int g, int b)
 {
-	set_pixel(rend, 0, 0, 0);
-	SDL_RenderClear(rend);
-}
-
-
-void	render(t_env *env)
-{
-	clear_renderer(env->renderer);
-	render_rooms(env);
-	render_links(env);
-	SDL_RenderPresent(env->renderer);
+	SDL_SetRenderDrawColor(rend, r,g,b, 0xFF);
 }

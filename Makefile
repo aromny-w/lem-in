@@ -2,7 +2,6 @@ EXECUTABLE=lem-in
 EXECUTABLE2=visu-hex
 CC=gcc
 
-
 D_LIBFT=./libft
 I_LIBFT=-I $(D_LIBFT)/
 L_LIBFT=-L $(D_LIBFT) -lft
@@ -60,6 +59,10 @@ SRCS =		./lem_in.c\
 SRCS2=		./visualizer/visu-main.c\
 			./visualizer/sdl.c\
 			./visualizer/render.c\
+			./visualizer/render_rooms.c\
+			./visualizer/do_tick.c\
+			./visualizer/render_utils.c\
+			./visualizer/sdl_draw_circle.c\
 			./visualizer/visu-reader.c\
 			./visualizer/visu-reader-predictions.c\
 			./visualizer/visu_islink_utils.c\
