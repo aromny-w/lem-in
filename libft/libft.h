@@ -6,19 +6,19 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 23:59:40 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 03:51:15 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:20:45 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "get_next_line.h"
+# include "ft_printf.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "get_next_line.h"
-# include "ft_printf.h"
 
 typedef struct	s_list
 {
@@ -53,6 +53,7 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 				size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_abs(int i);
 int				ft_getnbr(const char *str);
 int				ft_atoi(const char *str);
 double			ft_pow(double x, double y);
@@ -113,6 +114,7 @@ void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void			ft_lstrev(t_list **alst);
 int				ft_strchri(const char *s, int c);
 char			*ft_concat(char *s1, char *s2);
 

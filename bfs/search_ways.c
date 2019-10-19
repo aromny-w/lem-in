@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 08:53:09 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 13:23:42 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:29:20 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,27 +105,26 @@ void	search_ways(t_farm *farm)
 	t_bfs	bfso;
 	t_way	*tmp;
 	int		lim;
-	int		k;
+	// int		k;
 
 	lim = 0;
-	k = 0;
+	// k = 0;
 	init_search(farm);
 	init_bfs(&bfso, farm);
-	while (lim < farm->limit_variations && k < farm->limit_variations + 1
+	while (lim < farm->limit_variations //&& k < farm->limit_variations + 1
 		&& (tmp = bfs(farm, &bfso)))
 	{
-		
 		if (check_overlap(tmp, &farm, &bfso))
 		{
 			++lim;
-			k = 0;
+			//k = 0;
 			reset_bfs(&bfso, farm);
 			continue;
 		}
 		search_rev_matrix(&farm->matrix, tmp);
 		push_to_ways(&farm->ways, normal_way(tmp), lim, farm);
 		reset_bfs(&bfso, farm);
-		k++;
+		//k++;
 	}
 	destroy_bfs(&bfso);
 	destroy_matrix(farm->matrix, farm->rooms_cnt);

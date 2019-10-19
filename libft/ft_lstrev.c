@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 07:11:59 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 17:20:10 by bharrold         ###   ########.fr       */
+/*   Created: 2019/10/17 21:29:14 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/17 21:29:19 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# define FD_SIZE 4864
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+void	ft_lstrev(t_list **alst)
+{
+	t_list	*prev;
+	t_list	*curr;
+	t_list	*next;
+	
+	prev = NULL;
+	curr = *alst;
+	while (curr)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	*alst = prev;
+}

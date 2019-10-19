@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 07:11:59 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 17:20:10 by bharrold         ###   ########.fr       */
+/*   Created: 2019/10/10 21:33:44 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/13 15:19:30 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 32
-# define FD_SIZE 4864
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-int		get_next_line(int const fd, char **line);
-
-#endif
+int	ft_abs(int i)
+{
+	if (i < 0)
+		return (-i);
+	return (i);
+}

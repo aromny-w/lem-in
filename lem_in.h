@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/19 15:26:30 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:26:34 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ struct			s_room
 typedef struct	s_farm
 {
 	int				ants;
+	t_list			*buf;
 	t_room			*room;
 	t_room			*start;
 	t_room			*end;
@@ -103,13 +104,13 @@ typedef struct	s_bfs
 void			lem_in(int fd);
 void			terminate(int status);
 void			destroyfarm(t_farm *farm);
-void			destroyfarmways(t_farm *farm, t_ways *ways, char **out);
+void			destroyfarmways(t_farm *farm, t_ways *ways);
 void			free_ways(t_ways *ways);
 
 /*
 *************** VALIDATE & READ
 */
-void			readinput(t_farm *farm, int fd, char *line, char **out);
+void			readinput(t_farm *farm, int fd, char *line);
 int				isantnbr(char *line);
 int				isroom(char *line, t_room *room);
 int				islink(char *line, t_room *room);
@@ -126,7 +127,7 @@ void			roomadd(t_room **room, t_room *new);
 void			roomrev(t_room **room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
-int				readcommand(t_farm *farm, int fd, char **line, char **out);
+int				readcommand(t_farm *farm, int fd, char **line);
 
 /*
 *************** WAYS
