@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 18:25:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/24 22:54:34 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/09/26 17:36:09 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ static t_room	*getroom2(char *line, t_farm farm)
 	while (*line != '-')
 		line++;
 	name = ft_strdup(++line);
-	if (farm.start && !ft_strcmp(name, farm.start->name))
-		return (farm.start);
-	if (farm.end && !ft_strcmp(name, farm.end->name))
-		return (farm.end);
 	while (farm.room && ft_strcmp(name, farm.room->name))
 		farm.room = farm.room->next;
+	free(name);
 	return (farm.room);
 }
 
@@ -45,12 +42,9 @@ static t_room	*getroom1(char *line, t_farm farm)
 	while (line[len] != '-')
 		len++;
 	name = ft_strsub(line, 0, len);
-	if (farm.start && !ft_strcmp(name, farm.start->name))
-		return (farm.start);
-	if (farm.end && !ft_strcmp(name, farm.end->name))
-		return (farm.end);
 	while (farm.room && ft_strcmp(name, farm.room->name))
 		farm.room = farm.room->next;
+	free(name);
 	return (farm.room);
 }
 

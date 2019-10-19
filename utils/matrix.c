@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 01:45:07 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/23 19:07:43 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/07 05:00:51 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,43 +40,19 @@ void	destroy_matrix(int **matrix, int size)
 	free(matrix);
 }
 
-void	fill_matrix_start_end(int ***matrix, t_farm *farm)
-{
-	t_link	*ptr;
-
-	ptr = farm->start->link;
-	while(ptr)
-	{
-		(*matrix)[farm->start->num][ptr->room->num] = 1;
-		ptr = ptr->next;
-	}
-	ptr = farm->end->link;
-	while (ptr)
-	{
-		(*matrix)[farm->end->num][ptr->room->num] = 1;
-		ptr = ptr->next;
-	}
-}
-
 void	fill_matrix(int ***matrix, t_farm *farm)
 {
 	t_link *ptr;
 	t_room *room_ptr;
 
-	fill_matrix_start_end(matrix, farm);
 	room_ptr = farm->room;
 	while (room_ptr)
 	{
-		if (room_ptr == farm->start || room_ptr == farm->end)
-		{
-			room_ptr = room_ptr->next;
-			continue;
-		}
 		ptr = room_ptr->link;
 		while (ptr)
 		{
 			if (!(ptr->room->excluded || room_ptr->excluded))
-				(*matrix)[room_ptr->num][ptr->room->num] = 1;
+				(*matrix)[ptr->room->num][room_ptr->num] = 1;
 			ptr = ptr->next;
 		}
 		room_ptr = room_ptr->next;
@@ -92,7 +68,7 @@ void	print_matrix(int **matrix, int size)
 	while (++i < size)
 	{
 		j = -1;
-		while(++j < size)
+		while (++j < size)
 			ft_printf("%5d ", matrix[i][j]);
 		ft_printf("\n");
 	}

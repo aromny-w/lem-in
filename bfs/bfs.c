@@ -5,84 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 17:26:34 by bharrold          #+#    #+#             */
-/*   Updated: 2019/09/21 15:04:28 by bharrold         ###   ########.fr       */
+/*   Created: 2019/10/07 08:39:04 by bharrold          #+#    #+#             */
+/*   Updated: 2019/10/19 14:39:02 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	level_up(int **q, int **q1, int size)
+int		bfs_stend_check(t_bfs *bfs, t_farm *farm, t_way **way)
+{
+	if (bfs->matrix[farm->start_id][farm->end_id] == 1
+		|| bfs->matrix[farm->end_id][farm->start_id] == 1)
+		{
+			;
+			*way = init_way(farm->end);
+			return (1);
+		}
+	return (0);
+}
+
+void	bfs_level_up(int **q, int **q1, int size)
 {
 	free(*q);
 	*q = *q1;
 	*q1 = queue(size);
 }
 
-t_room	*get_linked_room(t_room *room, int **matrix)
+int		get_linked(t_bfs *bfs, int cur, int *linked)
 {
-	t_link *ptr;
+	int	i;
 
-	ptr = room->link;
-	while (ptr)
+	i = 0;
+	while (i < bfs->matrix_size)
 	{
-		if (ptr->room->visited == 0 && matrix[room->num][ptr->room->num])
-			return (ptr->room);
-		ptr = ptr->next;
-	}
-
-	return (NULL);
-}
-
-void	add_dist(int **matrix, int matrix_size, int *q, t_farm *farm)
-{
-	t_room	*cur;
-	t_room	*linked_room;
-	int		i;
-	int		*q1;
-
-	q1 = queue(matrix_size);
-	cur = farm->end;
-	cur->visited = 1;
-	enqueue(q, cur->num);
-	i = 1;
-	while (q[2] != 0)
-	{
-		cur = dequeue(q, farm);
-		while ((linked_room = get_linked_room(cur, matrix)) != NULL )
+		if (bfs->matrix[cur][i] && bfs->v[i] == 0)
 		{
-			linked_room->visited = 1;
-			linked_room->dist = i;
-			enqueue(q1, linked_room->num);
+			*linked = i;
+			return (1);
 		}
-		if (q[2] == 0 && ++i)
-			level_up(&q, &q1, matrix_size);
+		i++;
 	}
-	free(q);
-	free(q1);
+	return (0);
 }
 
-t_ways	*bfs (t_farm *farm)
+int	bfs_add_dist(t_farm *farm, t_bfs *bfs)
 {
-	t_ways	*ways;
-	int		matrix_size;
-	int		**matrix;
-	int		*q;
-
-	ways = NULL;
-	ways = init_ways();
-	matrix_size = get_rooms_count(farm);
-	matrix = create_matrix(matrix_size);
-	while (1)
+	int		cur;
+	int		linked;
+	int		i;
+	
+	i = 1;
+	bfs->q1 = bfs_queue(bfs->matrix_size);
+	cur = farm->start_id;
+	bfs->v[cur] = 1;
+	bfs_enqueue(bfs->q, cur);
+	while (bfs->q[2] != 0)
 	{
-		fill_matrix(&matrix, farm);
-		q = queue(matrix_size);
-		add_dist(matrix, matrix_size, q, farm);
-		if(!(add_way(ways, farm)))
-			break;
-		reset_matrix(&matrix, matrix_size);
-		reset_dist(farm);
+		cur = bfs_dequeue(bfs->q);
+		while (get_linked(bfs, cur, &linked))
+		{
+			bfs->v[linked] = 1;
+			bfs->d[linked] = i;
+			bfs->p[linked] = cur;
+			bfs_enqueue(bfs->q1, linked);
+		}
+		if (bfs->q[2] == 0 && ++i)
+			bfs_level_up(&(bfs->q), &(bfs->q1), bfs->matrix_size);
 	}
-	destroy_matrix(matrix, matrix_size);
-	return (ways);
+	bfs->p[farm->start_id] = -1;
+	free(bfs->q);
+	free(bfs->q1);
+	return (0);
+}
+
+t_way	*bfs(t_farm *farm, t_bfs *bfs)
+{
+	t_way	*way;
+
+	way = NULL;
+	bfs->q = bfs_queue(bfs->matrix_size);
+	// if (bfs_stend_check(bfs, farm, &way))
+	// 	return (way);
+	bfs_add_dist(farm, bfs);
+	bfs->i = farm->end_id;
+	if (bfs->p[bfs->i] == -1)
+		return (NULL);
+	bfs->latest_dist = 0;
+	while (bfs->i != -1)
+	{
+		wayadd(&way, waynew(find_room_by_num(farm, bfs->i)));
+		bfs->i = bfs->p[bfs->i];
+		bfs->latest_dist++;
+	}
+	return (way);
 }
