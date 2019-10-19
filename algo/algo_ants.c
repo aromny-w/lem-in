@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 15:18:12 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/07 04:55:25 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:01:13 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ int		move_up(int dist, t_way *way, t_farm *farm, int j)
 	i = 0;
 	while (dist--)
 		way = way->next;
+	(void)farm;
 	if (way->ant != 0)
 	{
 		i = 1;
-		if (way->next == NULL)
-			ans_wr(way->ant, farm->end, j);
-		else
+		if (way->next != NULL)
 		{
 			ans_wr(way->ant, way->next->room, j);
 			way->next->ant = way->ant;
 		}
+		else
+			i = 0;
+		
 		way->ant = 0;
 	}
 	return (i);
