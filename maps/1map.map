@@ -1,0 +1,9 @@
+100
+##start
+A 0 0
+##end
+B 1 1
+C 3 3
+A-B
+A-C
+C-B

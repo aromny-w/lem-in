@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 14:58:34 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/01/04 16:57:06 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/09/07 22:34:40 by bharrold          #+#    #+#             */
+/*   Updated: 2019/10/19 17:20:29 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 static char		*ft_line_new(char *s, char **line)
 {
@@ -28,7 +29,7 @@ static char		*ft_line_new(char *s, char **line)
 	return (rst);
 }
 
-int				get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	static char	*str[FD_SIZE];
 	char		buff[BUFF_SIZE + 1];

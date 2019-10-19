@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroyfarm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/17 21:43:55 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:24:50 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,12 @@ void		destroyfarm(t_farm *farm)
 	}
 	ft_lstdel(&farm->buf, del);
 	ft_memset(farm, 0, sizeof(t_farm));
+	farm = NULL;
+}
+
+void		destroyfarmways(t_farm *farm, t_ways *ways)
+{
+	destroyfarm(farm);
+	destroy_ways(ways);
+	exit(-1);
 }

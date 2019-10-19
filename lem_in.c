@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/19 17:01:19 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:29:49 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,33 @@ static void		initfarm(t_farm *farm)
 void			lem_in(int fd)
 {
 	t_farm	farm;
+	t_ways	*ways;
 
+	ways = NULL;
 	initfarm(&farm);
 	readinput(&farm, fd, NULL);
-	if (!validate(farm))
-	{
-		destroyfarm(&farm);
+	validate(farm);
+	search_ways(&farm);
+	if (!farm.ways[farm.real_variations])
 		terminate(-1);
-	}
+	if ((farm.ways[farm.real_variations])->dist == 0)
+		terminate(-1);
 	writeinput(farm.buf);
-	solvefarm(farm, farm.end->links > farm.ants ? farm.ants : farm.end->links);
-	destroyfarm(&farm);
+	ft_printf("%d\n", farm.real_variations);
+	if (farm.ways[farm.real_variations]->dist == 1)
+		all_ants_one_way(&farm, farm.ways[farm.real_variations]);
+	else
+		lets_go(&farm, farm.ways[0], farm.ants, farm.ways[0]);
+	destroyfarmways(&farm, ways);
 }
 
 int				main(int argc, char **argv)
 {
+	(void) argv;
 	if (argc == 1)
 		lem_in(0);
 	else if (argc == 2)
 		lem_in(open(argv[1], O_RDONLY));
 	else
 		terminate(-1);
-	terminate(1);
 }

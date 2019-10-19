@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/18 22:52:14 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:26:43 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	datarev(t_farm *farm)
 	ft_lstrev(&farm->buf);
 }
 
-static int	readcommand(t_farm *farm, int fd, char **line)
+int	readcommand(t_farm *farm, int fd, char **line)
 {
 	char	cmd[ft_strlen(*line) + 1];
 
