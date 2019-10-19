@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 15:18:12 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 13:01:13 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 13:11:46 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		move_up(int dist, t_way *way, t_farm *farm, int j)
 		}
 		else
 			i = 0;
-		
 		way->ant = 0;
 	}
 	return (i);

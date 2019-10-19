@@ -3,3 +3,5 @@ libft/*.o
 lem-in
 .vscode/
 *.dSYM
+SDL2-2.0.10/
+visu-hex

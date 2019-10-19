@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 14:54:43 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:26:30 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void			roomadd(t_room **room, t_room *new);
 void			roomrev(t_room **room);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
+int				readcommand(t_farm *farm, int fd, char **line, char **out);
 
 /*
 *************** WAYS
@@ -181,5 +182,17 @@ t_way			*bfs(t_farm *farm, t_bfs *bfs);
 void			search_ways(t_farm *farm);
 void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			adjustlinks(t_room **room, t_room *start, t_room *end);
+void			init_rooms(t_farm *farm);
+void			init_bfs(t_bfs *bfs, t_farm *farm);
+void			reset_bfs(t_bfs *bfs, t_farm *farm);
+void			destroy_bfs(t_bfs *bfs);
+void			init_search(t_farm *farm);
+int				lenway(t_way *way);
+void			push_to_ways(t_ways ***ways, t_way *way, int num, t_farm *farm);
+t_way			*normal_way(t_way *way);
+int				get_limit(t_farm *farm);
+void			copy_e_matrix(int ***matrix, int **e_matrix, int size);
+int				search_rev_matrix(int ***matrix, t_way *way);
+int				check_overlap(t_way *way, t_farm **farm, t_bfs *bfs);
 
 #endif

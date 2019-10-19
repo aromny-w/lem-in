@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 08:39:04 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 12:49:04 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 14:39:02 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		get_linked(t_bfs *bfs, int cur, int *linked)
 	{
 		if (bfs->matrix[cur][i] && bfs->v[i] == 0)
 		{
-			
 			*linked = i;
 			return (1);
 		}

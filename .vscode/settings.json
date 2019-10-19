@@ -6,6 +6,7 @@
 		"*.tcc": "c",
 		"get_next_line.h": "c",
 		"algorithm": "c",
-		"ratio": "c"
+		"ratio": "c",
+		"visu-hex.h": "c"
 	}
 }

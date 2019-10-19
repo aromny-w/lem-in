@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/19 12:45:30 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 16:52:05 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			lem_in(int fd)
 	if (farm.ways[farm.real_variations]->dist == 1)
 		all_ants_one_way(&farm, farm.ways[farm.real_variations]);
 	else
-		lets_go(&farm, farm.ways[farm.real_variations], farm.ants, farm.ways[farm.real_variations]);
+		lets_go(&farm, farm.ways[0], farm.ants, farm.ways[0]);
 	destroyfarmways(&farm, ways, &out);
 	free(out);
 }

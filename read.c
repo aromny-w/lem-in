@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/07 13:45:29 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/19 17:00:36 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ static void	datarev(t_farm *farm)
 	}
 }
 
-static int	readcommand(t_farm *farm, int fd, char **line, char **out)
+int	readcommand(t_farm *farm, int fd, char **line, char **out)
 {
 	char	cmd[ft_strlen(*line) + 1];
 
 	ft_strcpy(cmd, *line);
 	if (ft_strcmp("##start", cmd) && ft_strcmp("##end", cmd))
 		return (0);
+	ft_concat(*out, *line);
 	free(*line);
 	if (!get_next_line(fd, line))
 		abortreading(fd, NULL, out, farm);
