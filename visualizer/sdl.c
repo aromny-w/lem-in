@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 14:37:33 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 23:08:02 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 15:23:29 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	handle_key_down(t_env *env, SDL_Keycode key)
 		env->key_left = 1;
 	if (key == SDLK_RIGHT)
 		env->key_right = 1;
+	if (key == SDLK_PLUS)
+		env->key_plus = 1;
+	if (key == SDLK_MINUS)
+		env->key_minus = 1;
+	if (key == SDLK_s)
+		env->key_s = 1;	
 }
 
 void	handle_key_up(t_env *env, SDL_Keycode key)
@@ -58,6 +64,12 @@ void	handle_key_up(t_env *env, SDL_Keycode key)
 		env->key_left = 0;
 	if (key == SDLK_RIGHT)
 		env->key_right = 0;
+	if (key == SDLK_PLUS)
+		env->key_plus = 0;
+	if (key == SDLK_MINUS)
+		env->key_minus = 0;
+	if (key == SDLK_s)
+		env->key_s = 0;	
 }
 
 void	handle_event(t_env *env)

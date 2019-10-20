@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 14:08:00 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 23:16:42 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:06:39 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void			init_screen(t_env *env)
 	env->room_radius = 10;
 	env->width_persize = 50;
 	env->height_persize = 50;
-	// env->width_persize = (SCREEN_WIDTH - 100) / (env->max_x_coord - env->min_x_coord + 1);
-	// env->height_persize = (SCREEN_HEIGHT) / (env->max_x_coord - env->min_x_coord + 1);
-	// env->height_persize = (env->height_persize == 0) ? 1 : env->height_persize;
-	// env->width_persize = (env->width_persize == 0) ? 1 : env->width_persize;
 }
 
 void			initialize_visualizer(t_env *env, int fd)

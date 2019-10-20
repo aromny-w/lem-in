@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 08:39:04 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 14:39:02 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 16:02:37 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ t_way	*bfs(t_farm *farm, t_bfs *bfs)
 		bfs->i = bfs->p[bfs->i];
 		bfs->latest_dist++;
 	}
+	way->dist = bfs->latest_dist;
 	return (way);
 }

@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 15:18:12 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 13:11:46 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 22:05:11 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,19 @@ void	lets_go(t_farm *farm, t_ways *ways, int ants, t_ways *begin)
 {
 	int		ant;
 	int		sw;
+	int		i;
 
 	ant = 0;
 	while (ant < ants)
 	{
+		i = 1;
 		sw = ways_up(ways, farm);
 		ways = begin;
 		ways->way->ant = ++ant;
 		ans_wr(ant, ways->way->room, sw);
-		while (ways->next && ways->next->dist - begin->dist < ants - ant)
+		while (ways->next && ((ways->next->dist - begin->dist) * i) - 1 < ants - ant)
 		{
+			i++;
 			ways = ways->next;
 			ways->way->ant = ++ant;
 			ans_wr(ant, ways->way->room, 1);

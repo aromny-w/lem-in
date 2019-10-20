@@ -64,6 +64,7 @@ SRCS2=		./visualizer/visu-main.c\
 			./visualizer/render_utils.c\
 			./visualizer/sdl_draw_circle.c\
 			./visualizer/visu-reader.c\
+			./visualizer/visu_readcommand.c\
 			./visualizer/visu-reader-predictions.c\
 			./visualizer/visu_islink_utils.c\
 			./visualizer/visu_isroom_utils.c\

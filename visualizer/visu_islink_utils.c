@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:45:52 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 18:50:17 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 15:16:00 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	addnewlink(t_env *env,t_visu_link **link, t_visu_link *new)
 	else
 	{
 		ptr = *link;	
-		while ((ptr)->next != NULL)
+		while (ptr && (ptr)->next != NULL)
 			ptr = (ptr)->next;
 		(ptr)->next = new;
 	}

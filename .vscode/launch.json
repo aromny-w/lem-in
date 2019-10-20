@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/visu-hex",
-			"args": ["out"],
+			"args": ["test_map"],
 			//"args": ["map"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
@@ -23,12 +23,12 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/lem-in",
-			"args": ["maps/samples/true_test.txt"],
+			"args": ["test_map"],
 			//"args": ["map"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
-			"externalConsole": false,
+			"externalConsole": true,
 			"MIMode": "lldb",
 		}
 	]

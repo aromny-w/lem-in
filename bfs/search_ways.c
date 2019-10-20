@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 08:53:09 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 17:29:20 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:21:33 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,26 @@ int		get_limit(t_farm *farm)
 		if (farm->ants > 200)
 			lim = 9;
 		if (farm->ants > 220)
-			lim = 10;
-		if (farm->ants > 250)
 			lim = 12;
+		if (farm->ants > 250)
+			lim = 10;
 		if (farm->ants > 325)
 			lim = 13;
 		if (farm->ants > 450)
 			lim = 14;
 	}
-	return (lim + 10);
+	if (farm->end->links < lim)
+		lim = farm->end->links;
+	return (lim);
 }
 
 int		check_overlap(t_way *way, t_farm **farm, t_bfs *bfs)
 {
 	t_way	*ptr;
 	t_way	*next;
+	int		res;
 
+	res = 0;
 	ptr = way;
 	next = ptr->next;
 	while (next)
@@ -88,11 +92,8 @@ int		check_overlap(t_way *way, t_farm **farm, t_bfs *bfs)
 		{
 			(*farm)->e_matrix[ptr->room->num][next->room->num] = 0;
 			(*farm)->e_matrix[next->room->num][ptr->room->num] = 0;
-			{
-				copy_e_matrix(&bfs->matrix, (*farm)->e_matrix, (*farm)->rooms_cnt);
-				return (1);
-			}
-			
+			copy_e_matrix(&bfs->matrix, (*farm)->e_matrix, (*farm)->rooms_cnt);
+			return (1);
 		}
 		ptr = ptr->next;
 		next = next->next;
@@ -105,26 +106,28 @@ void	search_ways(t_farm *farm)
 	t_bfs	bfso;
 	t_way	*tmp;
 	int		lim;
-	// int		k;
+	int		k;
 
 	lim = 0;
-	// k = 0;
+	k = 0;
 	init_search(farm);
 	init_bfs(&bfso, farm);
-	while (lim < farm->limit_variations //&& k < farm->limit_variations + 1
+	while (lim < farm->limit_variations //&& k < farm->limit_variations
 		&& (tmp = bfs(farm, &bfso)))
 	{
 		if (check_overlap(tmp, &farm, &bfso))
 		{
 			++lim;
-			//k = 0;
+			k = 0;
 			reset_bfs(&bfso, farm);
 			continue;
 		}
 		search_rev_matrix(&farm->matrix, tmp);
+		//print_way(tmp);
 		push_to_ways(&farm->ways, normal_way(tmp), lim, farm);
 		reset_bfs(&bfso, farm);
-		//k++;
+		// ft_printf("%d\n", k);
+		k++;
 	}
 	destroy_bfs(&bfso);
 	destroy_matrix(farm->matrix, farm->rooms_cnt);

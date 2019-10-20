@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/19 17:26:34 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 16:01:55 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_way
 {
 	t_room			*room;
 	int				ant;
-	int				suurbale;
+	int				dist;
 	struct s_way	*next;
 }				t_way;
 

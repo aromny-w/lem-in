@@ -6,7 +6,7 @@
 /*   By: bharrold <bharrold@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:04:51 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/19 21:48:48 by bharrold         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:06:31 by bharrold         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	visu_add_step(t_env *env, char *step)
 		env->step->step = step;
 		env->step->prev = NULL;
 		env->step->next = NULL;
+		env->step->running = 0;
+		env->step->prev = 0;
 		return ;
 	}
 	while (env->step->next != NULL)
@@ -29,6 +31,8 @@ void	visu_add_step(t_env *env, char *step)
 	env->step->next = (t_step*)malloc(sizeof(t_step));
 	env->step->next->step = step;
 	env->step->next->prev = env->step;
+	env->step->next->running = 0;
+	env->step->next->reverse = 0;
 	env->step->next->next = NULL;
 }
 
@@ -107,9 +111,9 @@ void	visu_reader(t_env *env, char *line, int fd)
 			visu_setroom(line, &env->room, env);
 		else if (visu_islink(line, env->room) && s[0] && s[1] && (s[2] = 1))
 			visu_setlink(line, &env->link, env);
-		else if (visu_iscomment(line))
-			;
 		else if (visu_iscommand(line))
+			visu_readcommand(env, fd, &line);
+		else if (visu_iscomment(line))
 			;
 		else
 			visu_add_step(env, ft_strdup(line));
