@@ -46,7 +46,8 @@ SRCS =		./lem_in.c\
 			./checkoverlap.c\
 			./cancelpaths.c\
 			./sortpaths.c\
-			./ants_move.c
+			./ants_move.c\
+			./antsdist.c
 
 HEADERS =	./lem_in.h
 

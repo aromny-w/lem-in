@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 16:45:13 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/25 19:44:04 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:27:39 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	printpaths(t_path path)
 			printf("%s\n", path.way->room->name);
 		path.way = path.way->next;
 	}
+	printf("Length is %d\n", path.len);
 }
 
 void		printstatus(t_path *path, int k)

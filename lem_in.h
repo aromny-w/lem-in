@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/20 22:24:13 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 18:04:25 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@ typedef struct	s_way
 	struct s_way	*next;
 }				t_way;
 
+typedef struct	s_ant
+{
+	int		number;
+	t_way	*way;
+}				t_ant;
+
 typedef struct	s_path
 {
 	t_way			*way;
-	size_t			len;
+	int				limit;
+	int				len;
 }				t_path;
 
 typedef struct	s_link
@@ -101,5 +108,6 @@ int				checkoverlap(t_path new);
 void			cancelpaths(t_path *path, t_path new, size_t k);
 void			sortpaths(t_path *path, size_t k);
 void			ants_move(t_path *path, int k, t_farm *farm);
+void			antsdist(t_path *path, int k, int ants);
 
 #endif

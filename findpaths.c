@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/20 22:37:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:51:08 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		initdistance(t_room **room)
 	}
 }
 
-static size_t	pathcat(t_path *path, t_path new, size_t k)
+static size_t	addpath(t_path *path, t_path new, size_t k)
 {
 	size_t	i;
 
@@ -32,14 +32,10 @@ static size_t	pathcat(t_path *path, t_path new, size_t k)
 	if (path)
 		while (i < k - 1 && path[i].way)
 			i++;
-	if (new.way)
-	{
-		path[i].way = new.way;
-		path[i].len = new.len;
-		i++;
-	}
+	path[i].way = new.way;
+	path[i].len = new.len;
 	sortpaths(path, k);
-	return (i);
+	return (++i);
 }
 
 static void		reverselink(t_room **room1, t_room **room2)
@@ -85,7 +81,6 @@ static void		reversepaths(t_path *init, t_path new, size_t k)
 t_path			*findpaths(t_farm farm, t_path *path, size_t k)
 {
 	t_path	new;
-	size_t	i;
 
 	new = pathnew(NULL, 0);
 	initdistance(&farm.room);
@@ -93,11 +88,7 @@ t_path			*findpaths(t_farm farm, t_path *path, size_t k)
 	dfs(farm, &new, pathnew(NULL, 0), farm.start);
 	reversepaths(path, new, k - 1);
 	if (new.way)
-	{
 		wayrev(&new.way);
-		new.way = new.way->next;
-		new.len -= 1;
-	}
 	else
 		return (NULL);
 	if (checkoverlap(new))
@@ -105,9 +96,7 @@ t_path			*findpaths(t_farm farm, t_path *path, size_t k)
 		cancelpaths(path, new, k);
 		return (findpaths(farm, path, k));
 	}
-	else
-		i = pathcat(path, new, k);
-	if (i < k)
+	else if (addpath(path, new, k) < k)
 		return (findpaths(farm, path, k));
 	return (path);
 }
