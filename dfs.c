@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 23:29:08 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:53:35 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		*dfs(t_farm farm, t_path *new, t_path tmp, t_room *room)
 	while (link)
 	{
 		if (link->weight != INFINITY)
-		dfs(farm, new, tmp, link->room);
+			dfs(farm, new, tmp, link->room);
 		link = link->next;
 	}
 	return (free_ways(&tmp, NULL));
