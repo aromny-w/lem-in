@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:21:15 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 18:22:46 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:38:03 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static void	setlimits(t_path *path, int k, int ants)
 void	antsdist(t_path *path, int k, int ants)
 {
 	t_ant	ant[ants];
+	int		lines;
 	int		i;
 	int		n;
 
@@ -77,12 +78,16 @@ void	antsdist(t_path *path, int k, int ants)
 	settruelen(path, k);
 	setlimits(path, k, ants);
 	n = 0;
-	while (ants)
+	// i = -1;
+	// while (++i < k)
+	// 	ft_printf("#:%d len:%d limit:%d sum:%d\n", i + 1, path[i].len, path[i].limit, path[i].len + path[i].limit);
+	lines = path[0].len + path[0].limit;
+	while (lines--)
 	{
 		i = -1;
 		while (++i < k)
 		{
-			if (path[i].limit)
+			if (path[i].limit && n < ants)
 			{
 				ant[n].number = n + 1;
 				ant[n++].way = path[i].way->next;

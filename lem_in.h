@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 22:08:49 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:25:53 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_room	t_room;
 typedef struct	s_way
 {
 	t_room			*room;
-	int				ant;
 	struct s_way	*next;
 }				t_way;
 
@@ -109,7 +108,6 @@ void			printrooms(t_room *room);
 int				checkoverlap(t_path new);
 void			cancelpaths(t_path *path, t_path new, size_t k);
 void			sortpaths(t_path *path, size_t k);
-void			ants_move(t_path *path, int k, t_farm *farm);
 void			antsdist(t_path *path, int k, int ants);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 21:35:16 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:29:08 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		best_path(t_path **new, t_path *tmp)
 		ptr = ptr->next;
 	}
 	(*new)->len = tmp->len;
+	(*new)->limit = 0;
 }
 
 void		*dfs(t_farm farm, t_path *new, t_path tmp, t_room *room)

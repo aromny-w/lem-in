@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 19:35:51 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/21 20:16:44 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:38:53 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_path	*getpaths(t_farm farm, t_path *init, size_t k)
 	{
 		path[i].way = init[i].way;
 		path[i].len = init[i].len;
+		path[i].limit = init[i].limit;
 	}
 	path[i] = pathnew(NULL, 0);
 	if (!findpaths(farm, path, k))
