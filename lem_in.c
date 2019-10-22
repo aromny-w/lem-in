@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 19:38:08 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/22 22:24:53 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void			lem_in(int fd)
 	}
 	writeinput(farm.buf);
 	solvefarm(farm, farm.end->links > farm.ants ? farm.ants : farm.end->links);
-	destroyfarm(&farm);
 }
 
 int				main(int argc, char **argv)
