@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 23:25:53 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:54:06 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_path
 typedef struct	s_link
 {
 	t_room			*room;
-	float			weight;	
+	float			weight;
 	struct s_link	*next;
 }				t_link;
 
@@ -82,9 +82,7 @@ void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			adjustlinks(t_room **room, t_room *start, t_room *end);
 t_path			*getpaths(t_farm farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm farm, t_path *path, size_t k);
-// void			dfs(t_farm farm, t_path *path, t_path tmp, t_room *room);
 void			*dfs(t_farm farm, t_path *new, t_path tmp, t_room *room);
-// void			*dfs(t_farm farm, t_path *new, t_path *tmp, t_room *room);
 void			terminate(int status);
 void			destroyfarm(t_farm *farm);
 t_room			*roomnew(char *name, t_point coords, t_link *link);

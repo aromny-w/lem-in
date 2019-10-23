@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 21:15:25 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:52:31 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,12 @@ static int		brakingsystem(t_path *curr, t_path *prev, int k, int ants)
 		return (0);
 	return (1);
 }
-/*
-static int		brakingsystem(t_path *path, int k, int ants)
-{
-	int	i;
-	int	sum;
 
-	sum = 0;
-	i = -1;
-	while (++i + 1 < k)
-	{
-		//printf("%d\n", path[i].len);
-		sum += (path[i + 1].len / 2  - path[i].len / 2) * (i + 1);
-	}
-	//printf("%d\n", path[i].len);
-	if (sum <= ants)
-		return (1);
-	return (0);
-}
-*/
 void			pathfree(t_path **path)
 {
 	free(*path);
 	*path = NULL;
 }
-
 
 void			solvefarm(t_farm farm, size_t max)
 {
@@ -88,11 +69,9 @@ void			solvefarm(t_farm farm, size_t max)
 	splitrooms(&farm.room, farm.start, farm.end);
 	while (++k <= max)
 	{
-		if (!(path[k] = getpaths(farm, path[k - 1], k)) || 
+		if (!(path[k] = getpaths(farm, path[k - 1], k)) ||
 		!brakingsystem(path[k], path[k - 1], k, farm.ants))
-				break ;
-		// printf("k = %zu\n", k);
-		// printstatus(path[k], k);
+			break ;
 	}
 	antsdist(path[k - 1], k - 1, farm.ants);
 	k--;

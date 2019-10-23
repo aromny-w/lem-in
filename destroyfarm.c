@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/22 22:22:54 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:49:19 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	del(void *elem, size_t size)
 	free(elem);
 }
 
-void	destroy_rooms(t_room **room)
+static void	destroy_rooms(t_room **room)
 {
 	t_room	*tmp;
 	t_room	*next;

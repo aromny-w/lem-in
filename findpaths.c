@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 21:52:24 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:50:39 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ t_path			*findpaths(t_farm farm, t_path *path, size_t k)
 	reversepaths(path, new, k - 1);
 	dfs(farm, &new, pathnew(NULL, 0), farm.start);
 	reversepaths(path, new, k - 1);
-	if (new.way)
-		;//wayrev(&new.way);
-	else
+	if (!new.way)
 		return (NULL);
 	if (checkoverlap(new))
 	{

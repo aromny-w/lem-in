@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 18:43:41 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:50:55 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	datarev(t_farm *farm)
 	ft_lstrev(&farm->buf);
 }
 
-int	readcommand(t_farm *farm, int fd, char **line)
+int			readcommand(t_farm *farm, int fd, char **line)
 {
 	char	cmd[ft_strlen(*line) + 1];
 

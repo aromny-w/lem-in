@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aromny-w <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:29:14 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/17 21:29:19 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:53:27 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstrev(t_list **alst)
 	t_list	*prev;
 	t_list	*curr;
 	t_list	*next;
-	
+
 	prev = NULL;
 	curr = *alst;
 	while (curr)

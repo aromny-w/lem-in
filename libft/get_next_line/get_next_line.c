@@ -6,52 +6,64 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:58:34 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 19:37:38 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:32:27 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char		*ft_line_new(char *s, char **line)
+void	set_text(char *text[], char *temp, const int fd)
 {
-	int		i;
-	char	*rst;
-	
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	*line = ft_strsub(s, 0, i);
-	if (s[i] == '\n')
-		rst = ft_strdup(&s[i] + 1);
-	if (!s[i])
-		rst = ft_strnew(0);
-	return (rst);
+	ft_strdel(&text[fd]);
+	text[fd] = ft_strdup(temp);
+	ft_strdel(&temp);
 }
 
-int			get_next_line(const int fd, char **line)
+int		read_file(char *text[], const int fd, char *temp)
 {
-	static char	*str[FD_SIZE];
-	char		buff[BUFF_SIZE + 1];
-	int			ret;
-	char		*tmp;
-	
-	if (!line || fd < 0 || fd > FD_SIZE || BUFF_SIZE < 0)
-		return (-1);
-	if (!str[fd])
-		str[fd] = ft_strnew(0);
-	while (!ft_strchr(str[fd], '\n') && (ret = read(fd, buff, BUFF_SIZE)) > 0)
-	{
-		buff[ret] = '\0';
-		tmp = ft_strjoin(str[fd], buff);
-		free(str[fd]);
-		str[fd] = tmp;
-	}
-	if (ret < 0)
-		return (-1);
-	if (ret == 0 && !ft_strlen(str[fd]))
+	char	buf[BUFF_SIZE + 1];
+	int		red;
+
+	if ((red = read(fd, buf, BUFF_SIZE)) == 0)
 		return (0);
-	tmp = ft_line_new(str[fd], line);
-	free(str[fd]);
-	str[fd] = tmp;
+	buf[red] = '\0';
+	temp = ft_strjoin(text[fd], buf);
+	set_text(text, temp, fd);
+	return (1);
+}
+
+int		single_line(char *text[], char **line, const int fd)
+{
+	*line = ft_strdup(text[fd]);
+	ft_strclr(text[fd]);
+	return (1);
+}
+
+int		get_next_line(const int fd, char **line)
+{
+	char		buf[BUFF_SIZE + 1];
+	static char	*text[1024];
+	char		*temp;
+	char		*ptr;
+
+	temp = NULL;
+	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
+		return (-1);
+	if (!text[fd])
+		text[fd] = ft_strnew(0);
+	while ((ptr = ft_strchr(text[fd], '\n')) == NULL)
+		if ((read_file(text, fd, temp)) == 0)
+			break ;
+	if (ft_strlen(text[fd]) != 0)
+	{
+		if (!(ft_strchr(text[fd], '\n')))
+			return (single_line(text, &*line, fd));
+		*ptr = '\0';
+		temp = ft_strdup(ptr + 1);
+		*line = ft_strdup(text[fd]);
+		set_text(text, temp, fd);
+	}
+	else
+		return (0);
 	return (1);
 }

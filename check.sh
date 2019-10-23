@@ -14,4 +14,4 @@ echo "Difference:               \c"
 echo " $(echo "$(diff test_map test_solution | wc -l) - 2" | bc) - \
 	$(tail -1 test_map | sed 's/#Here is the number of lines required://g')" | bc
 
- rm -rf test_map test_solution
+rm -rf test_map test_solution
