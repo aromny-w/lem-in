@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 22:44:17 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/20 23:51:32 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:08:18 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void		cancelpaths(t_path *path, t_path new, size_t k)
 		{
 			path[i].way = NULL;
 			path[i].len = 0;
-			break ;
 		}
 	}
 	shiftpaths(path, k);

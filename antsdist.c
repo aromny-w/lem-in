@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:21:15 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 23:38:03 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:14:12 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static int	printants(t_ant *ant, int n)
 	{
 		if (ant[i].way)
 		{
+			if (check)
+				ft_printf(" ");
 			check++;
-			ft_printf("L%d-%s ", ant[i].number, ant[i].way->room->name);
+			ft_printf("L%d-%s", ant[i].number, ant[i].way->room->name);
 			if (!ant[i].way->next)
 				ant[i].way = ant[i].way->next;
 			else
@@ -43,7 +45,7 @@ static void	settruelen(t_path *path, int k)
 
 	i = -1;
 	while (++i < k)
-		path[i].len = (path[i].len - 2)/2 + 1;
+		path[i].len = path[i].len / 2;
 }
 
 static void	setlimits(t_path *path, int k, int ants)
@@ -57,7 +59,7 @@ static void	setlimits(t_path *path, int k, int ants)
 		i = -1;
 		while (ants && ++i < k)
 		{
-			if (ants && path[i].len + path[i].limit == threshold)
+			if (path[i].len + path[i].limit == threshold)
 			{
 				path[i].limit++;
 				ants--;
@@ -74,15 +76,13 @@ void	antsdist(t_path *path, int k, int ants)
 	int		i;
 	int		n;
 
+	//printstatus(path, k);
 	ft_memset(ant, 0, sizeof(ant));
 	settruelen(path, k);
 	setlimits(path, k, ants);
 	n = 0;
-	// i = -1;
-	// while (++i < k)
-	// 	ft_printf("#:%d len:%d limit:%d sum:%d\n", i + 1, path[i].len, path[i].limit, path[i].len + path[i].limit);
 	lines = path[0].len + path[0].limit;
-	while (lines--)
+	while (ants)
 	{
 		i = -1;
 		while (++i < k)
