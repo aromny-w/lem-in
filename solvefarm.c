@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:52:31 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 00:04:58 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void			solvefarm(t_farm farm, size_t max)
 			break ;
 	}
 	antsdist(path[k - 1], k - 1, farm.ants);
-	k--;
-	while (k)
-		pathfree(&path[k--]);
+	while (k--)
+		pathfree(&path[k]);
 	destroyfarm(&farm);
 }
