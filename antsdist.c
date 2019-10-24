@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:21:15 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 18:47:48 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:49:03 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,6 @@ static void	setlimits(t_path *path, int k, int ants)
 		}
 		threshold++;
 	}
-}
-
-static void	writeinput(t_list *input)
-{
-	while (input)
-	{
-		ft_putendl(input->content);
-		input = input->next;
-	}
-	ft_putchar('\n');
 }
 
 void		antsdist(t_path *path, int k, int ants)

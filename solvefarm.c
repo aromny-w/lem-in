@@ -6,11 +6,21 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 18:47:12 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:49:37 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	writeinput(t_list *input)
+{
+	while (input)
+	{
+		ft_putendl(input->content);
+		input = input->next;
+	}
+	ft_putchar('\n');
+}
 
 static int		linecount(int *len, int k, int ants)
 {
@@ -73,7 +83,7 @@ void			solvefarm(t_farm farm, size_t max)
 	if (k != 1)
 	{
 		writeinput(farm.input);
-		antsdist(path[k - 1], k - 1, farm.ants, farm.input);
+		antsdist(path[k - 1], k - 1, farm.ants);
 	}
 	destroyfarm(&farm, path, k);
 }
