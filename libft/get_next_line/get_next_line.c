@@ -6,17 +6,16 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:58:34 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/01/04 16:57:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:45:29 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define FD_MAX 4864
 
 char	*str_realloc(char *old, size_t size)
 {
 	char *new;
-	
+
 	if (!old)
 	{
 		new = ft_strnew(size);
@@ -32,7 +31,7 @@ int		fillout(char **line, char *buffer)
 {
 	char	*tmp;
 	int		len;
-	
+
 	if ((tmp = ft_strchr(buffer, '\n')))
 	{
 		*line = str_realloc(*line, tmp - buffer);
@@ -51,10 +50,10 @@ int		fillout(char **line, char *buffer)
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*buff[FD_MAX];
+	static char	*buff[FD_SIZE];
 	int			bytes;
-	
-	if (fd < 0 || fd >= FD_MAX || !line || BUFF_SIZE < 1)
+
+	if (fd < 0 || fd >= FD_SIZE || !line || BUFF_SIZE < 1)
 		return (-1);
 	else if (!buff[fd] && !(buff[fd] = ft_strnew(BUFF_SIZE)))
 		return (-1);

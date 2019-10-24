@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 17:27:20 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:47:30 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void			printrooms(t_room *room);
 int				checkoverlap(t_path new);
 void			cancelpaths(t_path *path, size_t k);
 void			sortpaths(t_path *path, size_t k);
-void			antsdist(t_path *path, int k, int ants, t_list *input);
+void			antsdist(t_path *path, int k, int ants);
 
 #endif
