@@ -6,11 +6,9 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/24 14:49:12 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:18:43 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "lem_in.h"
 
 #include "lem_in.h"
 
@@ -38,8 +36,16 @@ static void	destroy_rooms(t_room **room)
 	*room = NULL;
 }
 
-void		destroyfarm(t_farm *farm)
+void		destroyfarm(t_farm *farm, t_path **path, int k)
 {
+	int	i;
+
+	i = k;
+	while (--i)
+		free(path[i]);
 	ft_lstdel(&farm->input, del);
+	pathdel(&farm->buf);
 	destroy_rooms(&farm->room);
+	if (k == 1)
+		terminate(-1);
 }

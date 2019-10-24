@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:47:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:16:59 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	abortreading(t_farm *farm, int fd, char **line)
 {
 	close(fd);
 	free(*line);
-	destroyfarm(farm);
-	terminate(-1);
+	destroyfarm(farm, NULL, 1);
 }
 
 static void	datarev(t_farm *farm)

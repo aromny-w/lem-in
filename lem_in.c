@@ -6,39 +6,19 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:52:12 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:29:22 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		writeinput(t_list *input)
-{
-	while (input)
-	{
-		ft_putendl(input->content);
-		input = input->next;
-	}
-	ft_putchar('\n');
-}
-
 static int		validate(t_farm farm)
 {
-	if (farm.ants < 0)
+	if (farm.ants <= 0)
 		return (0);
 	if (!farm.start || !farm.end || !farm.start->links || !farm.end->links)
 		return (0);
 	return (1);
-}
-
-static void		initfarm(t_farm *farm)
-{
-	farm->ants = -1;
-	farm->room = NULL;
-	farm->start = NULL;
-	farm->end = NULL;
-	farm->input = NULL;
-	farm->buf = NULL;
 }
 
 void			lem_in(int fd)
@@ -48,11 +28,8 @@ void			lem_in(int fd)
 	initfarm(&farm);
 	readinput(&farm, fd, NULL);
 	if (!validate(farm))
-	{
-		destroyfarm(&farm);
-		terminate(-1);
-	}
-	writeinput(farm.input);
+		destroyfarm(&farm, NULL, 1);
+	
 	solvefarm(farm, farm.end->links > farm.ants ? farm.ants : farm.end->links);
 }
 

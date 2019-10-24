@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 15:17:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:27:20 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ typedef struct	s_farm
 	t_room			*end;
 	t_list			*input;
 	t_path			*buf;
+	float			depth;
 }				t_farm;
 
 void			lem_in(int fd);
+void			initfarm(t_farm *farm);
 void			readinput(t_farm *farm, int fd, char *line);
 void			setroom(char *line, t_room **room);
 void			setlink(char *line, t_farm *farm);
@@ -86,7 +88,7 @@ t_path			*getpaths(t_farm *farm, t_path *init, size_t k);
 t_path			*findpaths(t_farm *farm, t_path *path, size_t k);
 void			*dfs(t_farm *farm, t_path *new, t_path tmp, t_room *room);
 void			terminate(int status);
-void			destroyfarm(t_farm *farm);
+void			destroyfarm(t_farm *farm, t_path **path, int k);
 t_room			*roomnew(char *name, t_point coords, t_link *link);
 void			roomadd(t_room **room, t_room *new);
 void			roomrev(t_room **room);
@@ -112,6 +114,6 @@ void			printrooms(t_room *room);
 int				checkoverlap(t_path new);
 void			cancelpaths(t_path *path, size_t k);
 void			sortpaths(t_path *path, size_t k);
-void			antsdist(t_path *path, int k, int ants);
+void			antsdist(t_path *path, int k, int ants, t_list *input);
 
 #endif

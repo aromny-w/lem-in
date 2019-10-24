@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 16:41:39 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:20:36 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		*dfs(t_farm *farm, t_path *new, t_path tmp, t_room *room)
 
 	wayadd(&tmp.way, waynew(room));
 	tmp.len++;
-	if (tmp.len > 230 || !room || (new->way && new->len < tmp.len) ||
+	if (tmp.len > farm->depth || !room || (new->way && new->len < tmp.len) ||
 		tmp.len > room->dist)
 		return (free_ways(&tmp, NULL));
 	else if (tmp.way->room == farm->end && (!new->way || tmp.len < new->len))

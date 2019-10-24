@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   waydel.c                                           :+:      :+:    :+:   */
+/*   initfarm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 00:18:55 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 16:52:52 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/10/24 16:58:14 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/24 17:07:53 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	waydel(t_way **way)
+void	initfarm(t_farm *farm)
 {
-	t_way	*tmp;
-	t_way	*next;
-
-	tmp = *way;
-	while (tmp)
-	{
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
-	*way = NULL;
+	farm->ants = -1;
+	farm->room = NULL;
+	farm->start = NULL;
+	farm->end = NULL;
+	farm->input = NULL;
+	farm->buf = NULL;
+	farm->depth = 200;
 }
-

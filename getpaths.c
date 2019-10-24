@@ -6,11 +6,17 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 19:35:51 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 15:25:15 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:02:40 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static t_path	*tryagain(t_farm *farm, t_path *init, size_t k)
+{
+	farm->depth = INFINITY;
+	return (getpaths(farm, init, k));
+}
 
 t_path			*getpaths(t_farm *farm, t_path *init, size_t k)
 {
@@ -26,12 +32,12 @@ t_path			*getpaths(t_farm *farm, t_path *init, size_t k)
 		path[i].len = init[i].len;
 		path[i].limit = init[i].limit;
 	}
-	path[i].way = NULL;
-	path[i].len = 0;
-	path[i].limit = 0;
+	ft_memset(&path[i], 0, sizeof(path[i]));
 	if (!findpaths(farm, path, k))
 	{
 		free(path);
+		if (k == 1 && farm->depth != INFINITY)
+			return (tryagain(farm, init, k));
 		return (NULL);
 	}
 	return (path);

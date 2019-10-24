@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 22:44:17 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:44:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:21:35 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,7 @@ void		cancelpaths(t_path *path, size_t k)
 
 	i = -1;
 	while (++i < k)
-	{
 		if (path[i].way && isinvalid(path[i].way))
-		{
-			path[i].way = NULL;
-			path[i].len = 0;
-			path[i].limit = 0;
-		}
-	}
+			ft_memset(&path[i], 0, sizeof(path[i]));
 	shiftpaths(path, k);
 }

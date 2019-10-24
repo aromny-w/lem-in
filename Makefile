@@ -14,6 +14,7 @@ INC=$(I_LIBFT) $(I_INC)
 CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
+			./initfarm.c\
 			./utilis/pathnew.c\
 			./utilis/pathadd.c\
 			./utilis/pathdel.c\
