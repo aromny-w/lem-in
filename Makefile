@@ -15,6 +15,8 @@ CFLAGS=-Wall -Wextra -Werror -g $(INC)
 
 SRCS =		./lem_in.c\
 			./utilis/pathnew.c\
+			./utilis/pathadd.c\
+			./utilis/pathdel.c\
 			./findpaths.c\
 			./getpaths.c\
 			./read.c\

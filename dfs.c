@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 13:43:51 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:41:39 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,12 @@ void		*free_ways(t_path *tmp, void *ret)
 	tmp_ptr = NULL;
 	return (ret);
 }
-/*
-void		best_path(t_path **new, t_path *tmp)
+
+void		best_path(t_path **new, t_path *tmp, t_farm *farm)
 {
 	t_way	*ptr;
-	t_way	*ptr_free;
 
-	if (new && *new)
-	{
-		(*new)->len = 0;
-		ptr = (*new)->way;
-		while (ptr)
-		{
-			ptr_free = ptr;
-			ptr = ptr->next;
-			free(ptr_free);
-			ptr_free = NULL;
-		}
-	}
-	(**new) = pathnew(NULL, 0);
+	ft_memset(*new, 0, sizeof(new));
 	ptr = tmp->way;
 	while (ptr)
 	{
@@ -49,38 +36,22 @@ void		best_path(t_path **new, t_path *tmp)
 		ptr = ptr->next;
 	}
 	(*new)->len = tmp->len;
-	(*new)->limit = 0;
-}
-*/
-void		best_path(t_path **new, t_path *tmp)
-{
-	t_way	*ptr;
-
-	waydel(&(*new)->way);
-	(**new) = pathnew(NULL, 0);
-	ptr = tmp->way;
-	while (ptr)
-	{
-		wayadd(&(*new)->way, waynew(ptr->room));
-		ptr = ptr->next;
-	}
-	(*new)->len = tmp->len;
-	(*new)->limit = 0;
+	pathadd(&farm->buf, pathnew((*new)->way, (*new)->len));
 }
 
-void		*dfs(t_farm farm, t_path *new, t_path tmp, t_room *room)
+void		*dfs(t_farm *farm, t_path *new, t_path tmp, t_room *room)
 {
 	t_link	*link;
 
 	wayadd(&tmp.way, waynew(room));
 	tmp.len++;
-	if (tmp.len > 200 || !room || (new->way && new->len < tmp.len) ||
+	if (tmp.len > 230 || !room || (new->way && new->len < tmp.len) ||
 		tmp.len > room->dist)
 		return (free_ways(&tmp, NULL));
-	else if (tmp.way->room == farm.end && (!new->way || tmp.len < new->len))
+	else if (tmp.way->room == farm->end && (!new->way || tmp.len < new->len))
 	{
 		room->dist = tmp.len;
-		best_path(&new, &tmp);
+		best_path(&new, &tmp, farm);
 		return (free_ways(&tmp, NULL));
 	}
 	room->dist = tmp.len;

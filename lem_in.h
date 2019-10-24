@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 13:22:36 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 15:17:06 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_path
 	t_way			*way;
 	int				limit;
 	int				len;
+	struct s_path	*next;
 }				t_path;
 
 typedef struct	s_link
@@ -70,7 +71,8 @@ typedef struct	s_farm
 	t_room			*room;
 	t_room			*start;
 	t_room			*end;
-	t_list			*buf;
+	t_list			*input;
+	t_path			*buf;
 }				t_farm;
 
 void			lem_in(int fd);
@@ -80,9 +82,9 @@ void			setlink(char *line, t_farm *farm);
 void			solvefarm(t_farm farm, size_t max);
 void			splitrooms(t_room **room, t_room *start, t_room *end);
 void			adjustlinks(t_room **room, t_room *start, t_room *end);
-t_path			*getpaths(t_farm farm, t_path *init, size_t k);
-t_path			*findpaths(t_farm farm, t_path *path, size_t k);
-void			*dfs(t_farm farm, t_path *new, t_path tmp, t_room *room);
+t_path			*getpaths(t_farm *farm, t_path *init, size_t k);
+t_path			*findpaths(t_farm *farm, t_path *path, size_t k);
+void			*dfs(t_farm *farm, t_path *new, t_path tmp, t_room *room);
 void			terminate(int status);
 void			destroyfarm(t_farm *farm);
 t_room			*roomnew(char *name, t_point coords, t_link *link);
@@ -97,7 +99,9 @@ void			wayadd(t_way **way, t_way *new);
 void			waydel(t_way **way);
 void			wayrev(t_way **way);
 t_way			*waymap(t_way *way);
-t_path			pathnew(t_way *way, size_t len);
+t_path			*pathnew(t_way *way, size_t len);
+void			pathdel(t_path **path);
+void			pathadd(t_path **path, t_path *new);
 int				isantnbr(char *line);
 int				isroom(char *line, t_room *room);
 int				islink(char *line, t_room *room);

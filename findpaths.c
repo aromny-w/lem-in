@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 13:43:02 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 15:12:23 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ static void		reversepaths(t_path *init, t_path new, size_t k)
 	}
 }
 
-t_path			*findpaths(t_farm farm, t_path *path, size_t k)
+t_path			*findpaths(t_farm *farm, t_path *path, size_t k)
 {
 	t_path	new;
 
-	new = pathnew(NULL, 0);
-	initdistance(&farm.room);
+	ft_memset(&new, 0, sizeof(t_path));
+	initdistance(&farm->room);
 	reversepaths(path, new, k - 1);
-	dfs(farm, &new, pathnew(NULL, 0), farm.start);
+	dfs(farm, &new, new, farm->start);
 	reversepaths(path, new, k - 1);
 	if (!new.way)
 		return (NULL);

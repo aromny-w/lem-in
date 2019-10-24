@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 17:23:40 by bharrold          #+#    #+#             */
-/*   Updated: 2019/10/23 23:49:19 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:49:12 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ static void	destroy_rooms(t_room **room)
 
 void		destroyfarm(t_farm *farm)
 {
-	ft_lstdel(&farm->buf, del);
+	ft_lstdel(&farm->input, del);
 	destroy_rooms(&farm->room);
 }

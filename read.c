@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 18:15:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:50:55 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:47:06 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	datarev(t_farm *farm)
 		linkrev(&tmp->link);
 		tmp = tmp->next;
 	}
-	ft_lstrev(&farm->buf);
+	ft_lstrev(&farm->input);
 }
 
 int			readcommand(t_farm *farm, int fd, char **line)
@@ -41,7 +41,7 @@ int			readcommand(t_farm *farm, int fd, char **line)
 	ft_strcpy(cmd, *line);
 	if (ft_strcmp("##start", cmd) && ft_strcmp("##end", cmd))
 		return (0);
-	ft_lstadd(&farm->buf, ft_lstnew(*line, ft_strlen(*line) + 1));
+	ft_lstadd(&farm->input, ft_lstnew(*line, ft_strlen(*line) + 1));
 	free(*line);
 	if (get_next_line(fd, line) != 1)
 		*line = ft_strdup("");
@@ -79,7 +79,7 @@ void		readinput(t_farm *farm, int fd, char *line)
 			readcommand(farm, fd, &line) ? s[1] = 1 : 0;
 		else
 			abortreading(farm, fd, &line);
-		ft_lstadd(&farm->buf, ft_lstnew(line, ft_strlen(line) + 1));
+		ft_lstadd(&farm->input, ft_lstnew(line, ft_strlen(line) + 1));
 		free(line);
 	}
 	datarev(farm);

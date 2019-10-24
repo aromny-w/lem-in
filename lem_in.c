@@ -6,18 +6,18 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:24:37 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/22 22:24:53 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:52:12 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		writeinput(t_list *buf)
+static void		writeinput(t_list *input)
 {
-	while (buf)
+	while (input)
 	{
-		ft_putendl(buf->content);
-		buf = buf->next;
+		ft_putendl(input->content);
+		input = input->next;
 	}
 	ft_putchar('\n');
 }
@@ -37,6 +37,7 @@ static void		initfarm(t_farm *farm)
 	farm->room = NULL;
 	farm->start = NULL;
 	farm->end = NULL;
+	farm->input = NULL;
 	farm->buf = NULL;
 }
 
@@ -51,7 +52,7 @@ void			lem_in(int fd)
 		destroyfarm(&farm);
 		terminate(-1);
 	}
-	writeinput(farm.buf);
+	writeinput(farm.input);
 	solvefarm(farm, farm.end->links > farm.ants ? farm.ants : farm.end->links);
 }
 

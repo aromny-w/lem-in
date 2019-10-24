@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 22:44:17 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:10:35 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:44:06 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	shiftpaths(t_path *path, size_t k)
 		if (path[i].way)
 			path[++j] = path[i];
 	while (++j < k)
-		path[j] = pathnew(NULL, 0);
+		ft_memset(&path[j], 0, sizeof(t_path));
 }
 
 static int	isinvalid(t_way *way)
@@ -53,9 +53,9 @@ void		cancelpaths(t_path *path, size_t k)
 	{
 		if (path[i].way && isinvalid(path[i].way))
 		{
-			// waydel(&path[i].way);
 			path[i].way = NULL;
 			path[i].len = 0;
+			path[i].limit = 0;
 		}
 	}
 	shiftpaths(path, k);

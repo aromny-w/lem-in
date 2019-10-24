@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 13:51:59 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:42:09 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static int		brakingsystem(t_path *curr, t_path *prev, int k, int ants)
 	while (++i < k - 1)
 		len_prev[i] = prev[i].len / 2;
 	if (linecount(len_prev, k - 1, ants) < linecount(len_curr, k, ants))
+	{
+		free(curr);
 		return (0);
+	}
 	return (1);
 }
 
@@ -71,12 +74,13 @@ void			solvefarm(t_farm farm, size_t max)
 	splitrooms(&farm.room, farm.start, farm.end);
 	while (++k <= max)
 	{
-		if (!(path[k] = getpaths(farm, path[k - 1], k)) ||
+		if (!(path[k] = getpaths(&farm, path[k - 1], k)) ||
 		!brakingsystem(path[k], path[k - 1], k, farm.ants))
 			break ;
 	}
 	antsdist(path[k - 1], k - 1, farm.ants);
-	//while (--k)
-	//	pathfree(path[k], k);
+	pathdel(&farm.buf);
+	while (--k)
+		free(path[k]);
 	destroyfarm(&farm);
 }
