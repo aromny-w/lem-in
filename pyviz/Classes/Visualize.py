@@ -36,12 +36,14 @@ class Visualize:
 			csx = int(w * 0.05 + (w - w * 0.1) / 2 + (self.pos[room][0] * (w) / 2))
 			csy = int(h * 0.05 + (h - h * 0.1) / 2 + (self.pos[room][1] * (h) / 2))
 			color = (255, 0, 0)
+			radius = 5
 			if (room == self.farm.start):
 				color = (0, 0, 255)
+				radius = 8
 			if (room == self.farm.end):
 				color = (0, 255, 0)
-
-			pygame.draw.circle(self.rooms_surface, color, (csx, csy), 5)
+				radius = 8
+			pygame.draw.circle(self.rooms_surface, color, (csx, csy), radius)
 			if (room not in self.rooms):
 				self.rooms[room] = {}
 				self.rooms[room]['csx'] = None
