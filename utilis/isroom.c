@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:47:09 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/09/23 18:12:58 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:53:48 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@ static int		iscoord2(char **line)
 	long	nbr;
 
 	nbr = 0;
+	while (ft_isspace(**line))
+		(*line)++;
 	if (**line == '-')
 		return (0);
-	while (ft_isdigit(**line) && nbr <= INT_MAX)
-		nbr = 10 * nbr + (*(*line)++ - '0');
+	if (ft_isdigit(**line))
+		while (ft_isdigit(**line) && nbr <= INT_MAX)
+			nbr = 10 * nbr + (*(*line)++ - '0');
+	else
+		return (0);
 	if (**line == '\0' && nbr <= INT_MAX)
 		return (1);
 	return (0);
@@ -31,10 +36,15 @@ static int		iscoord1(char **line)
 	long	nbr;
 
 	nbr = 0;
+	while (ft_isspace(**line))
+		(*line)++;
 	if (**line == '-')
 		return (0);
-	while (ft_isdigit(**line) && nbr <= INT_MAX)
-		nbr = 10 * nbr + (*(*line)++ - '0');
+	if (ft_isdigit(**line))
+		while (ft_isdigit(**line) && nbr <= INT_MAX)
+			nbr = 10 * nbr + (*(*line)++ - '0');
+	else
+		return (0);
 	if (*(*line)++ == ' ' && nbr <= INT_MAX)
 		return (1);
 	return (0);
