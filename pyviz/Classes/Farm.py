@@ -40,11 +40,11 @@ def make_farm():
 			status = "end"
 		elif (patterns["comment"].search(line)):
 			status = "comment"
-		elif (patterns["room"].search(line)):
+		elif (patterns["room"].search(line) and line[0] != 'L'):
 			line_split = line.split(" ")
 			room_name = line_split[0]
 			farm.rooms.append(room_name)
-		elif (patterns["link"].search(line)):
+		elif (patterns["link"].search(line) and line[0] != 'L'):
 			line_split = line.strip().split("-")
 			farm.links.append(line_split)
 		elif (patterns["move"].search(line)):

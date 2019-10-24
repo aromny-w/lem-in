@@ -18,6 +18,8 @@ class Visualize:
 		self.rooms = {}
 		self.step_que = []
 		self.step_done = False
+		self.isPause = True
+		self.ants_renderer = {}
 
 	def count_background(self):
 		self.background_width = int(self.width * 0.9)
@@ -63,7 +65,7 @@ class Visualize:
 		self.info_object = pygame.display.Info()
 		self.width = int(self.info_object.current_w * 0.8)
 		self.height = int(self.info_object.current_h * 0.8)
-		pygame.display.set_caption('The Lem-in visuelizer | Visu-Hex')
+		pygame.display.set_caption('The Lem-in Visualizer | Visu-Hex')
 		self.run = True
 		self.screen = pygame.display.set_mode((self.width, self.height), HWSURFACE|DOUBLEBUF|RESIZABLE)
 		self.count_background()
@@ -76,12 +78,56 @@ class Visualize:
 			if len(self.farm.move) > 0:
 				self.step_que.append(self.farm.move.pop(0))
 				pygame.time.delay(100)
+			else:
+				self.isPause = True
+
+	def count_ants(self):
+		for steps in self.step_que:
+			for ant, room in steps:
+				if self.ants[ant].moving == False:
+					if self.ants[ant].path[0] == self.farm.start:
+						self.ants[ant].path.pop(0)
+						self.ants_renderer[ant] = {}
+						self.ants_renderer[ant]['x'] = self.rooms[self.farm.start]['cx']
+						self.ants_renderer[ant]['y'] = self.rooms[self.farm.start]['cy']
+						self.ants[ant].moving = True
+						self.ants[ant].movement = 0
+						self.ants[ant].done = False
+						self.ants[ant].fromRoom = self.farm.start
+						self.ants[ant].toRoom = self.ants[ant].path[0]
+					elif len(self.ants[ant].path) == 0:
+						self.ants.pop(ant)
+						self.ants_renderer.pop(ant)
+					elif self.ants[ant].path[0] != self.farm.start:
+						self.ants[ant].moving = True
+						self.ants[ant].movement = 0
+						self.ants[ant].done = False
+						self.ants[ant].toRoom = self.ants[ant].path[0]
+				else:
+					if self.ants[ant].movement == STEPS_NEED:
+						if (self.ants[ant].toRoom == self.farm.end):
+							self.ants_renderer.pop(ant)
+						self.ants[ant].fromRoom = self.ants[ant].toRoom
+						self.ants[ant].moving = False
+						self.step_que = []
+						self.step_done = True
+						self.ants[ant].path.pop(0)
+					elif self.ants[ant].moving:
+						self.ants[ant].movement += 1
+						fromRoom = self.rooms[self.ants[ant].fromRoom]
+						toRoom = self.rooms[self.ants[ant].toRoom]
+						x, y = self.count_x_y(fromRoom['cx'], fromRoom['cy'], toRoom['cx'], toRoom['cy'], self.ants[ant].movement)
+						self.ants_renderer[ant] = {}
+						self.ants_renderer[ant]['x'] = x
+						self.ants_renderer[ant]['y'] = y
 
 	def main_cycle(self):
 		while (self.run):
 			self.handle_events()
+			if not self.isPause:
+				self.activate_ants()
+				self.count_ants()
 			self.render()
-			self.activate_ants()
 			pygame.time.delay(100)
 		self.destroy()
 
@@ -105,41 +151,14 @@ class Visualize:
 		return int(x), int(y)
 
 	def render_ants(self):
-		for steps in self.step_que:
-			for ant, room in steps:
-				if self.ants[ant].moving == False:
-					print(self.ants[ant].path)
-					if self.ants[ant].path[0] == self.farm.start:
-						self.ants[ant].path.pop(0)
-						self.draw_ant(self.rooms[self.farm.start]['cx'], self.rooms[self.farm.start]['cy'])
-						self.ants[ant].moving = True
-						self.ants[ant].movement = 0
-						self.ants[ant].done = False
-						self.ants[ant].fromRoom = self.farm.start
-						self.ants[ant].toRoom = self.ants[ant].path[0]
-					elif self.ants[ant].path[0] != self.farm.start:
-						self.ants[ant].moving = True
-						self.ants[ant].movement = 0
-						self.ants[ant].done = False
-						self.ants[ant].toRoom = self.ants[ant].path[0]
-				else:
-					if self.ants[ant].movement == STEPS_NEED:
-						self.ants[ant].fromRoom = self.ants[ant].toRoom
-						self.ants[ant].moving = False
-						self.step_que = []
-						self.step_done = True
-						self.ants[ant].path.pop(0)
-					elif self.ants[ant].moving:
-						self.ants[ant].movement += 1
-						fromRoom = self.rooms[self.ants[ant].fromRoom]
-						toRoom = self.rooms[self.ants[ant].toRoom]
-						x, y = self.count_x_y(fromRoom['cx'], fromRoom['cy'], toRoom['cx'], toRoom['cy'], self.ants[ant].movement)
-						self.draw_ant(x, y)
+		for i in self.ants_renderer:
+			self.draw_ant(self.ants_renderer[i]['x'], self.ants_renderer[i]['y'])
 
 	def render(self):
 		self.screen.blit(self.background, (self.width * 0.05, self.height * 0.05))
 		self.screen.blit(self.rooms_surface, (self.width * 0.05, self.height * 0.05))
-		self.render_ants()
+		if not self.isPause:
+			self.render_ants()
 		pygame.display.update()
 
 	def handle_events(self):
@@ -151,6 +170,13 @@ class Visualize:
 				self.height = event.dict['size'][1]
 				self.screen = pygame.display.set_mode((self.width, self.height), HWSURFACE|DOUBLEBUF|RESIZABLE)
 				self.count_background()
+			elif event.type == KEYDOWN:
+				self.handle_keydown(event)
+
+	def handle_keydown(self, event):
+		if (event.key == K_s):
+			self.isPause = not self.isPause
+			pygame.time.delay(100)
 
 	def quit(self):
 		self.run = False
