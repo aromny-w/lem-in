@@ -14,6 +14,7 @@ class Visualize:
 		self.pos = pos
 		self.background = None
 		self.rooms_surface = None
+		self.link_surface = None
 		self.info_object = None
 		self.rooms = {}
 		self.step_que = []
@@ -27,7 +28,8 @@ class Visualize:
 		self.background = pygame.Surface((self.background_width, self.background_height))
 		self.background.fill((74, 42, 106))
 		self.rooms_surface = pygame.Surface((int(self.width * 0.9), int(self.height * 0.9)), pygame.SRCALPHA, 32)
-		self.rooms_surface.convert_alpha
+		self.link_surface = pygame.Surface((int(self.width * 0.9), int(self.height * 0.9)), pygame.SRCALPHA, 32)
+
 		for room in self.farm.rooms:
 			w = self.rooms_surface.get_width()
 			h = self.rooms_surface.get_height()
@@ -53,7 +55,7 @@ class Visualize:
 
 		for link, value in self.farm.links:
 			if (link in self.rooms and value in self.rooms):
-				pygame.draw.line(self.rooms_surface, (255, 255, 0), (
+				pygame.draw.line(self.link_surface, (255, 255, 0), (
 					self.rooms[link]['csx'],
 					self.rooms[link]['csy']
 				), (
@@ -156,9 +158,9 @@ class Visualize:
 
 	def render(self):
 		self.screen.blit(self.background, (self.width * 0.05, self.height * 0.05))
+		self.screen.blit(self.link_surface, (self.width * 0.05, self.height * 0.05))
 		self.screen.blit(self.rooms_surface, (self.width * 0.05, self.height * 0.05))
-		if not self.isPause:
-			self.render_ants()
+		self.render_ants()
 		pygame.display.update()
 
 	def handle_events(self):
