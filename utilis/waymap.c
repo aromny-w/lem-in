@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getpaths.c                                         :+:      :+:    :+:   */
+/*   waymap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 19:35:51 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:05:31 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/10/24 11:43:52 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/24 14:04:36 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_path			*getpaths(t_farm farm, t_path *init, size_t k)
+t_way	*waymap(t_way *way)
 {
-	t_path	*path;
-	size_t	i;
+	t_way		*new;
+	t_way		*new_ptr;
 
-	i = -1;
-	if (!(path = (t_path *)malloc(sizeof(t_path) * k)))
-		terminate(-1);
-	while (++i < k - 1 && init)
+	new = waynew(way->room);
+	new_ptr = way;
+	while ((way = way->next))
 	{
-		path[i].way = init[i].way;
-		path[i].len = init[i].len;
-		path[i].limit = init[i].limit;
+		if (!(new_ptr->next = waynew(way->room)))
+		{
+			waydel(&way);
+			return (NULL);
+		}
+		new_ptr = new_ptr->next;
 	}
-	path[i] = pathnew(NULL, 0);
-	if (!findpaths(farm, path, k))
-	{
-		// free(path);
-		return (NULL);
-	}
-	return (path);
+	return (way);
 }

@@ -37,7 +37,9 @@ SRCS =		./lem_in.c\
 			./terminate.c\
 			./utilis/wayadd.c\
 			./utilis/waynew.c\
+			./utilis/waydel.c\
 			./utilis/wayrev.c\
+			./utilis/waymap.c\
 			./destroyfarm.c\
 			./printstatus.c\
 			./printrooms.c\

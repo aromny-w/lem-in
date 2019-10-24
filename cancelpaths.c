@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 22:44:17 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 21:08:18 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 14:10:35 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ static int	isinvalid(t_way *way)
 	return (0);
 }
 
-void		cancelpaths(t_path *path, t_path new, size_t k)
+void		cancelpaths(t_path *path, size_t k)
 {
 	size_t	i;
 
 	i = -1;
-	(void)new;
 	while (++i < k)
 	{
 		if (path[i].way && isinvalid(path[i].way))
 		{
+			// waydel(&path[i].way);
 			path[i].way = NULL;
 			path[i].len = 0;
 		}

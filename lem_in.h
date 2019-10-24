@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 20:25:26 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:54:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:22:36 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ void			linkrev(t_link **link);
 void			linkdel(t_link **link);
 t_way			*waynew(t_room *room);
 void			wayadd(t_way **way, t_way *new);
+void			waydel(t_way **way);
 void			wayrev(t_way **way);
+t_way			*waymap(t_way *way);
 t_path			pathnew(t_way *way, size_t len);
 int				isantnbr(char *line);
 int				isroom(char *line, t_room *room);
@@ -104,7 +106,7 @@ int				iscomment(char *line);
 void			printstatus(t_path *path, int k);
 void			printrooms(t_room *room);
 int				checkoverlap(t_path new);
-void			cancelpaths(t_path *path, t_path new, size_t k);
+void			cancelpaths(t_path *path, size_t k);
 void			sortpaths(t_path *path, size_t k);
 void			antsdist(t_path *path, int k, int ants);
 

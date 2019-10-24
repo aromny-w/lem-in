@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 21:22:07 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:50:39 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:43:02 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_path			*findpaths(t_farm farm, t_path *path, size_t k)
 		return (NULL);
 	if (checkoverlap(new))
 	{
-		cancelpaths(path, new, k);
+		cancelpaths(path, k);
 		return (findpaths(farm, path, k));
 	}
 	else if (addpath(path, new, k) < k)

@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 16:38:16 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:50:06 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:43:51 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		*free_ways(t_path *tmp, void *ret)
 	tmp_ptr = NULL;
 	return (ret);
 }
-
+/*
 void		best_path(t_path **new, t_path *tmp)
 {
 	t_way	*ptr;
@@ -41,6 +41,22 @@ void		best_path(t_path **new, t_path *tmp)
 			ptr_free = NULL;
 		}
 	}
+	(**new) = pathnew(NULL, 0);
+	ptr = tmp->way;
+	while (ptr)
+	{
+		wayadd(&(*new)->way, waynew(ptr->room));
+		ptr = ptr->next;
+	}
+	(*new)->len = tmp->len;
+	(*new)->limit = 0;
+}
+*/
+void		best_path(t_path **new, t_path *tmp)
+{
+	t_way	*ptr;
+
+	waydel(&(*new)->way);
 	(**new) = pathnew(NULL, 0);
 	ptr = tmp->way;
 	while (ptr)

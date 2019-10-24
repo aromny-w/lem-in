@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getpaths.c                                         :+:      :+:    :+:   */
+/*   waydel.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 19:35:51 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 14:05:31 by aromny-w         ###   ########.fr       */
+/*   Created: 2019/10/24 00:18:55 by aromny-w          #+#    #+#             */
+/*   Updated: 2019/10/24 00:21:49 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_path			*getpaths(t_farm farm, t_path *init, size_t k)
+void	waydel(t_way **way)
 {
-	t_path	*path;
-	size_t	i;
+	t_way	*tmp;
+	t_way	*next;
 
-	i = -1;
-	if (!(path = (t_path *)malloc(sizeof(t_path) * k)))
-		terminate(-1);
-	while (++i < k - 1 && init)
+	tmp = *way;
+	while (tmp)
 	{
-		path[i].way = init[i].way;
-		path[i].len = init[i].len;
-		path[i].limit = init[i].limit;
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
 	}
-	path[i] = pathnew(NULL, 0);
-	if (!findpaths(farm, path, k))
-	{
-		// free(path);
-		return (NULL);
-	}
-	return (path);
+	*way = NULL;
 }
+

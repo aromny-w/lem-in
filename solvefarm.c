@@ -6,7 +6,7 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:38:23 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/24 00:04:58 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:51:59 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ static int		brakingsystem(t_path *curr, t_path *prev, int k, int ants)
 	return (1);
 }
 
-void			pathfree(t_path **path)
+void			pathfree(t_path *path, int k)
 {
-	free(*path);
-	*path = NULL;
+	while (k--)
+		waydel(&path[k].way);
+	free(path);
+	path = NULL;
 }
 
 void			solvefarm(t_farm farm, size_t max)
@@ -74,7 +76,7 @@ void			solvefarm(t_farm farm, size_t max)
 			break ;
 	}
 	antsdist(path[k - 1], k - 1, farm.ants);
-	while (k--)
-		pathfree(&path[k]);
+	//while (--k)
+	//	pathfree(path[k], k);
 	destroyfarm(&farm);
 }
