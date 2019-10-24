@@ -6,64 +6,71 @@
 /*   By: aromny-w <aromny-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:58:34 by aromny-w          #+#    #+#             */
-/*   Updated: 2019/10/23 23:32:27 by aromny-w         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:57:06 by aromny-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define FD_MAX 4864
 
-void	set_text(char *text[], char *temp, const int fd)
+char	*str_realloc(char *old, size_t size)
 {
-	ft_strdel(&text[fd]);
-	text[fd] = ft_strdup(temp);
-	ft_strdel(&temp);
-}
-
-int		read_file(char *text[], const int fd, char *temp)
-{
-	char	buf[BUFF_SIZE + 1];
-	int		red;
-
-	if ((red = read(fd, buf, BUFF_SIZE)) == 0)
-		return (0);
-	buf[red] = '\0';
-	temp = ft_strjoin(text[fd], buf);
-	set_text(text, temp, fd);
-	return (1);
-}
-
-int		single_line(char *text[], char **line, const int fd)
-{
-	*line = ft_strdup(text[fd]);
-	ft_strclr(text[fd]);
-	return (1);
-}
-
-int		get_next_line(const int fd, char **line)
-{
-	char		buf[BUFF_SIZE + 1];
-	static char	*text[1024];
-	char		*temp;
-	char		*ptr;
-
-	temp = NULL;
-	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
-		return (-1);
-	if (!text[fd])
-		text[fd] = ft_strnew(0);
-	while ((ptr = ft_strchr(text[fd], '\n')) == NULL)
-		if ((read_file(text, fd, temp)) == 0)
-			break ;
-	if (ft_strlen(text[fd]) != 0)
+	char *new;
+	
+	if (!old)
 	{
-		if (!(ft_strchr(text[fd], '\n')))
-			return (single_line(text, &*line, fd));
-		*ptr = '\0';
-		temp = ft_strdup(ptr + 1);
-		*line = ft_strdup(text[fd]);
-		set_text(text, temp, fd);
+		new = ft_strnew(size);
+		return (new);
 	}
-	else
-		return (0);
-	return (1);
+	new = ft_strnew(ft_strlen(old) + size);
+	ft_strcpy(new, old);
+	ft_strdel(&old);
+	return (new);
+}
+
+int		fillout(char **line, char *buffer)
+{
+	char	*tmp;
+	int		len;
+	
+	if ((tmp = ft_strchr(buffer, '\n')))
+	{
+		*line = str_realloc(*line, tmp - buffer);
+		ft_strncat(*line, buffer, tmp - buffer);
+		ft_memmove(buffer, tmp + 1, ft_strlen(tmp));
+		return (1);
+	}
+	if ((len = ft_strlen(buffer)))
+	{
+		*line = str_realloc(*line, len);
+		ft_strncat(*line, buffer, len);
+		*buffer = '\0';
+	}
+	return (0);
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static char	*buff[FD_MAX];
+	int			bytes;
+	
+	if (fd < 0 || fd >= FD_MAX || !line || BUFF_SIZE < 1)
+		return (-1);
+	else if (!buff[fd] && !(buff[fd] = ft_strnew(BUFF_SIZE)))
+		return (-1);
+	*line = NULL;
+	if (fillout(line, buff[fd]))
+		return (1);
+	while ((bytes = read(fd, buff[fd], BUFF_SIZE)) > 0)
+	{
+		buff[fd][bytes] = '\0';
+		if (fillout(line, buff[fd]))
+			return (1);
+	}
+	if (*line)
+		return (1);
+	ft_strdel(&buff[fd]);
+	if (bytes < 0)
+		return (-1);
+	return (0);
 }
